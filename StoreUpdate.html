@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가맹점정보수정페이지 & 점포정보등록페이지</title>
+    <link href="updateInfo.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header id="header">
+        <h2 id="h2">가맹점 정보 수정</h2>
+        <hr id="hr1">
+    </header>
+    
+    <div class= "contents">
+        <div class="storeName">
+            <label for = "storeName">카페 명</label>
+            <br>
+            <input type = "text" id = "id" autofocus required>
+        </div>
+
+        <div class="storeTel">                                              
+            <div id="storeTel">  
+                <br> 
+                <label for = "storeTel">카페 연락처 </label><br>
+                <input type = "tel" id = "storetel" autofocus required>
+            </div>
+        </div>
+
+        <div class="storeAddr">                                      
+            <br>
+            <label for = "storeAddr">주소</label><br>
+            <input type = "text" id = "storeAddr" autofocus required>
+        </div>
+
+        <div class="storeTable">                                               
+            <div id="storeTable">
+                <br>
+                <label for = "storeTable">층 테이블수</label><br>
+                <input type = "number" id = "storeTable" autofocus required> 
+            </div>
+        </div> 
+
+        <div class="hours">
+            <br>
+            <div id="openTime" style="display: inline-block;">   
+                <label for = "openTime">오픈 시간</label><br>
+                <input type = "time" id = "openTime">
+            </div>
+            <div id="closeTime" style="display: inline-block;">   
+                <label for = "closeTime">마감 시간</label><br>
+                <input type = "time" id = "closeTime">
+            </div>
+        </div>
+
+        <div class="email">  
+            <br>                                            
+            <label for = "email">이메일</label><br>
+            <input type = "email"" id = "email" size="30">
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="reigist">
+        <br><input id="updateBtn" type="submit" value=" 수정완료">
+        <input id="cencleBtn" type="submit" value=" 수정취소">
+    </div>
+    
+</body>
+</html>

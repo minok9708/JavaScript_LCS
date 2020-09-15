@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입페이지</title>
+    <link href="updateInfo.css" rel="stylesheet" type="text/css">
+    
+    <style>
+        #hr2{  /*점포정보 등록 머리글 구분선 */
+            width: 50%;
+            border: solid 0.1em;
+            background-color: darkblue;
+        }
+
+        input[type=button]{
+            border-radius: 20px;
+            border-color:#707070 ;
+            background-color:#707070 ;
+            color: white;
+        }
+    </style> 
+</head>
+<body>
+    <header id="header">
+        <h2 id="h2">회원가입</h2>
+        <hr id="hr1">
+    </header>
+    
+    <div class= "contents">
+        <div class="id">
+            <label for = "id">아이디</label>
+            <br>
+            <input type = "text" id = "id" minlength="4" maxlength="15" autofocus required>
+            <small style="color:red;">4~15자리 이내의영문과 숫자</small>
+
+            <div id="id_btn" style="display: inline-block;">   
+                <label for = "id_btn"></label>
+                <input type = "button" id = "id_btn" value="중복확인" autofocus required> 
+            </div>
+        </div>
+
+        <div class="password">                                              
+            <div id="pw" style="display: inline-block;">  
+                <br> 
+                <label for = "pw" class="box">비밀번호 </label><br>
+                <input type = "password" id = "pw" autofocus required>
+            </div>
+
+            <div id="re_pw" style="display: inline-block;">  
+                <label for = "re_pw" class="box">비밀번호 확인</label><br>
+                <input type = "password" id = "re_pw" autofocus required>
+            </div> 
+        </div>
+
+        <div class="name">                                      
+            <br>
+            <label for = "content">이름</label><br>
+            <input type = "text" id = "name" autofocus required>
+        </div>
+
+        <div class="phoneinfo">                                               
+            <div id="phone" style="display: inline-block;">
+                <br>
+                <label for = "phone">연락처</label><br>
+                <input type = "tel" id = "phone" autofocus required> 
+            </div>
+
+            <div id="phone_btn" style="display: inline-block;">   
+                <label for = "phone_btn"></label>
+                <input type = "button" id = "phone_btn" value="인증번호 받기" autofocus required> 
+            </div>
+
+            <div id="phone_num" style="display: inline-block;">   
+                <label for = "phone_num">인증번호 입력</label><br>
+                <input type = "tel" id = "phone_num" autofocus required>
+            </div>
+
+        </div> 
+
+        <div class="email">  
+            <br>                                            
+            <label for = "email">이메일</label><br>
+            <input type = "email"" id = "email" size="30">
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="storeinfo">
+        <h2  id="h2">점포정보 등록</h2>
+        <hr  id="hr2">
+
+        <div class="contents">
+            <div class="storeName">
+                <label>카페명<br><input type="text" autofocus required></label>
+            </div>
+
+            <div class="storePhone">
+                <br><label>카페 연락처<br><input type="text" autofocus required></label>
+            </div> 
+
+            <div class="storeAddr">
+                <br><label>카페 주소<br><input type="text" autofocus required></label>
+            </div> 
+
+            <div class="companyNum">
+                <br><label>사업자등록번호<br><input type=" text" autofocus required></label>
+                <input class="Btn" type="button" name="" value="인증 받기">
+            </div> 
+
+            <div class="allSeat">
+                <br><label>총 좌석수<br><input type="number" autofocus required></label>
+            </div>
+
+            <div class="emailReSignUp">
+                <br><label>오픈 시간<br><input type="time"></label>
+            </div> 
+
+            <div class="num">
+                <br><label>마감 시간<br><input type="time"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="reigist">
+        <br><input id="signUpBtn" type="submit" value=" 회원가입">
+        <input id="cencleBtn" type="submit" value=" 가입취소">
+    </div>
+    
+</body>
+</html>

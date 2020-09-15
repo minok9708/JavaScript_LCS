@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 조회 페이지(가맹점 관리)</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="left-nav">
+            <div id="member">
+                <h2><span style="color: white;">아무개관리자 </span>님</h2>
+            </div>
+
+                <h3>회원 관리(매니저 관리)</h3>
+                <ul>
+                    <h4><li><a href="#####">조회</a></li></h4>
+                    <h4><li><a href="#####">회원정보 삭제</a></li></h4>
+                    <h4><li><a href="#####">회원정보 수정</a></li></h4>
+                    <br> 
+                </ul>
+
+                <h3  style="color: red;">가맹점 관리</h3>
+                <ul>
+                    <h4><li><a href="#####">가맹점 조회</a></li></h4>
+                    <h4><li><a href="#####">가맹점 승인</a></li></h4>
+                    <h4><li><a href="#####">가맹점 수정</a></li></h4>
+                    <h4><li><a href="#####">가맹점 삭제</a></li></h4>
+                </ul>
+        </div>
+
+        <header id="header">
+            <h1>가맹점 관리
+                <div class="btn">
+                    <input type="button" value="새로고침">
+                    <input type="button" value="등 록">
+                </div>
+            </h1>
+          
+            <div id ="RegiDate">  
+            
+                <label>등록날짜 : <input type="date"></label>
+                <label>-&nbsp;<input type="date"></label>
+                &nbsp;&nbsp;&nbsp;
+    
+                <label> 이름 : <input type="text"></label>&nbsp;
+                <input type="submit" name="selectBtn" value="조회">
+            </div>
+
+            <hr style="margin-left: 0.1%;" width="70%">
+    
+        </header>
+
+        <content class="contents">
+            <fieldset>
+                <table>
+                    <thead> 
+                        <tr>   
+                            <th></th>         
+                            <th>가맹점 이름</th>
+                            <th>주소 </th>
+                            <th>카페 연락처 </th>
+                            <th>사업자등록번호 </th>
+                            <th>총 테이블수 </th>
+                            <th>오픈 시간</th> </th>
+                            <th>마감 시간</th>
+                            <th>가맹점 정보 </th>
+                        </tr>
+                    </thead>
+
+                    <tbody> 
+                        <tr>   
+                            <th> </th>         
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                            <th> 
+                                <div id="updateBtn" style="display: inline-block;">
+                                    <input type="button" name="update" value="수정">
+                                </div>
+                                
+                                <div id="deleteBtn" style="display: inline-block;">
+                                    <input type="button" name="delete" value="삭제">
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </content>
+        
+    </div>
+   
+</body>
+</html>
