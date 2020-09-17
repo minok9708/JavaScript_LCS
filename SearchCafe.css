@@ -1,0 +1,29 @@
+#bar {
+  width: 100%;
+  background-color: gray;
+  padding: 1%;
+}
+
+input[type="search"] {
+  width: 40%;
+  padding: 1%;
+  border-radius: 20px;
+  border: none;
+  z-index: 2;
+}
+
+input[type="submit"] {
+  width: 6%;
+  border-radius: 20px;
+  border: none;
+}
+
+#recommend {
+  width: 40%;
+  visibility: visible;
+  background-color: white;
+  border: 1px solid;
+  margin-left: 27%;
+  margin-top: -0.5%;
+  z-index: 1;
+}

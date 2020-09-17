@@ -1,56 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>카페 검색</title>
-    <style>
-        #bar{
-            width: 100%;
-            background-color: gray;
-            padding: 1%;
-        }
 
-        input[type=search]{
-            width:40%;
-            padding: 1%;
-            border-radius: 20px;
-            border: none;
-            z-index: 2;
-        }
-
-        input[type=submit]{
-            width: 6%;
-            border-radius: 20px;
-            border: none;
-        }
-
-        #recommend{
-            width: 40%;
-            visibility: visible;
-            background-color: white;
-            border: 1px solid;
-            margin-left: 27%;
-            margin-top: -0.5%;
-            z-index: 1;
-        }
-    </style>
-</head>
-<body>
+    <link href="SearchCafe.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
     <div id="bar">
-        <form class="searchBar" action="action_page.php">
-            <center>
-                <input type="search" placeholder="Search.." name="search">
-                <input type="submit" name="selectBtn" value="조회">
-            </center>
-            
-            <div id="recommend">
-                    <div class="item"><span class="text"></span></div>
-                    <div class="item">스타벅스 <span class="text"></span></div>
-                    <div class="item">이디야<span class="text"></span></div>
-                </div>
-        </form>
+      <form class="searchBar" action="action_page.php">
+        <center>
+          <input type="search" placeholder="Search.." name="search" />
+          <input type="submit" name="selectBtn" value="조회" />
+        </center>
+
+        <div id="recommend">
+          <div class="item"><span class="text"></span></div>
+          <div class="item">스타벅스 <span class="text"></span></div>
+          <div class="item">이디야<span class="text"></span></div>
+        </div>
+      </form>
     </div>
-    
-</body>
+  </body>
 </html>

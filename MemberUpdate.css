@@ -1,0 +1,48 @@
+#hr1 {
+    /* 머리글 구분선 */
+    width: 50%;
+    border: solid 0.1em;
+    background-color: darkblue;
+  }
+  
+  #h2 {
+    /* 머리글 */
+    text-align: center;
+  }
+  
+  .contents {
+    /* 본문 */
+    margin-top: 5%;
+    margin-left: 25%;
+  }
+  
+  .reigist {
+    /*회원가입& 취소 버튼*/
+    text-align: center;
+    margin-top: 3%;
+  }
+  
+  #updateBtn {
+    /* 완료버튼 */
+    border-radius: 5px;
+    border: none;
+    background-color: #4a95e5;
+    color: white;
+  }
+  
+  #cencleBtn {
+    /* 수정취소버튼*/
+    border-radius: 5px;
+    border: none;
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  #signUpBtn {
+    /* 회원가입완료버튼 */
+    border-radius: 5px;
+    border: none;
+    background-color: #4a95e5;
+    color: white;
+  }
+  
