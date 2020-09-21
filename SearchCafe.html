@@ -4,23 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>카페 검색</title>
+    <script type="text/javascript">
+      function getElement() {
+        var msg = document.getElementById("selectMain");
+        alert(msg.val);
+      }
+    </script>
+
+    <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
     <link href="SearchCafe.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div id="bar">
-      <form class="searchBar" action="action_page.php">
-        <center>
-          <input type="search" placeholder="Search.." name="search" />
-          <input type="submit" name="selectBtn" value="조회" />
-        </center>
-
-        <div id="recommend">
-          <div class="item"><span class="text"></span></div>
-          <div class="item">스타벅스 <span class="text"></span></div>
-          <div class="item">이디야<span class="text"></span></div>
-        </div>
-      </form>
+      <center>
+        <form>
+          <input
+            id="selectMain"
+            type="text"
+            placeholder="검색어를 입력하세요"
+            name="search"
+            onkeydown="enterSearch()"
+          />
+          <input
+            id="searchMain"
+            type="button"
+            value="검색"
+            onclick="myFunction()"
+          />
+        </form>
+      </center>
     </div>
+
+    <script>
+      // 키보드로 엔터를 눌럿을때
+      function enterSearch() {
+        if (event.keyCode == 13) {
+          myFunction(); // 실행할 이벤트
+        }
+      }
+
+      //검색바에 검색한 키워드를 콘솔에 출력
+      function myFunction() {
+        var keyword = document.getElementById("selectMain").value;
+        console.log(keyword);
+        
+        let message = '"' + keyword +'"'+" 에 대한 검색결과 입니다";
+        console.log(message);
+        //alert(keyword)
+
+        let mapUrl = "http://cafeaddy.xyz:8080/api/name";
+
+        axios
+          .post(mapUrl, {
+            name: keyword,
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log("error!!!!");
+          });
+      }
+    </script>
   </body>
 </html>

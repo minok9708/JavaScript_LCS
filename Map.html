@@ -22,7 +22,6 @@ marine.operation(); -->
       console.log(this.action); // attack
   }
 };
-
 marine.operation(); -->
 
 <!-- 화살표함수 설명 링크 : https://freestrokes.tistory.com/103 -->
@@ -50,7 +49,7 @@ marine.operation(); -->
     <!-- 카카오맵을 사용하기 위한 Api호출 -->
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f47e84cf13db3f58d6f37bcb23b2f9a4"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f47e84cf13db3f58d6f37bcb23b2f9a4&libraries=services"
     ></script>
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
@@ -69,17 +68,18 @@ marine.operation(); -->
       // 마커데이터를 담을 배열
       // 서버통신을 통하여 여기에다가 담으면됨
       // let markerdata = [];
-
+      var markers = [];
+      var cafeData = [];
       // 이게 아마 그 리액트에서 썻던 window 맵객체 공유하는거 document.getElementById가 중요
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
       const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(37.5906981, 127.0739813),
         level: 3,
         draggable: true,
       };
       // 카카오맵 컨테이너 인자값과 옵션인자값을 주고 생성
-      const map = new kakao.maps.Map(container, options);
+      var map = new kakao.maps.Map(container, options);
       // 지도 줌인 레벨 조정
       map.setMinLevel(3);
       // 지도 줌아웃 레벨 조정
@@ -92,7 +92,7 @@ marine.operation(); -->
       // 위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
         findLocation();
-      }, 200);
+      }, 100);
 
       const findLocation = () => {
         // 현위치 마커 표시
@@ -161,66 +161,25 @@ marine.operation(); -->
         map.panTo(locPosition);
       };
 
-      // -------------------------------------------------------------------------------
-      //처음 좌표경계를 보내서 초기 마커데이터를 받는 함수를 작성
-      // const displayServerMarker = (cafeData) => {
-      //   console.log(cafeData);
-
-      //   cafeData = cafeData.map((serverMarker) => {
-      //     console.log(serverMarker);
-      //     let marker = new kakao.maps.Marker({
-      //       map: map,
-      //       position: {lat: marker.latitude, lng: marker.longitude},
-      //     });
-      //   });
-      // };
-      const displayServerMarker = (cafeData) => {
-        console.log(cafeData);
-
-        cafeData.map((serverMarker, index) => {
-          let marker = new kakao.maps.Marker({
-            map: map,
-            key: index,
-            title: serverMarker.name,
-            position: {lat: serverMarker.latitude, lng: serverMarker.longitude},
-            name: serverMarker.name,
-          });
-          console.log(marker)
-        });
-    
-
-        //displayMarker(marker.position,marker.name);
-      };
-      // -------------------------------------------------------------------------------
-
       // 지도가 이동, 확대, 축소로 인해 지도영역이 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록
       // 화살표 함수 사용
       // 여기다가 뭘 넣어야할지 의문
       // 아예 필요없을수도 idle이 대체
-      const bounds_change = kakao.maps.event.addListener(
-        map,
-        "bounds_changed",
-        () => {}
-      );
-
-      // 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록
-      const map_zoom = kakao.maps.event.addListener(
-        map,
-        "zoom_changed",
-        function () {
-          // 지도의 현재 레벨을 얻어옵니다
-          let level = map.getLevel();
-
-          let message = "현재 지도 레벨은 " + level + " 입니다";
-          console.log(message);
-        }
-      );
+      // const bounds_change = kakao.maps.event.addListener(
+      //   map,
+      //   "bounds_changed",
+      //   () => {}
+      // );
 
       // 지도 시점이 완전히 변화했을때 수행되는 이벤트 등록
       // boundsChange와 다름
       // https://code-zzolbo.tistory.com/33
       const map_idle = kakao.maps.event.addListener(map, "idle", function () {
-        // let cafeData = [];
+        // 리스너는 동기 안에있는 통신코드는 비동기 : 아직 통신이 끝나지 않은상태에서 마커를 그리려하면 오류가남 그래서 promise를 사용해서
+        // 비동기인 방식을 동기식으로 바꿔줘야함
+        // 동기 실행순서 : A B C 가 있으면 A -> B -> C
+        // 비동기 실행순서 : A B C 가 있으면 B -> A -> C , A -> C -> B 이런식으로 순서가 뒤죽박죽
+
         // 지도 영역정보를 얻어오기
         let bounds = map.getBounds();
 
@@ -237,12 +196,6 @@ marine.operation(); -->
         let neLatitude = neLatlng.getLat();
         let neLongitude = neLatlng.getLng();
 
-        // 영역정보 출력 올바른지 테스트 콘솔 로그
-        console.log(`남서쪽 위도: ${swLatitude}`);
-        console.log(`남서쪽 경도: ${swLongitude}`);
-        console.log(`북동쪽 위도: ${neLatitude}`);
-        console.log(`북동쪽 경도: ${neLongitude}`);
-
         let message =
           "지도의 중심좌표는 " +
           map.getCenter().toString() +
@@ -253,56 +206,85 @@ marine.operation(); -->
           " 레벨 입니다.";
         console.log(message);
 
-        //console.log(swLatitude,swLongitude, neLatitude,neLongitude)
-
-        // ----------------------------------------------------------------------------------------
-        // 마커데이터 불러오는 통신코드
-        // 시점변환이 완료되었을때 경계값을 보내 마커 출력
-        let mapUrl = "https://cafeaddy.xyz:8080/api/cafes/around";
-        let cafeData = [];
-
-        axios({
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          url: mapUrl,
-          data: {},
-          params: {
-            neLongitude: neLongitude,
-            neLatitude: neLatitude,
-            swLongitude: swLongitude,
-            swLatitude: swLatitude,
-          },
-        })
-          .then(({data}) => {
-            // if (data.statusCode === 404) {
-            //   console.log("404에러");
-            // } else if (data.statusCode === 200) {
-            //   cafeData = data.data;
-            // console.log(data.data);
-            // }
-
-            //console.log(data.data);
-            //cafeData.push(data.data)
-
-            //서버에서 받아오 데이터 리스트를 cafeData 변수에 넣기
-            for (i = 0; cafeData.length < data.data.length; i++) {
-              cafeData[i] = data.data[i];
-            }
-
-            //console.log(cafeData);
-          })
-          .catch((error) => {
-            console.log("error:", error.response);
-          });
-        //console.log(cafeData);
-
-        // cafeData를 함수로 보냄
-        displayServerMarker(cafeData);
-        // ----------------------------------------------------------------------------------------
+        // idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
+        getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
       });
+
+      // getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
+      const getCafeInfo = (ne1, ne2, sw1, sw2) => {
+        // 통신코드는 비동기이기 때문에 동기로 바꿔주기 위하여 프로미스를 사용
+        // 프로미스의 목적은 어지간한게 비동기적으로 돌아가는 자바스크립트에서 순차적실행을 위하여 사용
+        return new Promise((res, reject) => {
+          // 마커데이터 불러오는 통신코드
+          let mapUrl = "https://cafeaddy.xyz:8080/api/cafes/around";
+          axios({
+            method: "get",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            url: mapUrl,
+            data: {},
+            params: {
+              neLongitude: ne1,
+              neLatitude: ne2,
+              swLongitude: sw1,
+              swLatitude: sw2,
+            },
+          })
+            .then(({ data }) => {
+              // 성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
+              res(aaa((cafeData = data.data)));
+            })
+            .catch((error) => {
+              console.log("error:", error.response);
+              // 실패하면 reject("에러처리 함수로 보내거나 텍스트")
+              reject("실패");
+            });
+        });
+      };
+
+      // aaa 함수는 위에서 보내온 데이터를 받아서 다시 bbb함수로 전달
+      aaa = (cafeData) => {
+        return new Promise((res, reject) => {
+          if (cafeData) {
+            console.log("마커데이터가 받아진것같습니다.");
+            console.log(cafeData);
+            res(bbb(cafeData));
+          } else {
+            reject(ddd);
+          }
+        });
+      };
+
+      // aaa함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 bbb함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
+      aaa(true).then(
+        (bbb = (cafe) => {
+          cafe.map((marker, index) => {
+            console.log(index);
+            console.log(marker);
+            console.log(marker.name);
+
+            console.log(marker.latitude);
+            console.log(marker.longitude);
+
+            let m = new kakao.maps.Marker({
+              map: map,
+              position: new kakao.maps.LatLng(
+                marker.latitude,
+                marker.longitude
+              ),
+            });
+          });
+        }),
+        (ccc = () => {
+          console.log("진짜 실패함");
+        })
+      );
+
+      ddd = () => {
+        console.log("ddd가 실패했다.");
+      };
     </script>
   </body>
 </html>
