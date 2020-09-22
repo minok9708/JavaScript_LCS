@@ -5,11 +5,44 @@
   width: 100%;
   height: 100vh;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 /* body */
 .map_page_body {
   height: 100%;
+  position: relative;
+  z-index: 1;
   margin: 0;
   padding: 0;
+}
+
+#selectMain {
+  /* 검색창&지도 검색 바 */
+  width: 25%;
+  padding: 1%;
+  z-index: 1;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-width: 3px;
+  /*  margin-top: 10%;  */
+  outline: none;
+  position: relative;
+  margin: 1%;
+}
+
+#searchMain {
+  /* 메인페이지& 검색 창& 지도 검색 버튼 */
+  width: 8%;
+  border-radius: 20%;
+  z-index: 1; 
+  position: relative; 
+  padding: 0.5%;
+  border: none;
+}
+
+#searchBar {
+  width: 70%;
+  position: relative;
+  /* z-index: 1; */
 }

@@ -63,6 +63,22 @@ marine.operation(); -->
   <body class="map_page_body">
     <!-- 맵 렌더링? 출력 -->
     <div id="map"></div>
+    <!-- 지도위에 검색바 기능 -->
+    <form id="searchBar">
+      <input
+        id="selectMain"
+        type="text"
+        placeholder="검색어를 입력하세요"
+        name="search"
+        onkeydown="enterSearch()"
+      />
+      <input
+        id="searchMain"
+        type="button"
+        value="검색"
+        onclick="myFunction()"
+      />
+    </form>
     <p id="result"></p>
     <script>
       // 마커데이터를 담을 배열
@@ -93,6 +109,38 @@ marine.operation(); -->
       setTimeout(() => {
         findLocation();
       }, 100);
+      //---------------------------------------------------------------------------------------------------------------------------------
+      // 키보드로 엔터를 눌럿을때
+      function enterSearch() {
+        if (event.keyCode == 13) {
+          myFunction(); // 실행할 이벤트
+        }
+      }
+
+      //검색바에 검색한 키워드를 콘솔에 출력
+      function myFunction() {
+        var keyword = document.getElementById("selectMain").value;
+        console.log(keyword);
+
+        let searchMessage = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
+        console.log(searchMessage);
+        //alert(keyword)
+
+        let searchUrl = "http://cafeaddy.xyz:8080/api/name";
+
+        axios
+          .post(searchUrl, {
+            name: keyword,
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log("error!!!!");
+          });
+      }
+
+      //--------------------------------------------------------------------------------------------------------------------------------------------------
 
       const findLocation = () => {
         // 현위치 마커 표시
@@ -232,7 +280,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({ data }) => {
+            .then(({data}) => {
               // 성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
               res(aaa((cafeData = data.data)));
             })
