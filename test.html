@@ -5,28 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>인포윈도우 ui test</title>
     <style>
-      /* 커스텀 오버레이 */
-      .infowindowBox {
-        width: 100%;
-        height: 100%;
-        background-color: gray;
-        font-size: large;
-      }
+            /* 커스텀 오버레이 */
+            .infowindowBox {
+              background-color: gray;
+              padding: 2%;
+            }
+            #infoName {
+              margin-left: 3%;
+              display: inline-block;
+            }
+            #infoAddr {
+              display: inline-block;
+            }
+            #infoPhone {
+              display: inline-block;
+            }
+            #infoTable {
+              display: inline-block;
+              margin-left: 4%;
+            }
+            #infoBtn {
+              background-color: gainsboro;
+              width: 10%;
+              margin: 1%;
+              padding :1%;
+              border: none;
+              border-radius: 25%;
+              float: right;
 
-      #infoBtn {
-        width: 11vh;
-        border-radius: 20%;
-        padding: 0.5%;
-        border: none;
       }
+            }
     </style>
   </head>
   <body>
     <div class="infowindowBox">
-      <h1>카페이름</h1>
-      <h6>주소:</h6>
       <div>
-        <h5>테이블</h5>
+        <h1 id="infoName">스타벅스 지행역점</h1>
+        <h5 id="infoPhone">1522-3232 |</h5>
+        <h5 id="infoAddr">경기 동두천시 지행로 55</h5>
+      </div>
+
+      <div>
+        <h3 id="infoTable">테이블</h3>
         <button id="infoBtn">상세정보</button>
       </div>
     </div>
