@@ -80,15 +80,8 @@ marine.operation(); -->
         onclick="myFunction()"
       />
     </form>
-<<<<<<< HEAD
     <!-- 맵 출력 -->
     <div id="map"></div>
-=======
-    
-    <!-- 맵 출력 -->
-    <div id="map"></div>
-    
->>>>>>> fb8ed53dc543af496765e539fd0d84964b5b0636
     <script>
       // 마커데이터를 담을 배열
       // 서버통신을 통하여 여기에다가 담으면됨
@@ -346,7 +339,8 @@ marine.operation(); -->
       const markerDisplay = markerdata.map((marker) => {
         console.log(marker);
         var content =
-          '<div class ="infowindow"><label>카페이름: </label><br><label>주소:</lable></div>';
+          '<div class="infowindow"><label>카페이름: </label><br><label>주소:</lable></div>' +
+          '<button id="btn"></button>';
 
         let ma = new kakao.maps.Marker({
           map: map,
@@ -356,13 +350,24 @@ marine.operation(); -->
         });
 
         // 커스텀 오버레이를 생성합니다
-        var customOverlay = new kakao.maps.CustomOverlay({
+        let customOverlay = new kakao.maps.CustomOverlay({
           position: new kakao.maps.LatLng(marker.lat, marker.lng),
           content: content,
+          clickable: true,
+        });
+
+        let closeBtn = document.createElement("btn");
+        closeBtn.innerHTML = "닫기";
+        closeBtn.onclick = function () {
+          customOverlay.setMap(null);
+        };
+
+        kakao.maps.event.addListener(ma, "click", function () {
+          customOverlay.setMap(map);
         });
 
         // 커스텀 오버레이를 지도에 표시합니다
-        customOverlay.setMap(map);
+        // customOverlay.setMap(map);
       });
     </script>
   </body>
