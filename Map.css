@@ -35,8 +35,8 @@
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
   width: 8%;
   border-radius: 20%;
-  z-index: 1; 
-  position: relative; 
+  z-index: 1;
+  position: relative;
   padding: 0.5%;
   border: none;
 }
@@ -45,4 +45,14 @@
   width: 70%;
   position: relative;
   /* z-index: 1; */
+}
+/* 커스텀 오버레이 */
+.infowindow {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  font-size: large;
+  padding: 30%;
+  margin: 20%;
+  position: relative;
 }
