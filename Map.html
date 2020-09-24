@@ -58,6 +58,9 @@ marine.operation(); -->
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script> -->
 
+    <!-- 커스텀윈도우 디자인을 사용하기 위한 호출 -->
+    <script type="text/javascript" src="./test.html"></script>
+
     <!-- 외부 css파일 사용 -->
     <link href="Map.css" rel="stylesheet" type="text/css" />
   </head>
@@ -339,8 +342,7 @@ marine.operation(); -->
       const markerDisplay = markerdata.map((marker) => {
         console.log(marker);
         var content =
-          '<div class="infowindow"><label>카페이름: </label><br><label>주소:</lable></div>' +
-          '<button id="btn"></button>';
+          '<div class="infowindowBox"><div><h2 id="infoName">스타벅스 지행역점</h2><h5 id="infoPhone"> 1522-3232 |</h5><h5 id="infoAddr">경기 동두천시 지행로 55</h5></div><div><h3 id="infoTable">테이블</h3><button id="infoBtn">상세정보</button></div></div>';
 
         let ma = new kakao.maps.Marker({
           map: map,
