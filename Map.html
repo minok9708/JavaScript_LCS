@@ -44,7 +44,7 @@ marine.operation(); -->
     />
 
     <!-- 타이틀바 이름 -->
-    <title>주변카페조회 지도</title>
+    <title>지도</title>
 
     <!-- 카카오맵을 사용하기 위한 Api호출 -->
     <script
@@ -52,6 +52,7 @@ marine.operation(); -->
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f47e84cf13db3f58d6f37bcb23b2f9a4&libraries=services"
     ></script>
 
+    <!-- 서버가 안될시 임시 샘플 마커 데이터 -->
     <script type="text/javascript" src="./markerData.js"></script>
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
@@ -63,8 +64,6 @@ marine.operation(); -->
 
   <!-- Map.Html Body -->
   <body class="map_page_body">
-    <!-- 맵 렌더링? 출력 -->
-    <div id="map"></div>
     <!-- 지도위에 검색바 기능 -->
     <form id="searchBar">
       <input
@@ -81,7 +80,8 @@ marine.operation(); -->
         onclick="myFunction()"
       />
     </form>
-    <p id="result"></p>
+    <!-- 맵 출력 -->
+    <div id="map"></div>
     <script>
       // 마커데이터를 담을 배열
       // 서버통신을 통하여 여기에다가 담으면됨
@@ -97,7 +97,7 @@ marine.operation(); -->
         draggable: true,
       };
       // 카카오맵 컨테이너 인자값과 옵션인자값을 주고 생성
-      var map = new kakao.maps.Map(container, options);
+      let map = new kakao.maps.Map(container, options);
       // 지도 줌인 레벨 조정
       map.setMinLevel(3);
       // 지도 줌아웃 레벨 조정
