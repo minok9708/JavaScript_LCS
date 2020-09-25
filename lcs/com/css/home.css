@@ -1,0 +1,42 @@
+.home_body {
+  background: #f4f5f9;
+}
+
+input[type="search"] {
+  width: 30%;
+  padding: 1%;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-width: 1px;
+  margin-top: 10%;
+  outline: none;
+}
+
+#btn {
+  width: 20%;
+  margin: 0px auto;
+  padding: 5%;
+  border: none;
+  margin-top: 10%;
+  color: black;
+}
+
+/* 현재위치로 확인 동그라미 */
+.curLocBtn {
+  /* "현재위치로 검색" 버튼*/
+  position: relative;
+  border-radius: 50%;
+  width: 10%;
+  height: auto;
+  padding-top: 10%;
+  background: white;
+}
+
+#searchMain {
+  /* 메인페이지& 검색 창& 지도 검색 버튼 */
+}
+
+#selectMain {
+  /* 검색창&지도 검색 바 */
+}

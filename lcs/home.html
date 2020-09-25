@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--  부트스트랩 js 사용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>
+
+    <!-- 부트스트랩 css 사용 -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+
+    <title>처음 페이지</title>
+
+    <link href="../lcs/com/css/home.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="home_body">
+    <center>
+      <header>
+        <h1>Cafeaddy</h1>
+        
+      </header>
+
+      <form>
+        <input
+          type="search"
+          id="selectMain"
+          onclick="location.href='/search/cafe_search.html'"
+        />
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <button type="button" id="searchMain" >
+          검색
+        </button>
+      </form>
+
+  
+        <button class="curLocBtn" onclick="location.href='map/map.html'">
+          현재 위치로 확인
+        </button>
+      </div>
+    </center>
+
+    <footer></footer>
+  </body>
+</html>
