@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 조회 페이지(가맹점 승인)</title>
-    <link href="StoreAccept.css" rel="stylesheet" type="text/css">
+    <title>관리자 조회 페이지(가맹점 관리)</title>
+    <link href="/com/css/store_select.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="wrapper">
@@ -31,7 +31,7 @@
         </div>
 
         <header id="header">
-            <h1>가맹점 승인
+            <h1>가맹점 관리
                 <div class="btn">
                     <input type="button" value="새로고침">
                     <input type="button" value="등 록">
@@ -44,7 +44,7 @@
                 <label>-&nbsp;<input type="date"></label>
                 &nbsp;&nbsp;&nbsp;
     
-                <label> 가맹점 명 : <input type="text"></label>&nbsp;
+                <label> 이름 : <input type="text"></label>&nbsp;
                 <input type="submit" name="selectBtn" value="조회">
             </div>
 
@@ -81,7 +81,11 @@
                             <th> </th>
                             <th> 
                                 <div id="updateBtn" style="display: inline-block;">
-                                    <input type="button" name="update" value="승인">
+                                    <input type="button" name="update" value="수정">
+                                </div>
+                                
+                                <div id="deleteBtn" style="display: inline-block;">
+                                    <input type="button" name="delete" value="삭제">
                                 </div>
                             </th>
                         </tr>
