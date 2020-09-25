@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 조회 페이지(회원관리)</title>
+    <link href="/com/css/admin_select.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="left-nav">
+        <!-- 사이드 메뉴 부분 -->
+        <div id="member">
+          <h2><span style="color: white">아무개관리자 </span>님</h2>
+        </div>
+
+        <h3 style="color: red">회원 관리(매니저 관리)</h3>
+        <ul>
+          <h4>
+            <li><a href="#####">조회</a></li>
+          </h4>
+          <br />
+        </ul>
+        <h3>가맹점 관리</h3>
+        <ul>
+          <h4>
+            <li><a href="#####">가맹점 조회</a></li>
+          </h4>
+          <h4>
+            <li><a href="#####">가맹점 승인</a></li>
+          </h4>
+        </ul>
+      </div>
+
+      <header id="header">
+        <h1>
+          회원 관리
+          <!-- 머리말 부분 -->
+          <div class="btn">
+            <input type="button" value="새로고침" />
+            <input type="button" value="등 록" />
+          </div>
+        </h1>
+
+        <div id="RegiDate">
+          <!-- 검색 설정 부분 -->
+
+          <label>등록날짜 : <input type="date" /></label>
+          <label>-&nbsp;<input type="date" /></label>
+          &nbsp;&nbsp;&nbsp;
+
+          <label> 이름 : <input type="text" /></label>&nbsp;
+          <input type="submit" name="selectBtn" value="조회" />
+        </div>
+
+        <hr style="margin-left: 0.1%" width="70%" />
+      </header>
+
+      <content class="contents">
+        <!-- 표 부분 -->
+        <fieldset>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>회원이름</th>
+                <th>아이디</th>
+                <th>주소</th>
+                <th>회원 연락처</th>
+                <th>이메일</th>
+                <th>사업자등록번호</th>
+                <th>가입일</th>
+                <th>정보 수정일</th>
+                <th>회원 정보</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>
+                  <!-- 표의 회원정보 부분 수정&삭제 버튼 -->
+                  <div
+                    id="updateBtn"
+                    style="display: inline-block; background-color: #4a95e5"
+                  >
+                    <input type="submit" name="update" value="수정" />
+                  </div>
+
+                  <div
+                    id="deleteBtn"
+                    style="display: inline-block; background-color: red"
+                  >
+                    <input type="submit" name="delete" value="삭제" />
+                  </div>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </content>
+    </div>
+  </body>
+</html>
