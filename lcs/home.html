@@ -3,42 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <<<<<<< HEAD
-    <title>Home</title>
 
-    <link href="com/css/home.css" rel="stylesheet" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      media="screen and (max-width: 768px)"
-      href="com/css/mobile.css"
-    />
+    <!--  부트스트랩 js 사용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./bootstrap/js/bootstrap.js"></script>
+
+    <!-- 부트스트랩 css 사용 -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+
+    <title>처음 페이지</title>
+
+    <link href="../lcs/com/css/home.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="home_body">
-    <center class="home_center">
+    <center>
       <header>
-        <img class="logo_img" src="img/info_test_test.png" alt="logo" />
+        <h1>Cafeaddy</h1>
+        
       </header>
 
-      <div class="wrap">
-        <div class="search">
-          <input
-            type="text"
-            class="searchTerm"
-            placeholder="카페를 검색해주세요 :)"
-          />
-          <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
+      <form>
+        <input
+          type="search"
+          id="selectMain"
+          onclick="location.href='/search/cafe_search.html'"
+        />
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <button type="button" id="searchMain" >
+          검색
+        </button>
+      </form>
+
+  
+        <button class="curLocBtn" onclick="location.href='map/map.html'">
+          현재 위치로 확인
+        </button>
       </div>
-      <!-- 맵으로 이동 -->
-      <!-- onclick="location.href='map/map.html' -->
     </center>
 
-    <footer class="home_footer"></footer>
+    <footer></footer>
   </body>
 </html>
