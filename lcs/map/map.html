@@ -342,7 +342,19 @@ marine.operation(); -->
       const markerDisplay = markerdata.map((marker) => {
         console.log(marker);
         var content =
-          '<div class="infowindowBox"><div><h2 id="infoName">스타벅스 지행역점</h2><h5 id="infoPhone"> 1522-3232 |</h5><h5 id="infoAddr">경기 동두천시 지행로 55</h5></div><div><h3 id="infoTable">테이블</h3><button id="infoBtn">상세정보</button></div></div>';
+          '<div class="infowindowBox">' +
+          "<div>" +
+          '<button id="closeBtn" onclick="closeOverlay()">x</button>' +
+          "</div>" +
+          "<div>" +
+          '<h1 id="infoName">스타벅스 지행역점</h1>' +
+          '<h5 id="infoPhone">1522-3232 |</h5>' +
+          '<h5 id="infoAddr">경기 동두천시 지행로 55</h5>' +
+          "</div>" +
+          "<div>" +
+          '<h3 id="infoTable">테이블</h3>' +
+          '<button id="infoBtn">상세정보</button>' +
+          "</div>";
 
         let ma = new kakao.maps.Marker({
           map: map,
@@ -358,18 +370,23 @@ marine.operation(); -->
           clickable: true,
         });
 
-        let closeBtn = document.createElement("btn");
-        closeBtn.innerHTML = "닫기";
-        closeBtn.onclick = function () {
-          customOverlay.setMap(null);
-        };
-
+        //마커가 클릭되었을때 이벤트 처리
         kakao.maps.event.addListener(ma, "click", function () {
+          console.log("마커가 클릭되엇다");
           customOverlay.setMap(map);
         });
 
+        // function closeOverlay() {
+        //   console.log("커스텀 오버레이 닫힘");
+        //   //customOverlay.setMap(null);
+        // };
+
+        let closeBtn = document.createElement("closeBtn");
+        closeBtn.onclick = function () {
+          customOverlay.setMap(null);
+        };
         // 커스텀 오버레이를 지도에 표시합니다
-        // customOverlay.setMap(map);
+        customOverlay.setMap(map);
       });
     </script>
   </body>
