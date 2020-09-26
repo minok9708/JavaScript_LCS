@@ -361,10 +361,8 @@ marine.operation(); -->
               customOverlay.setMap(map);
             });
 
-            let close = document.createElement("close");
-
-            close.addEventListener("click", function () {
-              cosole.log("하하하");
+            kakao.maps.event.addListener(map, "click", function () {
+              console.log("맵을 클릭하였습니다.");
               customOverlay.setMap(null);
             });
 
