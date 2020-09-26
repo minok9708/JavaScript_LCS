@@ -83,6 +83,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
+/*  원 위치 */
 .container {
   height: auto;
   margin: 0 auto;
@@ -134,7 +135,7 @@ body {
 @keyframes backglow1 {
   0% {
     transform: translate(10%, 10%) scale(1);
-    opacity: 0.5;
+    opacity: 1;
   }
 
   25% {
@@ -161,7 +162,7 @@ body {
 @keyframes backglow2 {
   0% {
     transform: translate(-10%, -10%) scale(1);
-    opacity: 0.5;
+    opacity: 1;
   }
 
   25% {
