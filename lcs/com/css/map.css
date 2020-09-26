@@ -37,16 +37,11 @@
 #searchMain {
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
   background-color: aquamarine;
-
   width: 10%;
-
   margin: 1%;
   padding: 1%;
-
   border: none;
-
   position: absolute;
-
   z-index: 1;
 }
 

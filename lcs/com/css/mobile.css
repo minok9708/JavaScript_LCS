@@ -1,5 +1,13 @@
 /* 모바일 사이즈로 바꼇을때 */
+.logo_img {
+  top: 10px;
+  bottom: 0px;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
 
+  position: relative;
+}
 .search {
   width: 100vh;
   max-width: 100%;
