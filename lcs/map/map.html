@@ -263,6 +263,10 @@ marine.operation(); -->
         //idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
         getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
       });
+      //------------------------------------------------------------------------
+      //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
+      let clickedOverlay = null;
+      //---------------------------------------------------------------------------
 
       // getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
       const getCafeInfo = (ne1, ne2, sw1, sw2) => {
@@ -358,7 +362,12 @@ marine.operation(); -->
 
             //마커 클릭시 이벤트 처리
             kakao.maps.event.addListener(m, "click", function () {
+              if (clickedOverlay) {
+                console.log("null이 아닐때");
+                clickedOverlay.setMap(null);
+              }
               customOverlay.setMap(map);
+              clickedOverlay = customOverlay;
             });
 
             kakao.maps.event.addListener(map, "click", function () {
