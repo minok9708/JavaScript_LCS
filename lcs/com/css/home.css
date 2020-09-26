@@ -1,11 +1,30 @@
 /* 배경화면 */
 .home_body {
-  background: #cff09e;
+  background: #fffff3;
+}
+
+/* Color Theme Swatches in Hex */
+.Frame-fresh-tobacco-isolated-on-white-background-and-texture-1-hex {
+  color: #d99e6a;
+}
+.Frame-fresh-tobacco-isolated-on-white-background-and-texture-2-hex {
+  color: #a66b49;
+}
+.Frame-fresh-tobacco-isolated-on-white-background-and-texture-3-hex {
+  color: #733f2c;
+}
+.Frame-fresh-tobacco-isolated-on-white-background-and-texture-4-hex {
+  color: #260801;
+}
+.Frame-fresh-tobacco-isolated-on-white-background-and-texture-5-hex {
+  color: #f2f2f2;
 }
 
 .logo_img {
-  height: auto;
-  max-width: 90%;
+  bottom: 50px;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
 }
 
 .search_img {
@@ -104,7 +123,8 @@ body {
   margin: 0 auto;
   width: 30vw;
   max-width: 30vh;
-  background-color: #282c37;
+  background-color: #f68657;
+
   height: 30vw;
   max-height: 30vh;
 
