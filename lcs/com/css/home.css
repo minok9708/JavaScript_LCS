@@ -23,7 +23,8 @@ body {
 }
 
 .search {
-  width: 60vw;
+  width: 80%;
+  max-width: 80vh;
   height: auto;
   position: relative;
   display: flex;
@@ -62,11 +63,11 @@ body {
 /*Resize the wrap to see the search bar change!*/
 .wrap {
   left: 50%;
+  bottom: 20vh;
+  padding-bottom: 100px;
   max-width: 100%;
   height: auto;
   position: relative;
-  bottom: 20vw;
-
   transform: translate(-50%, -50%);
 }
 
@@ -80,48 +81,24 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* .pulseAnim {
-  display: block;
-  padding: 50%;
-  border-radius: 50%;
-  background: hsl(243, 80%, 62%);
-  cursor: pointer;
-  box-shadow: 0 0 0 rgba(88, 120, 243, 0.4);
-  animation: pulseAnim 2s infinite;
-}
-
-@keyframes pulseAnim {
-  0% {
-    box-shadow: 0 0 0 0 rgba(88, 120, 243, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 30px rgba(88, 120, 243, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(88, 120, 243, 0);
-  }
-} */
-
 .container {
   height: auto;
   margin: 0 auto;
   width: 30vw;
-
   max-width: 30vh;
-  background-color: #e0e3da;
-  opacity: 0.8;
+  background-color: #a593e0;
+  opacity: 0.7;
   height: 30vw;
   max-height: 30vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-size: 1.5rem;
-  color: white;
-  font-family: roboto;
+  color: #fffff3;
   font-weight: bold;
   position: relative;
+  bottom: 15vh;
 }
 
 /* 주변 오오라 색깔 */
@@ -139,13 +116,13 @@ body {
 }
 
 .container::after {
-  background-color: #da219c;
+  background-color: #d6565c;
   z-index: -1;
   animation: backglow2 15s ease infinite;
 }
 
 .container::before {
-  background-color: #c4db9f;
+  background-color: #a0ecac;
   z-index: -2;
   animation: backglow1 15s ease infinite;
 }
