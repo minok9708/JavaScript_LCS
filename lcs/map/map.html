@@ -53,7 +53,7 @@ marine.operation(); -->
     ></script>
 
     <!-- 서버가 안될시 임시 샘플 마커 데이터 -->
-    <script type="text/javascript" src="/com/js/markerData.js"></script>
+    <script type="text/javascript" src="../com/js/markerData.js"></script>
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script> -->
@@ -62,12 +62,13 @@ marine.operation(); -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
     <!-- 외부 css파일 사용 -->
-    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="../com/css/map.css" rel="stylesheet" type="text/css" />
   </head>
 
   <!-- Map.Html Body -->
   <body class="map_page_body">
     <!-- 지도위에 검색바 기능 -->
+
     <form id="searchBar">
       <input
         id="selectMain"
@@ -341,19 +342,25 @@ marine.operation(); -->
 
       const markerDisplay = markerdata.map((marker) => {
         console.log(marker);
+
         var content =
-          '<div class="infowindowBox">' +
-          "<div>" +
-          '<button id="closeBtn" onclick="closeOverlay()">x</button>' +
-          "</div>" +
-          "<div>" +
-          '<h1 id="infoName">스타벅스 지행역점</h1>' +
-          '<h5 id="infoPhone">1522-3232 |</h5>' +
-          '<h5 id="infoAddr">경기 동두천시 지행로 55</h5>' +
-          "</div>" +
-          "<div>" +
-          '<h3 id="infoTable">테이블</h3>' +
-          '<button id="infoBtn">상세정보</button>' +
+          '<div class="wrap">' +
+          '    <div class="info">' +
+          '        <div class="title">' +
+          "            카카오 스페이스닷원" +
+          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+          "        </div>" +
+          '        <div class="body">' +
+          '            <div class="img">' +
+          '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+          "           </div>" +
+          '            <div class="desc">' +
+          '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
+          '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
+          '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+          "            </div>" +
+          "        </div>" +
+          "    </div>" +
           "</div>";
 
         let ma = new kakao.maps.Marker({
@@ -365,28 +372,24 @@ marine.operation(); -->
 
         // 커스텀 오버레이를 생성합니다
         let customOverlay = new kakao.maps.CustomOverlay({
-          position: new kakao.maps.LatLng(marker.lat, marker.lng),
+          position: ma.getPosition(),
           content: content,
           clickable: true,
         });
 
-        //마커가 클릭되었을때 이벤트 처리
         kakao.maps.event.addListener(ma, "click", function () {
-          console.log("마커가 클릭되엇다");
           customOverlay.setMap(map);
         });
 
-        // function closeOverlay() {
-        //   console.log("커스텀 오버레이 닫힘");
-        //   //customOverlay.setMap(null);
-        // };
+        let close = document.createElement("close");
 
-        let closeBtn = document.createElement("closeBtn");
-        closeBtn.onclick = function () {
+        close.addEventListener("click", function () {
+          cosole.log("하하하");
           customOverlay.setMap(null);
-        };
+        });
+
         // 커스텀 오버레이를 지도에 표시합니다
-        customOverlay.setMap(map);
+        // customOverlay.setMap(map);
       });
     </script>
   </body>
