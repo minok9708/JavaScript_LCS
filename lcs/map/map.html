@@ -132,18 +132,26 @@ marine.operation(); -->
         console.log(searchMessage);
         //alert(keyword)
 
-        let searchUrl = "http://cafeaddy.xyz:8080/api/name";
+        let searchUrl = "https://cafeaddy.xyz:8080/api/name";
 
-        /*  axios
-          .post(searchUrl, {
+        axios({
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          url: searchUrl,
+          data: {},
+          params: {
             name: keyword,
-          })
+          },
+        })
           .then((data) => {
             console.log(data);
           })
           .catch((error) => {
-            console.log("error!!!!");
-          }); */
+            console.log("error:", error.response);
+          });
       }
 
       //--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -156,8 +164,8 @@ marine.operation(); -->
           navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude, // 현위치 위도
               lon = position.coords.longitude; // 현위치 경도
-            console.log(lat);
-            console.log(lon);
+            //console.log(lat);
+            //console.log(lon);
 
             let locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
               // 변수안에 html을 표현할때 변수를 넣고자 하면 +를 사용 하여 스트링과 분리하여 자바처럼 변수를 넣으면됨
@@ -172,7 +180,7 @@ marine.operation(); -->
                 "</div>"; // 인포윈도우에 표시될 내용
 
             // 마커와 인포윈도우를 표시
-            displayMarker(locPosition, message);
+            displayMarker(locPosition);
           });
         } else {
           // HTML5의 GeoLocation을 사용할 수 없을때 디폴트 마커 표시 위치와 인포윈도우 내용을 설정
@@ -258,7 +266,7 @@ marine.operation(); -->
           "확대 레벨은 " +
           map.getLevel() +
           " 레벨 입니다.";
-        console.log(message);
+        // console.log(message);
 
         //idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
         getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
@@ -306,8 +314,8 @@ marine.operation(); -->
       aaa = (cafeData) => {
         return new Promise((res, reject) => {
           if (cafeData) {
-            console.log("마커데이터가 받아진것같습니다.");
-            console.log(cafeData);
+            //console.log("마커데이터가 받아진것같습니다.");
+            //console.log(cafeData);
             res(bbb(cafeData));
           } else {
             reject(ddd);
@@ -338,12 +346,12 @@ marine.operation(); -->
               "    </div>" +
               "</div>";
 
-            console.log(index);
-            console.log(marker);
-            console.log(marker.name);
+            // console.log(index);
+            // console.log(marker);
+            // console.log(marker.name);
 
-            console.log(marker.latitude);
-            console.log(marker.longitude);
+            // console.log(marker.latitude);
+            // console.log(marker.longitude);
 
             let m = new kakao.maps.Marker({
               map: map,
@@ -363,7 +371,7 @@ marine.operation(); -->
             //마커 클릭시 이벤트 처리
             kakao.maps.event.addListener(m, "click", function () {
               if (clickedOverlay) {
-                console.log("null이 아닐때");
+                //console.log("null이 아닐때");
                 clickedOverlay.setMap(null);
               }
               customOverlay.setMap(map);
@@ -379,12 +387,12 @@ marine.operation(); -->
           });
         }),
         (ccc = () => {
-          console.log("진짜 실패함");
+          //console.log("진짜 실패함");
         })
       );
 
       ddd = () => {
-        console.log("ddd가 실패했다.");
+        //console.log("ddd가 실패했다.");
       };
 
       // const markerDisplay = markerdata.map((marker) => {
