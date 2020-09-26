@@ -286,7 +286,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({ data }) => {
+            .then(({data}) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
               res(aaa((cafeData = data.data)));
             })
@@ -320,7 +320,6 @@ marine.operation(); -->
               '    <div class="info">' +
               '        <div class="title">' +
               "            카카오 스페이스닷원" +
-              '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
               "        </div>" +
               '        <div class="body">' +
               '            <div class="img">' +
@@ -357,14 +356,12 @@ marine.operation(); -->
               clickable: true,
             });
 
+            //마커 클릭시 이벤트 처리
             kakao.maps.event.addListener(m, "click", function () {
               customOverlay.setMap(map);
             });
 
-            let close = document.createElement("close");
-
-            close.addEventListener("click", function () {
-              cosole.log("하하하");
+            kakao.maps.event.addListener(map, "click", function () {
               customOverlay.setMap(null);
             });
 
