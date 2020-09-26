@@ -17,6 +17,7 @@ input[type="submit"] {
   border: none;
 } */
 
+
 #selectMain {
   /* 검색창&지도 검색 바 */
   width: 25%;
@@ -29,10 +30,11 @@ input[type="submit"] {
   /*  margin-top: 10%;  */
   outline: none;
   position: relative;
-  margin: 1%;
+  margin:1%;
+ 
 }
 
-#searchMain {
+ #searchMain {
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
   width: 8%;
   border-radius: 20%;
@@ -41,8 +43,5 @@ input[type="submit"] {
   padding: 0.5%;
 
   border: none;
-}
+} 
 
-#closeBtn {
-  float: right;
-}

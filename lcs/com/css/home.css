@@ -1,3 +1,17 @@
+.home_body {
+  background: #9baec8;
+}
+
+.logo_img {
+  height: auto;
+  max-width: 90%;
+}
+
+.search_img {
+  border: none;
+  outline: none;
+}
+
 input[type="search"] {
   width: 30%;
   padding: 1%;
@@ -30,22 +44,15 @@ input[type="submit"] {
 
 .curLocBtn {
   /* "현재위치로 검색" 버튼*/
-  width: 20%;
-  margin-top: 15%;
+  max-width: 100%;
+  width: 50%;
+  margin: auto;
+  height: auto;
+
+  font-size: x-large;
+  font-weight: 500;
   border-radius: 50%;
-  padding: 5%;
   background-color: #e4e4e4;
-}
-
-#searchMain {
-  /* 메인페이지& 검색 창& 지도 검색 버튼 */
-  width: 8%;
-  border-radius: 20%;
-  z-index: 1;
-  position: relative;
-  padding: 0.5%;
-
-  border: none;
 }
 
 #selectMain {
@@ -61,4 +68,57 @@ input[type="submit"] {
   outline: none;
   position: relative;
   margin: 1%;
+}
+
+/* 검색창 디자인  */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.search {
+  width: 500px;
+  height: auto;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 35vh;
+  font-size: 20px;
+  font-weight: bold;
+  border: 3px solid #2b90d9;
+  border-right: none;
+  padding: 5px;
+  height: 50px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #282c37;
+}
+
+.searchButton {
+  width: 50px;
+  height: 66px;
+  border: 1px solid #2b90d9;
+  background: #2b90d9;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
