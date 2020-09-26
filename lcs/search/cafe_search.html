@@ -12,8 +12,8 @@
     </script>
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
-    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
- -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
     <link href="/com/css/cafe_search.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -38,7 +38,7 @@
     </div>
 
     <script>
-      // 키보드로 엔터를 눌럿을때
+      //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
           myFunction(); // 실행할 이벤트
@@ -54,18 +54,26 @@
         console.log(message);
         //alert(keyword);
 
-        // let searchUrl = "http://cafeaddy.xyz:8080/api/name";
+        let searchUrl = "https://cafeaddy.xyz:8080/api/name";
 
-        // axios
-        //   .post(searchUrl, {
-        //     name: keyword,
-        //   })
-        //   .then((data) => {
-        //     console.log(data);
-        //   })
-        //   .catch((error) => {
-        //     console.log("error!!!!");
-        //   });
+        axios({
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          url: searchUrl,
+          data: {},
+          params: {
+            name: keyword,
+          },
+        })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log("error:", error.response);
+          });
       }
     </script>
   </body>

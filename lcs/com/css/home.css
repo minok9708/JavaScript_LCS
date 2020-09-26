@@ -11,7 +11,6 @@
 
   position: relative;
 }
-
 .search_img {
   border: none;
   outline: none;
@@ -66,7 +65,7 @@ body {
   max-width: 100%;
   height: auto;
   position: relative;
-  bottom: 10vw;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -75,6 +74,7 @@ body {
   height: auto;
   top: 100%;
   left: 50%;
+
   position: relative;
   margin: 0 auto;
   transform: translate(-50%, -50%);
@@ -104,11 +104,12 @@ body {
 
 .container {
   height: auto;
+  top: 150px;
+
   margin: 0 auto;
   width: 30vw;
   max-width: 30vh;
-  background-color: #e0e3da;
-  opacity: 0.8;
+  background-color: #282c37;
   height: 30vw;
   max-height: 30vh;
 
@@ -138,13 +139,13 @@ body {
 }
 
 .container::after {
-  background-color: #da219c;
+  background-color: #00ffff;
   z-index: -1;
   animation: backglow2 15s ease infinite;
 }
 
 .container::before {
-  background-color: #c4db9f;
+  background-color: #ff0072;
   z-index: -2;
   animation: backglow1 15s ease infinite;
 }
