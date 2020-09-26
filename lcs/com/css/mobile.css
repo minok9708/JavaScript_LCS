@@ -1,18 +1,20 @@
+/* 모바일 사이즈로 바꼇을때 */
+
 .search {
-  width: 500px;
+  width: 100vh;
+  max-width: 100%;
   height: auto;
   position: relative;
   display: flex;
 }
 
 .searchTerm {
-  width: 50%;
   font-size: 20px;
   font-weight: bold;
   border: 3px solid #2b90d9;
   border-right: none;
   padding: 5px;
-  height: 50px;
+  height: 30px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9dbfaf;
@@ -24,7 +26,7 @@
 
 .searchButton {
   width: 50px;
-  height: 66px;
+  height: 46px;
   border: 1px solid #2b90d9;
   background: #2b90d9;
   text-align: center;
@@ -36,9 +38,7 @@
 
 /*Resize the wrap to see the search bar change!*/
 .wrap {
-  width: 40%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  height: auto;
+  position: relative;
   transform: translate(-50%, -50%);
 }
