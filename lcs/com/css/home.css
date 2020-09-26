@@ -4,8 +4,9 @@
 }
 
 .logo_img {
+  margin: 0 auto;
   height: auto;
-  max-width: 90%;
+  max-width: 100%;
 }
 
 .search_img {
