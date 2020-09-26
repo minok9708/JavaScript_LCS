@@ -56,7 +56,7 @@ marine.operation(); -->
     <script type="text/javascript" src="../com/js/markerData.js"></script>
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
     <!-- 커스텀윈도우 디자인을 사용하기 위한 호출 -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
@@ -260,137 +260,158 @@ marine.operation(); -->
           " 레벨 입니다.";
         console.log(message);
 
-        // idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
-        // getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
+        //idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
+        getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
       });
 
-      //// getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
-      // const getCafeInfo = (ne1, ne2, sw1, sw2) => {
-      ////   통신코드는 비동기이기 때문에 동기로 바꿔주기 위하여 프로미스를 사용
-      ////   프로미스의 목적은 어지간한게 비동기적으로 돌아가는 자바스크립트에서 순차적실행을 위하여 사용
-      //   return new Promise((res, reject) => {
-      //     마커데이터 불러오는 통신코드
-      //      let mapUrl = "https://cafeaddy.xyz:8080/api/cafes/around";
-      //     axios({
-      //       method: "get",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         Accept: "application/json",
-      //       },
-      //       url: mapUrl,
-      //       data: {},
-      //       params: {
-      //         neLongitude: ne1,
-      //         neLatitude: ne2,
-      //         swLongitude: sw1,
-      //         swLatitude: sw2,
-      //       },
-      //     })
-      //       .then(({data}) => {
-      //         성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
-      //         res(aaa((cafeData = data.data)));
-      //       })
-      //       .catch((error) => {
-      //         console.log("error:", error.response);
-      //         실패하면 reject("에러처리 함수로 보내거나 텍스트")
-      //         reject("실패");
-      //       });
-      //   });
-      // };
+      // getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
+      const getCafeInfo = (ne1, ne2, sw1, sw2) => {
+        //   통신코드는 비동기이기 때문에 동기로 바꿔주기 위하여 프로미스를 사용
+        //   프로미스의 목적은 어지간한게 비동기적으로 돌아가는 자바스크립트에서 순차적실행을 위하여 사용
+        return new Promise((res, reject) => {
+          // 마커데이터 불러오는 통신코드
+          let mapUrl = "https://cafeaddy.xyz:8080/api/cafes/around";
+          axios({
+            method: "get",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            url: mapUrl,
+            data: {},
+            params: {
+              neLongitude: ne1,
+              neLatitude: ne2,
+              swLongitude: sw1,
+              swLatitude: sw2,
+            },
+          })
+            .then(({ data }) => {
+              //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
+              res(aaa((cafeData = data.data)));
+            })
+            .catch((error) => {
+              console.log("error:", error.response);
+              //실패하면 reject("에러처리 함수로 보내거나 텍스트")
+              reject("실패");
+            });
+        });
+      };
 
       // aaa 함수는 위에서 보내온 데이터를 받아서 다시 bbb함수로 전달
-      // aaa = (cafeData) => {
-      //   return new Promise((res, reject) => {
-      //     if (cafeData) {
-      //       console.log("마커데이터가 받아진것같습니다.");
-      //       console.log(cafeData);
-      //       res(bbb(cafeData));
-      //     } else {
-      //       reject(ddd);
-      //     }
+      aaa = (cafeData) => {
+        return new Promise((res, reject) => {
+          if (cafeData) {
+            console.log("마커데이터가 받아진것같습니다.");
+            console.log(cafeData);
+            res(bbb(cafeData));
+          } else {
+            reject(ddd);
+          }
+        });
+      };
+
+      //aaa함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 bbb함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
+      aaa(true).then(
+        (bbb = (cafe) => {
+          cafe.map((marker, index) => {
+            let content =
+              '<div class="wrap">' +
+              '    <div class="info">' +
+              '        <div class="title">' +
+              "            카카오 스페이스닷원" +
+              '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+              "        </div>" +
+              '        <div class="body">' +
+              '            <div class="img">' +
+              '                <img src="#" width="73" height="70">' +
+              "           </div>" +
+              '            <div class="desc">' +
+              '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
+              '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
+              '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+              "            </div>" +
+              "        </div>" +
+              "    </div>" +
+              "</div>";
+
+            console.log(index);
+            console.log(marker);
+            console.log(marker.name);
+
+            console.log(marker.latitude);
+            console.log(marker.longitude);
+
+            let m = new kakao.maps.Marker({
+              map: map,
+              position: new kakao.maps.LatLng(
+                marker.latitude,
+                marker.longitude
+              ),
+            });
+
+            // 커스텀 오버레이를 생성합니다
+            let customOverlay = new kakao.maps.CustomOverlay({
+              position: m.getPosition(),
+              content: content,
+              clickable: true,
+            });
+
+            kakao.maps.event.addListener(m, "click", function () {
+              customOverlay.setMap(map);
+            });
+
+            let close = document.createElement("close");
+
+            close.addEventListener("click", function () {
+              cosole.log("하하하");
+              customOverlay.setMap(null);
+            });
+
+            // 커스텀 오버레이를 지도에 표시합니다
+            // customOverlay.setMap(map);
+          });
+        }),
+        (ccc = () => {
+          console.log("진짜 실패함");
+        })
+      );
+
+      ddd = () => {
+        console.log("ddd가 실패했다.");
+      };
+
+      // const markerDisplay = markerdata.map((marker) => {
+      //   console.log(marker);
+
+      //   var content =
+      //     '<div class="wrap">' +
+      //     '    <div class="info">' +
+      //     '        <div class="title">' +
+      //     "            카카오 스페이스닷원" +
+      //     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+      //     "        </div>" +
+      //     '        <div class="body">' +
+      //     '            <div class="img">' +
+      //     '                <img src="#" width="73" height="70">' +
+      //     "           </div>" +
+      //     '            <div class="desc">' +
+      //     '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
+      //     '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
+      //     '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+      //     "            </div>" +
+      //     "        </div>" +
+      //     "    </div>" +
+      //     "</div>";
+
+      //   let ma = new kakao.maps.Marker({
+      //     map: map,
+      //     key: marker.id,
+      //     position: new kakao.maps.LatLng(marker.lat, marker.lng),
+      //     title: marker.name,
       //   });
-      // };
 
-      // aaa함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 bbb함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
-      // aaa(true).then(
-      //   (bbb = (cafe) => {
-      //     cafe.map((marker, index) => {
-      //       console.log(index);
-      //       console.log(marker);
-      //       console.log(marker.name);
-
-      //       console.log(marker.latitude);
-      //       console.log(marker.longitude);
-
-      //       let m = new kakao.maps.Marker({
-      //         map: map,
-      //         position: new kakao.maps.LatLng(
-      //           marker.latitude,
-      //           marker.longitude
-      //         ),
-      //       });
-      //     });
-      //   }),
-      //   (ccc = () => {
-      //     console.log("진짜 실패함");
-      //   })
-      // );
-
-      // ddd = () => {
-      //   console.log("ddd가 실패했다.");
-      // };
-
-      const markerDisplay = markerdata.map((marker) => {
-        console.log(marker);
-
-        var content =
-          '<div class="wrap">' +
-          '    <div class="info">' +
-          '        <div class="title">' +
-          "            카카오 스페이스닷원" +
-          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-          "        </div>" +
-          '        <div class="body">' +
-          '            <div class="img">' +
-          '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-          "           </div>" +
-          '            <div class="desc">' +
-          '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-          '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-          '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-          "            </div>" +
-          "        </div>" +
-          "    </div>" +
-          "</div>";
-
-        let ma = new kakao.maps.Marker({
-          map: map,
-          key: marker.id,
-          position: new kakao.maps.LatLng(marker.lat, marker.lng),
-          title: marker.name,
-        });
-
-        // 커스텀 오버레이를 생성합니다
-        let customOverlay = new kakao.maps.CustomOverlay({
-          position: ma.getPosition(),
-          content: content,
-          clickable: true,
-        });
-
-        kakao.maps.event.addListener(ma, "click", function () {
-          customOverlay.setMap(map);
-        });
-
-        let close = document.createElement("close");
-
-        close.addEventListener("click", function () {
-          cosole.log("하하하");
-          customOverlay.setMap(null);
-        });
-
-        // 커스텀 오버레이를 지도에 표시합니다
-        // customOverlay.setMap(map);
-      });
+      // });
     </script>
   </body>
 </html>

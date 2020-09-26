@@ -1,5 +1,6 @@
+/* 배경화면 */
 .home_body {
-  background: #9baec8;
+  background: #cff09e;
 }
 
 .logo_img {
@@ -12,88 +13,28 @@
   outline: none;
 }
 
-input[type="search"] {
-  width: 30%;
-  padding: 1%;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-width: 1px;
-  margin-top: 10%;
-  outline: none;
-}
-
-input[type="submit"] {
-  width: 5%;
-  padding: 1%;
-  border-radius: 30%;
-  margin-left: 1%;
-}
-
-#btn {
-  width: 20%;
-  border-radius: 50%;
-  padding: 5%;
-  border: none;
-  margin-top: 10%;
-  color: black;
-  font-size: 1.3rem;
-  font-weight: bolder;
-  text-align: center;
-}
-
-.curLocBtn {
-  /* "현재위치로 검색" 버튼*/
-  max-width: 100%;
-  width: 50%;
-  margin: auto;
-  height: auto;
-
-  font-size: x-large;
-  font-weight: 500;
-  border-radius: 50%;
-  background-color: #e4e4e4;
-}
-
-#selectMain {
-  /* 검색창&지도 검색 바 */
-  width: 25%;
-  padding: 1%;
-  z-index: 1;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-width: 3px;
-  /*  margin-top: 10%;  */
-  outline: none;
-  position: relative;
-  margin: 1%;
-}
-
 /* 검색창 디자인  */
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 body {
   font-family: "Open Sans", sans-serif;
 }
 
 .search {
-  width: 500px;
+  width: 60vh;
   height: auto;
   position: relative;
   display: flex;
 }
 
 .searchTerm {
-  width: 35vh;
+  width: 100%;
   font-size: 20px;
   font-weight: bold;
-  border: 3px solid #2b90d9;
+  border: 2px solid #282c37;
   border-right: none;
   padding: 5px;
   height: 50px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 50px 0 0 50px;
   outline: none;
   color: #9dbfaf;
 }
@@ -103,22 +44,157 @@ body {
 }
 
 .searchButton {
-  width: 50px;
-  height: 66px;
-  border: 1px solid #2b90d9;
-  background: #2b90d9;
+  width: 60px;
+  height: 64px;
+  border: 1px solid #282c37;
+  background: #282c37;
   text-align: center;
   color: #fff;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 50px 50px 0;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 /*Resize the wrap to see the search bar change!*/
 .wrap {
-  width: 40%;
-  position: absolute;
-  top: 50%;
   left: 50%;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* 내위치로 카페 찾기 circle */
+.findloc_circle {
+  height: auto;
+  top: 100%;
+  left: 50%;
+  position: relative;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+}
+
+/* .pulseAnim {
+  display: block;
+  padding: 50%;
+  border-radius: 50%;
+  background: hsl(243, 80%, 62%);
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(88, 120, 243, 0.4);
+  animation: pulseAnim 2s infinite;
+}
+
+@keyframes pulseAnim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(88, 120, 243, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 30px rgba(88, 120, 243, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(88, 120, 243, 0);
+  }
+} */
+
+.container {
+  height: auto;
+  top: 150px;
+
+  margin: 0 auto;
+  width: 30vw;
+  max-width: 30vh;
+  background-color: #282c37;
+  height: 30vw;
+  max-height: 30vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: white;
+  font-family: roboto;
+  font-weight: bold;
+  position: relative;
+}
+
+/* 주변 오오라 색깔 */
+.container::before,
+.container::after {
+  position: absolute;
+  content: "";
+  top: -5%;
+  left: -5%;
+  height: 110%;
+  width: 110%;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(60px);
+}
+
+.container::after {
+  background-color: #00ffff;
+  z-index: -1;
+  animation: backglow2 15s ease infinite;
+}
+
+.container::before {
+  background-color: #ff0072;
+  z-index: -2;
+  animation: backglow1 15s ease infinite;
+}
+
+@keyframes backglow1 {
+  0% {
+    transform: translate(10%, 10%) scale(1);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: translate(-10%, 10%) scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(-10%, -10%) scale(1.2);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translate(10%, -10%) scale(1.1);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate(10%, 10%) scale(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes backglow2 {
+  0% {
+    transform: translate(-10%, -10%) scale(1);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: translate(10%, -10%) scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(10%, 10%) scale(1.2);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translate(-10%, 10%) scale(1.1);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate(-10%, -10%) scale(1);
+    opacity: 0.5;
+  }
 }
