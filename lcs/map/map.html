@@ -69,19 +69,20 @@ marine.operation(); -->
   <body class="map_page_body">
     <!-- 지도위에 검색바 기능 -->
 
-    <form id="searchBar">
+    <form id="searchBar" onsubmit="return false">
       <input
         id="selectMain"
         type="text"
         placeholder="검색어를 입력하세요"
         name="search"
-        onkeydown="enterSearch()"
+        onkeypress="enterSearch()"
       />
+      <!--  버튼은 잘됨 -->
       <input
         id="searchMain"
         type="button"
         value="검색"
-        onclick="myFunction()"
+        onclick="searchPlaces()"
       />
     </form>
     <!-- 맵 출력 -->
@@ -112,46 +113,52 @@ marine.operation(); -->
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
       // 위에 객체가 실행후 0.1초후에 실행
-      setTimeout(() => {
-        findLocation();
-      }, 100);
+      // setTimeout(() => {
+      //   findLocation();
+      //   searchPlaces();
+      //   console.log("위치찾기 함수 실행");
+      // }, 100);
+
       //---------------------------------------------------------------------------------------------------------------------------------
       // 키보드로 엔터를 눌럿을때
       function enterSearch() {
-        if (event.keyCode == 13) {
-          myFunction(); // 실행할 이벤트
+        if (event.keyCode === 13) {
+          searchPlaces(); // 실행할 이벤트
         }
       }
 
+      // 장소 검색 객체를 생성합니다
+      var ps = new kakao.maps.services.Places();
+
       //검색바에 검색한 키워드를 콘솔에 출력
-      function myFunction() {
-        var keyword = document.getElementById("selectMain").value;
-        console.log(keyword);
+      // function myFunction() {
+      //   var keyword = document.getElementById("selectMain").value;
+      //   console.log(keyword);
 
-        let searchMessage = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
-        console.log(searchMessage);
-        //alert(keyword)
+      //   let searchMessage = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
+      //   console.log(searchMessage);
+      //   alert(keyword)
 
-        let searchUrl = "https://cafeaddy.xyz:8080/api/name";
-        axios({
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          url: searchUrl,
-          data: {},
-          params: {
-            name: keyword,
-          },
-        })
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => {
-            console.log("error:", error.response);
-          });
-      }
+      //   let searchUrl = "https://cafeaddy.xyz:8080/api/name";
+      //   axios({
+      //     method: "post",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Accept: "application/json",
+      //     },
+      //     url: searchUrl,
+      //     data: {},
+      //     params: {
+      //       name: keyword,
+      //     },
+      //   })
+      //     .then((data) => {
+      //       console.log(data);
+      //     })
+      //     .catch((error) => {
+      //       console.log("error:", error.response);
+      //     });
+      // }
 
       //--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +209,7 @@ marine.operation(); -->
         let imageSrc =
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
@@ -221,6 +228,55 @@ marine.operation(); -->
         // setCenter 함수로도 할수있음 하지만 시점변환을 부드럽게 하고자 하기위해 panTo사용
         map.panTo(locPosition);
       };
+
+      //키워드로 장소 겁색
+      // 키워드 검색을 요청하는 함수입니다
+      function searchPlaces() {
+        var keyword = document.getElementById("selectMain").value;
+        console.log(keyword);
+        console.log("testsetstests");
+        if (!keyword.replace(/^\s+|\s+$/g, "")) {
+          alert("키워드를 입력해주세요!");
+          return false;
+        }
+
+        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+        ps.keywordSearch(keyword, placesSearchCB);
+      }
+
+      // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+      function placesSearchCB(data, status, pagination) {
+        if (status === kakao.maps.services.Status.OK) {
+          // 정상적으로 검색이 완료됐으면
+          console.log("장소검색 완료");
+          displayPlaces(data);
+        } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+          alert("검색 결과가 존재하지 않습니다.");
+          return;
+        } else if (status === kakao.maps.services.Status.ERROR) {
+          alert("검색 결과 중 오류가 발생했습니다.");
+          return;
+        }
+      }
+
+      // 검색 결과 목록과 마커를 표출하는 함수입니다
+      function displayPlaces(places) {
+        bounds = new kakao.maps.LatLngBounds();
+
+        for (var i = 0; i < places.length; i++) {
+          // 마커를 생성하고 지도에 표시합니다
+          var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
+
+          // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+          // LatLngBounds 객체에 좌표를 추가합니다
+          bounds.extend(placePosition);
+        }
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+      }
+
+      //----------------------------------------------------------------------------------------------------------------------------------
 
       // 지도가 이동, 확대, 축소로 인해 지도영역이 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록
       // 화살표 함수 사용
@@ -298,7 +354,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({ data }) => {
+            .then(({data}) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
               res(aaa((cafeData = data.data)));
             })
