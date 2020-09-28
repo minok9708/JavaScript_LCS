@@ -130,12 +130,12 @@ marine.operation(); -->
       // 지도의 우측에 확대 축소 컨트롤을 추가
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-      // 위에 객체가 실행후 0.1초후에 실행
-      // setTimeout(() => {
-      //   findLocation();
-      //   searchPlaces();
-      //   console.log("위치찾기 함수 실행");
-      // }, 100);
+      //위에 객체가 실행후 0.1초후에 실행
+      setTimeout(() => {
+        findLocation();
+        searchPlaces();
+        console.log("위치찾기 함수 실행");
+      }, 100);
 
       //---------------------------------------------------------------------------------------------------------------------------------
       // 키보드로 엔터를 눌럿을때
