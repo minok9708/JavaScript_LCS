@@ -18,12 +18,13 @@
 /* 검색창 */
 #search_Box {
   /* 검색창&지도 검색 바 */
-  width: 30vw;
+  width: 20vw;
+  max-width: 60vw;
   font-size: 20px;
   font-weight: bold;
   border: 3px solid #282c37;
   padding: 5px;
-  height: 40px;
+  height: 30px;
   border-radius: 5px 0px 0px 5px;
   outline: none;
   color: #000000;
@@ -44,7 +45,7 @@
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
   padding-right: 0.5vw;
   width: 4vw;
-  height: 56px;
+  height: 46px;
   border: 3px solid #282c37;
   background: #282c37;
   text-align: center;

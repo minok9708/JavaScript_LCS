@@ -1,6 +1,6 @@
 #search_Box {
   /* 검색창&지도 검색 바 */
-  width: 40vw;
+  width: 55vw;
   max-width: 100vw;
   font-size: 1rem;
   font-weight: bold;
@@ -16,9 +16,9 @@
 /* 검색버튼 */
 #search_Btn {
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
+  padding: 0;
   width: 10vw;
-  padding-right: 2vw;
-  height: 35px;
+  height: 36px;
   border: 3px solid #282c37;
   background: #282c37;
   text-align: center;
@@ -32,10 +32,8 @@
 
 #searchBar {
   top: 2vw;
-  left: 2vw;
-  width: 70%;
+  left: vw;
   position: absolute;
   display: flex;
-  height: auto;
   /* z-index: 1; */
 }
