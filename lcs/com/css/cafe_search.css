@@ -72,12 +72,12 @@ body {
 select {
   border: 3px solid#282c37;
   outline: none;
-  width: 8vw;
+  width: 11vh;
   border-left: none;
   border-top: none;
   border-right: none;
   border-bottom: none;
-  font-size: 1.125rem;
+  font-size: 15px;
   font-weight: bold;
   background: transparent;
   color: black;
