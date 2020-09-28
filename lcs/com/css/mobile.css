@@ -19,13 +19,13 @@
 }
 
 .searchTerm {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   border: 2px, solid #282c37;
   border-right: none;
   padding: 5px;
   height: 22px;
-  border-radius: 50px 0 0 50px;
+  border-radius: 15px 0 0 15px;
   outline: none;
   color: #9dbfaf;
 }
@@ -36,12 +36,12 @@
 
 .searchButton {
   width: 50px;
-  height: 35.5px;
+  height: 36px;
   border: 1px solid #282c37;
   background: #282c37;
   text-align: center;
   color: #fff;
-  border-radius: 0 50px 50px 0;
+  border-radius: 0 15px 15px 0;
   cursor: pointer;
   font-size: 20px;
 }

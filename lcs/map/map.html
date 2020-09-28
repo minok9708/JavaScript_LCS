@@ -64,10 +64,19 @@ marine.operation(); -->
     <!-- 외부 css파일 사용 -->
     <link href="../com/css/map.css" rel="stylesheet" type="text/css" />
 
+    <!-- 검색 아이콘 -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
     />
+
+    <!-- width 768px밑으로 넘어가면 모바일 css가 적용됨 -->
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 768px)"
+      href="/lcs/com/css/mobile/mobile_map.css"
+    />
+  </head>
   </head>
 
   <!-- Map.Html Body -->
@@ -76,19 +85,21 @@ marine.operation(); -->
 
     <form id="searchBar" onsubmit="return false">
       <input
-        id="selectMain"
+        id="search_Box"
         type="text"
         placeholder="검색어를 입력하세요"
         name="search"
         onkeypress="enterSearch()"
       />
       <!--  버튼은 잘됨 -->
-      <input
-        id="searchMain"
+      <button
+        id="search_Btn"
         type="button"
         value="검색"
         onclick="searchPlaces()"
-      />
+      >
+        <i class="fa fa-search"></i>
+      </button>
     </form>
     <!-- 맵 출력 -->
     <div id="map"></div>
@@ -237,9 +248,8 @@ marine.operation(); -->
       //키워드로 장소 겁색
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces() {
-        var keyword = document.getElementById("selectMain").value;
+        var keyword = document.getElementById("search_Box").value;
         console.log(keyword);
-        console.log("testsetstests");
         if (!keyword.replace(/^\s+|\s+$/g, "")) {
           alert("키워드를 입력해주세요!");
           return false;
