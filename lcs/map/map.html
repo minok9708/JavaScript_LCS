@@ -361,31 +361,27 @@ marine.operation(); -->
       aaa(true).then(
         (bbb = (cafe) => {
           cafe.map((marker, index) => {
+            console.log(marker);
             let content =
               '<div class="wrap">' +
               '    <div class="info">' +
               '        <div class="title">' +
-              "            카카오 스페이스닷원" +
+              marker.name +
               "        </div>" +
               '        <div class="body">' +
-              '            <div class="img">' +
-              '                <img src="#" width="73" height="70">' +
-              "           </div>" +
               '            <div class="desc">' +
-              '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-              '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-              '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+              '                <div class="ellipsis">' +
+              "주소 : " +
+              marker.parcelAddr +
+              "</div>" +
+              '                <div class="phone ellipsis">' +
+              "번호 : " +
+              marker.phone +
+              "</div>" +
               "            </div>" +
               "        </div>" +
               "    </div>" +
               "</div>";
-
-            // console.log(index);
-            // console.log(marker);
-            // console.log(marker.name);
-
-            // console.log(marker.latitude);
-            // console.log(marker.longitude);
 
             // 서버에서 얻어온 마커에 아이콘 변경
             let imageSrc = "http://maps.google.com/mapfiles/ms/icons/red.png", // 마커이미지의 주소입니다
