@@ -32,7 +32,7 @@
 
 #searchBar {
   top: 2vw;
-  left: vw;
+  left: 10vw;
   position: absolute;
   display: flex;
   /* z-index: 1; */
