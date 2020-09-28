@@ -44,7 +44,7 @@ marine.operation(); -->
     />
 
     <!-- 타이틀바 이름 -->
-    <title>지도12</title>
+    <title>지도</title>
 
     <!-- 카카오맵을 사용하기 위한 Api호출 -->
     <script
@@ -106,11 +106,8 @@ marine.operation(); -->
     <!-- 맵 출력 -->
     <div id="map"></div>
     <script>
-      // 마커데이터를 담을 배열
-      // 서버통신을 통하여 여기에다가 담으면됨
-      // let markerdata = [];
-      var markers = [];
-      var cafeData = [];
+      let markers = [];
+      let cafeData = [];
       //  컨테이너에 div 값을 가져오는 코드
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -132,12 +129,11 @@ marine.operation(); -->
 
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
-        findLocation();
         searchPlaces();
+        findLocation();
         console.log("위치찾기 함수 실행");
       }, 100);
 
-      //---------------------------------------------------------------------------------------------------------------------------------
       // 키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode === 13) {
@@ -146,39 +142,7 @@ marine.operation(); -->
       }
 
       // 장소 검색 객체를 생성합니다
-      var ps = new kakao.maps.services.Places();
-
-      //검색바에 검색한 키워드를 콘솔에 출력
-      // function myFunction() {
-      //   var keyword = document.getElementById("selectMain").value;
-      //   console.log(keyword);
-
-      //   let searchMessage = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
-      //   console.log(searchMessage);
-      //   alert(keyword)
-
-      //   let searchUrl = "https://cafeaddy.xyz:8080/api/name";
-      //   axios({
-      //     method: "post",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       Accept: "application/json",
-      //     },
-      //     url: searchUrl,
-      //     data: {},
-      //     params: {
-      //       name: keyword,
-      //     },
-      //   })
-      //     .then((data) => {
-      //       console.log(data);
-      //     })
-      //     .catch((error) => {
-      //       console.log("error:", error.response);
-      //     });
-      // }
-
-      //--------------------------------------------------------------------------------------------------------------------------------------------------
+      let ps = new kakao.maps.services.Places();
 
       const findLocation = () => {
         // 현위치 마커 표시
@@ -210,7 +174,6 @@ marine.operation(); -->
           // HTML5의 GeoLocation을 사용할 수 없을때 디폴트 마커 표시 위치와 인포윈도우 내용을 설정
           let locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
             message = "geolocation을 사용할수 없어요..";
-
           displayMarker(locPosition);
         }
         {
@@ -227,7 +190,7 @@ marine.operation(); -->
         let imageSrc =
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
@@ -250,12 +213,12 @@ marine.operation(); -->
       //키워드로 장소 겁색
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces() {
-        var keyword = document.getElementById("search_Box").value;
+        let keyword = document.getElementById("search_Box").value;
         console.log(keyword);
         // if (!keyword.replace(/^\s+|\s+$/g, "")) {
         //   alert("키워드를 입력해주세요!");
         //   return false;
-       // }
+        // }
 
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
         ps.keywordSearch(keyword, placesSearchCB);
@@ -280,15 +243,13 @@ marine.operation(); -->
       function displayPlaces(places) {
         bounds = new kakao.maps.LatLngBounds();
 
-        for (var i = 0; i < places.length; i++) {
+        for (let i = 0; i < places.length; i++) {
           // 마커를 생성하고 지도에 표시합니다
-          var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
-
+          let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
           bounds.extend(placePosition);
         }
-
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.panTo(bounds);
       }
@@ -371,7 +332,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({data}) => {
+            .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
               res(aaa((cafeData = data.data)));
             })
@@ -465,43 +426,8 @@ marine.operation(); -->
             // 커스텀 오버레이를 지도에 표시합니다
             // customOverlay.setMap(map);
           });
-        }),
-        (ccc = () => {})
+        })
       );
-
-      ddd = () => {};
-
-      // const markerDisplay = markerdata.map((marker) => {
-      //   console.log(marker);
-
-      //   var content =
-      //     '<div class="wrap">' +
-      //     '    <div class="info">' +
-      //     '        <div class="title">' +
-      //     "            카카오 스페이스닷원" +
-      //     '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-      //     "        </div>" +
-      //     '        <div class="body">' +
-      //     '            <div class="img">' +
-      //     '                <img src="#" width="73" height="70">' +
-      //     "           </div>" +
-      //     '            <div class="desc">' +
-      //     '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-      //     '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-      //     '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-      //     "            </div>" +
-      //     "        </div>" +
-      //     "    </div>" +
-      //     "</div>";
-
-      //   let ma = new kakao.maps.Marker({
-      //     map: map,
-      //     key: marker.id,
-      //     position: new kakao.maps.LatLng(marker.lat, marker.lng),
-      //     title: marker.name,
-      //   });
-
-      // });
     </script>
   </body>
 </html>
