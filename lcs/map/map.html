@@ -63,6 +63,20 @@ marine.operation(); -->
 
     <!-- 외부 css파일 사용 -->
     <link href="../com/css/map.css" rel="stylesheet" type="text/css" />
+
+    <!-- 검색 아이콘 -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    />
+
+    <!-- width 768px밑으로 넘어가면 모바일 css가 적용됨 -->
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 768px)"
+      href="/lcs/com/css/mobile/mobile_map.css"
+    />
+  </head>
   </head>
 
   <!-- Map.Html Body -->
@@ -71,19 +85,21 @@ marine.operation(); -->
 
     <form id="searchBar" onsubmit="return false">
       <input
-        id="selectMain"
+        id="search_Box"
         type="text"
         placeholder="검색어를 입력하세요"
         name="search"
         onkeypress="enterSearch()"
       />
       <!--  버튼은 잘됨 -->
-      <input
-        id="searchMain"
+      <button
+        id="search_Btn"
         type="button"
         value="검색"
         onclick="searchPlaces()"
-      />
+      >
+        <i class="fa fa-search"></i>
+      </button>
     </form>
     <!-- 맵 출력 -->
     <div id="map"></div>
@@ -209,7 +225,7 @@ marine.operation(); -->
         let imageSrc =
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
@@ -232,9 +248,8 @@ marine.operation(); -->
       //키워드로 장소 겁색
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces() {
-        var keyword = document.getElementById("selectMain").value;
+        var keyword = document.getElementById("search_Box").value;
         console.log(keyword);
-        console.log("testsetstests");
         if (!keyword.replace(/^\s+|\s+$/g, "")) {
           alert("키워드를 입력해주세요!");
           return false;
@@ -354,7 +369,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({data}) => {
+            .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
               res(aaa((cafeData = data.data)));
             })

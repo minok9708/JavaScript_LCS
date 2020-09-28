@@ -1,11 +1,9 @@
-body {
-  margin: 0 auto;
-}
-
 /* 검색창 디자인  */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "맑은 고딕", sans-serif;
+  margin: 0 auto;
+  background-color: #fffff3;
 }
 
 /* 카페 옵션 버튼 
@@ -54,7 +52,6 @@ body {
   -webkit-transition: none;
   transition: none;
   cursor: pointer;
-
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 .button_loc:hover {
@@ -83,10 +80,10 @@ select {
   color: black;
   opacity: 0;
   transition: 0.5s;
+  cursor: pointer;
 }
 .search {
-  bottom: 1vw;
-  position: relative;
+  position: absolute;
   display: flex;
 }
 
@@ -115,8 +112,8 @@ select {
 }
 
 .searchButton {
-  padding-right: 0.5vw;
-  width: 4vw;
+  padding: 0;
+  width: 5vw;
   height: 56px;
   border: 3px solid #282c37;
   background: #282c37;
@@ -131,8 +128,9 @@ select {
 /*Resize the wrap to see the search bar change!*/
 .wrap {
   width: 50vw;
-  top: 5vw;
-  left: 50vw;
+  top: 2vw;
+  max-width: top;
+  left: 35vw;
   height: auto;
   position: absolute;
   transform: translate(-50%, -50%);
