@@ -67,13 +67,6 @@ body {
   border: none;
 } */
 
-<<<<<<< HEAD
-#selectMain {
-  /* 검색창&지도 검색 바 */
-  width: 25%;
-  padding: 1%;
-  z-index: 1;
-=======
 /* -------------------------------------------------- */
 
 select {
@@ -81,7 +74,6 @@ select {
   outline: none;
   width: 8vw;
   border-left: none;
->>>>>>> 5c13cdc048dd204b1ddf8c1b89bf89e0803380d8
   border-top: none;
   border-right: none;
   border-bottom: none;
@@ -95,20 +87,6 @@ select {
 .search {
   bottom: 1vw;
   position: relative;
-<<<<<<< HEAD
-  margin: 1%;
-}
-
-#searchMain {
-  /* 메인페이지& 검색 창& 지도 검색 버튼 */
-  width: 8%;
-  border-radius: 20%;
-  z-index: 1;
-  position: relative;
-  padding: 0.5%;
-
-  border: none;
-=======
   display: flex;
 }
 
@@ -158,5 +136,4 @@ select {
   height: auto;
   position: absolute;
   transform: translate(-50%, -50%);
->>>>>>> 5c13cdc048dd204b1ddf8c1b89bf89e0803380d8
 }
