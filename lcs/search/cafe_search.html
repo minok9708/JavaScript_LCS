@@ -20,12 +20,11 @@
       media="screen and (max-width: 768px)"
       href="/com/css/mobile_cafe_search.css"
     />
+    
   </head>
   <body>
     <div class="wrap">
       <div class="search">
-        <!-- <button class="button_cafe"type="button">카페검색</button>
-        <button class="button_loc"type="button">주소검색</button> -->
         <select class="SelectSearch" name="WhichSearch">
           <option id="google" value="google">카페명 검색</option>
           <option id="naver" value="naver">주소명 검색</option>
@@ -34,6 +33,7 @@
           type="text"
           class="searchTerm"
           placeholder=" 카페를 검색해주세요 :)"
+          onkeydown="enterSearch()"
         />
         <!-- <button class="button_cafe"type="button">카페검색</button>
         <button class="button_loc"type="button">주소검색</button> -->
@@ -41,6 +41,7 @@
           type="submit"
           class="searchButton"
           onclick="location.href='search/cafe_search.html'"
+          "myFunction()"
         >
           <i class="fa fa-search"></i>
         </button>
