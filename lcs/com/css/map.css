@@ -16,7 +16,7 @@
   padding: 0;
 }
 /* 검색창 */
-#search_Box {
+#selectMain {
   /* 검색창&지도 검색 바 */
   width: 20vw;
   max-width: 60vw;
@@ -27,21 +27,13 @@
   height: 30px;
   border-radius: 5px 0px 0px 5px;
   outline: none;
-  color: #000000;
-  opacity: 0.7;
+
+  position: relative;
+
   z-index: 1;
 }
-
-#search_Box:hover {
-  opacity: 1;
-}
-
-#search_Box:hover ~ #search_Btn {
-  opacity: 1;
-}
-
 /* 검색버튼 */
-#search_Btn {
+#searchMain {
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
   padding-right: 0.5vw;
   width: 4vw;
@@ -58,15 +50,10 @@
 }
 
 #searchBar {
-  top: 2vw;
-  left: 2vw;
   width: 70%;
   position: absolute;
-  display: flex;
-  height: auto;
   /* z-index: 1; */
 }
-
 /* 커스텀 오버레이 */
 .infowindow {
   width: 100%;
