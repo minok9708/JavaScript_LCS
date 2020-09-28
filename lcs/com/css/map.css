@@ -16,40 +16,56 @@
   padding: 0;
 }
 /* 검색창 */
-#selectMain {
+#search_Box {
   /* 검색창&지도 검색 바 */
-  width: 25%;
-
-  margin: 1%;
-  padding: 1%;
-
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-width: 3px;
+  width: 30vw;
+  font-size: 20px;
+  font-weight: bold;
+  border: 3px solid #282c37;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px 0px 0px 5px;
   outline: none;
-
-  position: relative;
-
+  color: #000000;
+  opacity: 0.7;
   z-index: 1;
 }
+
+#search_Box:hover {
+  opacity: 1;
+}
+
+#search_Box:hover ~ #search_Btn {
+  opacity: 1;
+}
+
 /* 검색버튼 */
-#searchMain {
+#search_Btn {
   /* 메인페이지& 검색 창& 지도 검색 버튼 */
-  background-color: aquamarine;
-  width: 10%;
-  margin: 1%;
-  padding: 1%;
-  border: none;
-  position: absolute;
+  padding-right: 0.5vw;
+  width: 4vw;
+  height: 56px;
+  border: 3px solid #282c37;
+  background: #282c37;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  opacity: 0.7;
   z-index: 1;
 }
 
 #searchBar {
+  top: 2vw;
+  left: 2vw;
   width: 70%;
   position: absolute;
+  display: flex;
+  height: auto;
   /* z-index: 1; */
 }
+
 /* 커스텀 오버레이 */
 .infowindow {
   width: 100%;

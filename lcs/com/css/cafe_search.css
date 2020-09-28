@@ -1,47 +1,139 @@
-#bar {
-  width: 100%;
-  background-color: gray;
+body {
+  margin: 0 auto;
 }
 
-/* input[type="search"] {
-  width: 40%;
-  padding: 1%;
-  border-radius: 20px;
+/* 검색창 디자인  */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+/* 카페 옵션 버튼 
+.button_cafe {
+  width: 5vw;
+  position: relative;
+  background-color: #282c37;
+  border-radius: 0px;
+  border: 3px solid #282c37;
+  color: black;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.493);
+  border-radius: 45px 0 0 45px;
+  border-left: none;
+  font-style: bold;
+  font-size: 15px;
+  color: #fff;
+  font-weight: bold;
+  -webkit-transition: none;
+  transition: none;
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.button_cafe:hover {
+  background-color: #c25353;
   border: none;
-  z-index: 2;
 }
+.button_cafe:active {
+  top: 3px;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+/* 위치 옵션 버튼  */
+/* .button_loc {
+  width: 5vw;
+  position: relative;
+  background-color: #282c37;
+  border-radius: 0px;
+  border: 3px solid #282c37;
+  color: black;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.493);
+  border-left: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  -webkit-transition: none;
+  transition: none;
+  cursor: pointer;
 
-input[type="submit"] {
-  width: 6%;
-  border-radius: 20px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.button_loc:hover {
+  background-color: #5260d8;
+  border: none;
+}
+.button_loc:active {
+  top: 3px;
+  box-shadow: none;
   border: none;
 } */
 
+/* -------------------------------------------------- */
 
-#selectMain {
-  /* 검색창&지도 검색 바 */
-  width: 25%;
-  padding: 1%;
-  z-index: 1;
+select {
+  border: 3px solid#282c37;
+  outline: none;
+  width: 8vw;
+  border-left: none;
   border-top: none;
   border-right: none;
-  border-left: none;
-  border-width: 3px;
-  /*  margin-top: 10%;  */
-  outline: none;
+  border-bottom: none;
+  font-size: 1.125rem;
+  font-weight: bold;
+  background: transparent;
+  color: black;
+  opacity: 0;
+  transition: 0.5s;
+}
+.search {
+  bottom: 1vw;
   position: relative;
-  margin:1%;
- 
+  display: flex;
 }
 
- #searchMain {
-  /* 메인페이지& 검색 창& 지도 검색 버튼 */
-  width: 8%;
-  border-radius: 20%;
-  z-index: 1;
-  position: relative;
-  padding: 0.5%;
+.searchTerm {
+  width: 50vw;
+  font-size: 20px;
+  font-weight: bold;
+  border: 3px solid #282c37;
+  padding: 5px;
+  height: 40px;
+  border-radius: 10px 0px 0px 10px;
+  outline: none;
+  color: #000000;
+}
 
-  border: none;
-} 
+.searchTerm:focus {
+  color: #282c37;
+}
 
+.search:hover > select {
+  opacity: 1;
+}
+
+.search:focus > select {
+  opacity: 1;
+}
+
+.searchButton {
+  padding-right: 0.5vw;
+  width: 4vw;
+  height: 56px;
+  border: 3px solid #282c37;
+  background: #282c37;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* 검색창 위치 수정할때 여기서 */
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+  width: 50vw;
+  top: 5vw;
+  left: 50vw;
+  height: auto;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
