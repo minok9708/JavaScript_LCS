@@ -4,12 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>카페 검색</title>
-    <script type="text/javascript">
-      function getElement() {
-        var msg = document.getElementById("selectMain");
-        alert(msg.val);
-      }
-    </script>
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
@@ -19,27 +13,52 @@
       rel="stylesheet"
       type="text/css"
     />
+<<<<<<< HEAD
+=======
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    />
+>>>>>>> 5c13cdc048dd204b1ddf8c1b89bf89e0803380d8
   </head>
   <body>
-    <div id="bar">
-      <center>
-        <form>
-          <input
-            id="selectMain"
-            type="text"
-            placeholder="검색어를 입력하세요"
-            name="search"
-            onkeydown="enterSearch()"
-          />
-          <input
-            id="searchMain"
-            type="button"
-            value="검색"
-            onclick="myFunction()"
-          />
-        </form>
-      </center>
+    <div class="wrap">
+      <div class="search">
+        <!-- <button class="button_cafe"type="button">카페검색</button>
+        <button class="button_loc"type="button">주소검색</button> -->
+        <select class="SelectSearch" name="WhichSearch">
+          <option id="google" value="google">카페명 검색</option>
+          <option id="naver" value="naver">주소명 검색</option>
+        </select>
+        <input
+          type="text"
+          class="searchTerm"
+          placeholder="   카페를 검색해주세요 :)"
+        />
+        <!-- <button class="button_cafe"type="button">카페검색</button>
+        <button class="button_loc"type="button">주소검색</button> -->
+        <button
+          type="submit"
+          class="searchButton"
+          onclick="location.href='search/cafe_search.html'"
+        >
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
     </div>
+    <!-- <input
+        id="selectMain"
+        type="text"
+        placeholder="검색어를 입력하세요"
+        name="search"
+        onkeydown="enterSearch()"
+      />
+      <input
+        id="searchMain"
+        type="button"
+        value="검색"
+        onclick="myFunction()"
+      /> -->
     <ul id="cafeLsit"></ul>
 
     <script>
