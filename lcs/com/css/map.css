@@ -71,27 +71,28 @@
   position: absolute;
   left: 0;
   bottom: 40px;
-  width: 288px;
-  height: 132px;
-  margin-left: -144px;
+  width: 500px;
+  height: 170px;
+  margin-left: -247px;
   text-align: left;
   overflow: hidden;
   font-size: 12px;
   font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
   line-height: 1.5;
+  z-index: 1;
 }
 .wrap * {
   padding: 0;
   margin: 0;
 }
 .wrap .info {
-  width: 286px;
-  height: 120px;
-  border-radius: 5px;
+  width: 500px;
+  height: 160px;
+  border-radius: 10px;
   border-bottom: 2px solid #ccc;
   border-right: 1px solid #ccc;
   overflow: hidden;
-  background: #ffe985;
+  background: #fffff3;
 }
 .wrap .info:nth-child(1) {
   border: 0;
@@ -100,7 +101,7 @@
 .info .title {
   padding: 5px 0 0 10px;
   height: 30px;
-  background: #0c0c0c;
+  background: #353232;
   border-bottom: 1px solid #ddd;
   font-size: 18px;
   color: #fff;
@@ -116,7 +117,7 @@
 .info .desc {
   position: relative;
   margin: 5px 0 0 5px;
-  height: 75px;
+  height: 200px;
 }
 .desc .ellipsis {
   font-size: 1rem;
@@ -130,6 +131,16 @@
   font-size: 15px;
   color: rgb(26, 29, 236);
   margin: 0 0 0 110px;
+}
+/* 상세 정보 버튼  */
+.desc .sit {
+  text-align: center;
+  font-size: 15px;
+  margin: 0 0 0 0px;
+}
+
+.desc .info_btn {
+  margin-left: 400px;
 }
 
 .info:after {
