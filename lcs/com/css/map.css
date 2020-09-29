@@ -1,11 +1,34 @@
 /* map(카카오맵 지도) 객체 */
+@font-face {
+  font-family: "title";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "title1";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "content";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 #map {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
   position: relative;
-  z-index: 0;
+  z-index: -1;
 }
 /* body */
 .map_page_body {
@@ -29,7 +52,7 @@
   outline: none;
   color: #000000;
   opacity: 0.7;
-  z-index: 1;
+  z-index: 0;
 }
 
 #search_Box:hover {
@@ -54,7 +77,7 @@
   cursor: pointer;
   font-size: 1.25rem;
   opacity: 0.7;
-  z-index: 1;
+  z-index: 0;
 }
 
 #searchBar {
@@ -73,7 +96,7 @@
   bottom: 40px;
   width: 500px;
   height: 170px;
-  margin-left: -247px;
+  margin-left: -49px;
   text-align: left;
   overflow: hidden;
   font-size: 12px;
@@ -85,27 +108,32 @@
   padding: 0;
   margin: 0;
 }
+/* 커스텀 오버레이 내용 부분  */
 .wrap .info {
-  width: 500px;
+  width: 300px;
   height: 160px;
   border-radius: 10px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid rgb(255, 255, 255);
   border-right: 1px solid #ccc;
   overflow: hidden;
-  background: #fffff3;
+  background: #ffffff;
+  font-family: content;
 }
 .wrap .info:nth-child(1) {
   border: 0;
   box-shadow: 0px 1px 2px #888;
 }
+/* 커스텀 오버레이 타이틀 바 */
 .info .title {
-  padding: 5px 0 0 10px;
+  padding: 5px 0px 5px 15px;
   height: 30px;
-  background: #353232;
+  background: #060126;
   border-bottom: 1px solid #ddd;
   font-size: 18px;
+  letter-spacing: 2px;
   color: #fff;
   font-weight: bold;
+  font-family: title1;
 }
 .info .close:hover {
   cursor: pointer;
@@ -114,40 +142,43 @@
   position: relative;
   overflow: hidden;
 }
+
 .info .desc {
   position: relative;
   margin: 5px 0 0 5px;
   height: 200px;
 }
+/* 카페 주소 */
 .desc .ellipsis {
+  margin-left: 10px;
   font-size: 1rem;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: center;
+  text-align: left;
 }
+/* 카페 번호 */
 .desc .phone {
   font-size: 15px;
-  color: rgb(26, 29, 236);
-  margin: 0 0 0 110px;
+  text-align: left;
+  font-weight: bold;
+  color: #66a986;
+  margin-left: 10px;
 }
-/* 상세 정보 버튼  */
+/* 카페 테이블 상황  */
 .desc .sit {
-  text-align: center;
+  text-align: left;
   font-size: 15px;
-  margin: 0 0 0 0px;
-}
-
-.desc .info_btn {
-  margin-left: 400px;
+  margin-top: 40px;
+  margin-left: 10px;
 }
 
 .info:after {
   content: "";
   position: absolute;
   margin-left: -12px;
-  left: 50%;
+  left: 10%;
   bottom: 0;
   width: 22px;
   height: 12px;
@@ -156,4 +187,86 @@
 .info .link {
   color: #5085bb;
   text-align: right;
+}
+
+/* 커스텀 오버레이 상세정보 버튼  */
+.info_btn {
+  left: 220px;
+  bottom: 27px;
+  font-size: 0.9rem;
+  padding: 5px;
+  font-weight: bold;
+  font-family: content;
+  text-transform: uppercase !important;
+  letter-spacing: 2px;
+  color: rgb(238, 238, 238);
+  cursor: hand;
+  text-align: center;
+  text-transform: capitalize;
+  position: relative;
+  overflow: hidden !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: #353232 !important;
+  border: none;
+  border-radius: 7px;
+  z-index: 10;
+}
+
+.info_btn:hover {
+  font-weight: bold;
+  color: #ffffff !important;
+}
+.info_btn::before {
+  content: "";
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #0582f7;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 1;
+  top: 0;
+  z-index: -12;
+  -moz-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+
+.info_btn::after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #ddddff;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 0;
+  top: 0;
+  z-index: -15;
+  -webkit-transition: all 0.94s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -moz-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -o-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+.info_btn:hover::before,
+.info_btn:hover::before {
+  opacity: 1;
+  width: 116%;
+}
+.info_btn:hover::after,
+.info_btn:hover::after {
+  opacity: 1;
+  width: 120%;
 }
