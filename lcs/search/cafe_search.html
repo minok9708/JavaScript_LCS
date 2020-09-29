@@ -20,64 +20,73 @@
       media="screen and (max-width: 768px)"
       href="/com/css/mobile_cafe_search.css"
     />
-    
   </head>
   <body>
     <div class="wrap">
       <div class="search">
-        <select class="SelectSearch" name="WhichSearch">
+        <select
+          class="SelectSearch"
+          id="SelectSearch"
+          name="WhichSearch"
+          onchange="onChange();"
+        >
           <option id="google" value="google">카페명 검색</option>
           <option id="naver" value="naver">주소명 검색</option>
         </select>
+
         <input
           type="text"
-          class="searchTerm"
+          id="searchTerm"
           placeholder=" 카페를 검색해주세요 :)"
           onkeydown="enterSearch()"
+          name="search"
         />
-        <!-- <button class="button_cafe"type="button">카페검색</button>
-        <button class="button_loc"type="button">주소검색</button> -->
-        <button
-          type="submit"
-          class="searchButton"
-          onclick="location.href='search/cafe_search.html'"
-          "myFunction()"
-        >
+
+        <button type="submit" class="searchButton" onclick="serverSearch()">
+          <!-- 아이콘 -->
           <i class="fa fa-search"></i>
         </button>
       </div>
     </div>
-    <!-- <input
-        id="selectMain"
-        type="text"
-        placeholder="검색어를 입력하세요"
-        name="search"
-        onkeydown="enterSearch()"
-      />
-      <input
-        id="searchMain"
-        type="button"
-        value="검색"
-        onclick="myFunction()"
-      /> -->
     <ul id="cafeLsit"></ul>
 
     <script>
+      let category = true;
       //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
-          myFunction(); // 실행할 이벤트
+          serverSearch(); // 실행할 이벤트
+        }
+      }
+
+      // let value = true;
+
+      /* 카페명으로 검색: google(true)
+         주소명으로 검색: naver(false) */
+      function onChange() {
+        let value = document.getElementById("SelectSearch").options[
+          document.getElementById("SelectSearch").selectedIndex
+        ].value;
+        console.log(value);
+
+        if (value == "naver") {
+          //주소명으로 검색이면
+          category = false;
+          console.log(category);
+        } else {
+          //카페명으로 검색이면
+          console.log(category);
         }
       }
 
       //검색바에 검색한 키워드를 콘솔에 출력
-      function myFunction() {
-        var keyword = document.getElementById("selectMain").value;
+      function serverSearch() {
+        var keyword = document.getElementById("searchTerm").value;
         console.log(keyword);
+        console.log(category);
 
         let message = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
         console.log(message);
-        //alert(keyword);
 
         let searchUrl = "https://cafeaddy.xyz:8080/api/name";
 
@@ -91,6 +100,7 @@
           data: {},
           params: {
             name: keyword,
+            option: category,
           },
         })
           .then((data) => {
