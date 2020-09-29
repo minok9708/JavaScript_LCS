@@ -67,77 +67,32 @@
   /* z-index: 1; */
 }
 
-/* 커스텀 오버레이 */
-.infowindow {
-  width: 100%;
-  height: 100%;
-  background-color: gray;
-  font-size: large;
-  padding: 30%;
-  margin: 20%;
-  position: relative;
-}
-
-/* 커스텀 오버레이 */
-.infowindowBox {
-  background-color: gray;
-  width: 100%;
-  padding: 2%;
-  position: relative;
-  bottom: 0;
-  margin-left: 8%;
-}
-#infoName {
-  margin-left: 1%;
-  display: inline-block;
-}
-#infoAddr {
-  display: inline-block;
-  padding-right: 3%;
-}
-#infoPhone {
-  display: inline-block;
-}
-#infoTable {
-  display: inline-block;
-  margin-left: 2%;
-}
-#infoBtn {
-  background-color: gainsboro;
-  width: 15%;
-  padding: 2%;
-  border: none;
-  margin-right: 3%;
-  border-radius: 25%;
-  display: inline-block;
-  margin-left: 70%;
-}
-
 .wrap {
   position: absolute;
   left: 0;
   bottom: 40px;
-  width: 288px;
-  height: 132px;
-  margin-left: -144px;
+  width: 500px;
+  height: 170px;
+  margin-left: -247px;
   text-align: left;
   overflow: hidden;
   font-size: 12px;
   font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
   line-height: 1.5;
+  z-index: 1;
 }
 .wrap * {
   padding: 0;
   margin: 0;
 }
 .wrap .info {
-  width: 286px;
-  height: 120px;
-  border-radius: 5px;
+  width: 500px;
+  height: 160px;
+  border-radius: 10px;
   border-bottom: 2px solid #ccc;
   border-right: 1px solid #ccc;
   overflow: hidden;
-  background: #fff;
+  background: #fffff3;
 }
 .wrap .info:nth-child(1) {
   border: 0;
@@ -146,9 +101,10 @@
 .info .title {
   padding: 5px 0 0 10px;
   height: 30px;
-  background: #eee;
+  background: #353232;
   border-bottom: 1px solid #ddd;
   font-size: 18px;
+  color: #fff;
   font-weight: bold;
 }
 .info .close:hover {
@@ -160,29 +116,33 @@
 }
 .info .desc {
   position: relative;
-  margin: 13px 0 0 90px;
-  height: 75px;
+  margin: 5px 0 0 5px;
+  height: 200px;
 }
 .desc .ellipsis {
+  font-size: 1rem;
+  font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: center;
 }
-.desc .jibun {
-  font-size: 11px;
-  color: #888;
-  margin-top: -2px;
+.desc .phone {
+  font-size: 15px;
+  color: rgb(26, 29, 236);
+  margin: 0 0 0 110px;
 }
-.info .img {
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  width: 73px;
-  height: 71px;
-  border: 1px solid #ddd;
-  color: #888;
-  overflow: hidden;
+/* 상세 정보 버튼  */
+.desc .sit {
+  text-align: center;
+  font-size: 15px;
+  margin: 0 0 0 0px;
 }
+
+.desc .info_btn {
+  margin-left: 400px;
+}
+
 .info:after {
   content: "";
   position: absolute;
@@ -195,4 +155,5 @@
 }
 .info .link {
   color: #5085bb;
+  text-align: right;
 }
