@@ -96,7 +96,7 @@
   bottom: 40px;
   width: 500px;
   height: 170px;
-  margin-left: -50px;
+  margin-left: -49px;
   text-align: left;
   overflow: hidden;
   font-size: 12px;
@@ -125,11 +125,12 @@
 }
 /* 커스텀 오버레이 타이틀 바 */
 .info .title {
-  padding: 5px 5px 5px 10px;
+  padding: 5px 0px 5px 15px;
   height: 30px;
   background: #060126;
   border-bottom: 1px solid #ddd;
   font-size: 18px;
+  letter-spacing: 2px;
   color: #fff;
   font-weight: bold;
   font-family: title1;
@@ -169,11 +170,8 @@
 .desc .sit {
   text-align: left;
   font-size: 15px;
-  margin-top: 35px;
+  margin-top: 40px;
   margin-left: 10px;
-}
-
-.desc .info_btn {
 }
 
 .info:after {
@@ -194,7 +192,7 @@
 /* 커스텀 오버레이 상세정보 버튼  */
 .info_btn {
   left: 220px;
-  bottom: 23px;
+  bottom: 27px;
   font-size: 0.9rem;
   padding: 5px;
   font-weight: bold;
