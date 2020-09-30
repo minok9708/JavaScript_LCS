@@ -53,12 +53,12 @@
     </div>
     <div id="borderBox">
       <ul id="cafeList">
-        <a class="ttttt">llll</a>
+        <a class="ttttt"></a>
       </ul>
     </div>
 
     <script>
-      let category = true; //카페명으로 검색: true /주소명으로 검색: false
+      let category = "이름"; //카페명으로 검색: 이름 /주소명으로 검색: 위치
 
       let listdata = [];
       let message = "";
@@ -70,8 +70,8 @@
         }
       }
 
-      /* 카페명으로 검색: google(true)
-         주소명으로 검색: naver(false) */
+      /* 카페명으로 검색: google(이름)
+         주소명으로 검색: naver(주소) */
       function onChange() {
         let value = document.getElementById("SelectSearch").options[
           document.getElementById("SelectSearch").selectedIndex
@@ -80,7 +80,7 @@
 
         if (value == "naver") {
           //주소명으로 검색이면
-          category = false;
+          category = "주소";
           console.log(category);
         } else {
           //카페명으로 검색이면
@@ -125,11 +125,14 @@
 
       function list() {
         console.log(listdata);
-        let results = listdata.map((ele, index) => {
-          (key = index), (data = ele.data);
-        });
+
+        let results = listdata.data;
         console.log(results);
-        return results;
+        ttttt.append(results);
+
+        //for(int i=0;i<results;i++){
+        // ttttt.append(results[i]);
+        //}
       }
     </script>
   </body>
