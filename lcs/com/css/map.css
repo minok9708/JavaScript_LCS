@@ -34,7 +34,7 @@
 .map_page_body {
   height: 100%;
   position: relative;
-  z-index: 0;
+  z-index: -1;
   margin: 0;
   padding: 0;
 }
@@ -87,7 +87,6 @@
   position: absolute;
   display: flex;
   height: auto;
-  /* z-index: 1; */
 }
 
 .wrap {
@@ -102,7 +101,6 @@
   font-size: 12px;
   font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
   line-height: 1.5;
-  z-index: 1;
 }
 .wrap * {
   padding: 0;
