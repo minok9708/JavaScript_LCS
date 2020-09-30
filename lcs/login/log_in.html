@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인페이지</title>
+
+    <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
     <link href="/com/css/log_in.css" rel="stylesheet" type="text/css" />
   </head>
 
@@ -11,21 +15,27 @@
     <div id="content">
       <center>
         <div class="login">
-          <form action="login.php" method="post">
+          <form onsubmit="return false">
             <div id="id">
-              <input type="text" id="id" placeholder="아이디를 입력하세요." />
+              <input type="text" id="ID" placeholder="아이디를 입력하세요." />
             </div>
 
             <div id="pw">
               <input
                 type="password"
-                id="pw"
+                id="PW"
                 placeholder="비밀번호를 입력하세요."
               />
             </div>
 
             <div id="middle">
-              <input type="submit" title="로그인" , value="로그인" />
+              <input
+                type="submit"
+                title="로그인"
+                value="로그인"
+                onclick="logIn()"
+                onkeydown="enterSearch()"
+              />
               <hr style="margin-bottom: 2%; width: 26%" />
             </div>
 
@@ -38,5 +48,44 @@
         </div>
       </center>
     </div>
+
+    <script>
+      //키보드로 엔터를 눌럿을때
+      function enterSearch() {
+        if (event.keyCode == 13) {
+          logIn(); // 실행할 이벤트
+        }
+      }
+
+      function logIn() {
+        let id = document.getElementById("ID").value;
+        let pw = document.getElementById("PW").value;
+        console.log(id);
+        console.log(pw);
+
+        //서버로 아이디와 비밀번호 전송
+        //let searchUrl = "https://cafeaddy.xyz:8080/api/name";
+
+        axios({
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          //url: searchUrl,
+          data: {},
+          params: {
+            id: id,
+            pw: pw,
+          },
+        })
+          .then((data) => {
+            console.log(data.data);
+          })
+          .catch((error) => {
+            console.log("error:", error.response);
+          });
+      }
+    </script>
   </body>
 </html>

@@ -52,9 +52,7 @@
       <h5 id="text">""에 대한 검색 결과 입니다.</h5>
     </div>
     <div id="borderBox">
-      <ul id="cafeList">
-        <a class="ttttt"></a>
-      </ul>
+      <ul id="cafeList"></ul>
     </div>
 
     <script>
@@ -113,10 +111,16 @@
           },
         })
           .then((data) => {
-            console.log(data);
-            listdata = data;
-            console.log(listdata);
-            list();
+            console.log(data.data);
+            //listdata = data;
+            //console.log(listdata);
+            //list();
+
+            // for (let i = 0; i < data.length; i++) {
+            $("#cafeList").append(
+              "<ul class='cafeList' value='" + data.data + "' </ul>"
+            );
+            // }
           })
           .catch((error) => {
             console.log("error:", error.response);
