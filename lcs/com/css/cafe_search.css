@@ -135,3 +135,15 @@ select {
   position: absolute;
   transform: translate(-50%, -50%);
 }
+
+/* 검색결과 리스트 */
+#borderBox {
+  border: solid 3px;
+  margin-left: 23%;
+  margin-right: 22%;
+}
+
+#text {
+  margin-left: 23%;
+  margin-top: 12%;
+}
