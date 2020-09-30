@@ -48,18 +48,27 @@
         </button>
       </div>
     </div>
-    <ul id="cafeLsit"></ul>
+    <div>
+      <h5 id="text">""에 대한 검색 결과 입니다.</h5>
+    </div>
+    <div id="borderBox">
+      <ul id="cafeList">
+        <a class="ttttt">llll</a>
+      </ul>
+    </div>
 
     <script>
-      let category = true;
+      let category = true; //카페명으로 검색: true /주소명으로 검색: false
+
+      let listdata = [];
+      let message = "";
+
       //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
           serverSearch(); // 실행할 이벤트
         }
       }
-
-      // let value = true;
 
       /* 카페명으로 검색: google(true)
          주소명으로 검색: naver(false) */
@@ -85,7 +94,7 @@
         console.log(keyword);
         console.log(category);
 
-        let message = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
+        message = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
         console.log(message);
 
         let searchUrl = "https://cafeaddy.xyz:8080/api/name";
@@ -105,10 +114,22 @@
         })
           .then((data) => {
             console.log(data);
+            listdata = data;
+            console.log(listdata);
+            list();
           })
           .catch((error) => {
             console.log("error:", error.response);
           });
+      }
+
+      function list() {
+        console.log(listdata);
+        let results = listdata.map((ele, index) => {
+          (key = index), (data = ele.data);
+        });
+        console.log(results);
+        return results;
       }
     </script>
   </body>
