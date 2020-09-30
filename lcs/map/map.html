@@ -415,7 +415,8 @@ marine.operation(); -->
                 marker.latitude,
                 marker.longitude
               ),
-              image: markerImage,
+              // 마커 아이콘 이미지
+              // image: markerImage,
               title: marker.name,
             });
 
@@ -430,6 +431,8 @@ marine.operation(); -->
 
             //마커 클릭시 이벤트 처리
             kakao.maps.event.addListener(m, "click", function () {
+              // 커스텀 오버레이 z-index 값 설정
+              customOverlay.setZIndex(3);
               if (clickedOverlay) {
                 //console.log("null이 아닐때");
                 clickedOverlay.setMap(null);
@@ -437,8 +440,6 @@ marine.operation(); -->
               customOverlay.setMap(map);
               // 커스텀 오버레이의 z-index값 파악
               console.log(customOverlay.getZIndex());
-              // 커스텀 오버레이 z-index 값 설정
-              customOverlay.setZIndex(3);
               clickedOverlay = customOverlay;
             });
 
