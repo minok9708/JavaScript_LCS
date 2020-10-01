@@ -102,6 +102,10 @@
 
         let searchUrl = "https://cafeaddy.xyz:8080/api/name";
 
+        if (keyword == null) {
+          alert("카페를 다시 검색해 주세요!");
+        }
+
         axios({
           method: "post",
           headers: {
@@ -117,31 +121,23 @@
         })
           .then((data) => {
             console.log(data.data);
+
+            // if (data == null) {
+            //   alert("데이터가 없습니다.");
+            // }
             //listdata = data;
             //console.log(listdata);
             //list();
 
             // for (let i = 0; i < data.length; i++) {
-            $("#cafeList").append(
-              "<ul class='cafeList' value='" + data.data + "' </ul>"
-            );
+            // $("#cafeList").append(
+            //  "<ul class='cafeList' value='" + data.data + "' </ul>"
+            //);
             // }
           })
           .catch((error) => {
             console.log("error:", error.response);
           });
-      }
-
-      function list() {
-        console.log(listdata);
-
-        let results = listdata.data;
-        console.log(results);
-        ttttt.append(results);
-
-        //for(int i=0;i<results;i++){
-        // ttttt.append(results[i]);
-        //}
       }
     </script>
   </body>
