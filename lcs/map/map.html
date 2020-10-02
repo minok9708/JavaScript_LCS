@@ -126,13 +126,16 @@ marine.operation(); -->
       });
 
       let temp = location.href.split("?");
+      //split("?");
+      console.log(temp);
       let data = temp[1].split(":");
       let check = data[1]; // true | false
       console.log(check);
-      let keyword = data[2]; //keyword
+      let keyword = data[3]; //keyword
       console.log(keyword);
 
-      
+      // document.getElementById("searchBar").innerHTML = keyword;
+
       // 지도 줌인 레벨 조정
       map.setMinLevel(3);
       // 지도 줌아웃 레벨 조정
