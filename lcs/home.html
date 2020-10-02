@@ -18,6 +18,9 @@
       media="screen and (max-width: 768px)"
       href="com/css/mobile.css"
     />
+
+    <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   </head>
   <body class="home_body">
     <center class="home_center">
@@ -27,25 +30,113 @@
 
       <div class="wrap">
         <div class="search">
+          <!--  <select
+            class="SelectSearch"
+            id="SelectSearch"
+            name="WhichSearch"
+            onchange="onChange();"
+          >
+            <option id="google" value="google">카페명 검색</option>
+            <option id="naver" value="naver">주소명 검색</option>
+          </select> -->
           <input
             type="text"
             class="searchTerm"
+            id="searchTerm"
             placeholder="    카페를 검색해주세요 :)"
-            onclick="location.href='search/cafe_search.html'"
+            onkeydown="enterSearch()"
+            name="search"
           />
-          <button
-            type="submit"
-            class="searchButton"
-            onclick="location.href='search/cafe_search.html'"
-          >
+          <button type="submit" class="searchButton" onclick="serverSearch()">
+            <!-- 아이콘 -->
             <i class="fa fa-search"></i>
           </button>
         </div>
       </div>
     </center>
-    <!-- 좀 되라 제발 좀 좀좀좀좀좀좀 -->
+
     <div class="container" onclick="location.href='map/map.html'">
       <a>내 위치로 카페 찾기</a>
     </div>
+
+    <script>
+      //키보드로 엔터를 눌럿을때
+      function enterSearch() {
+        if (event.keyCode == 13) {
+          serverSearch(); // 실행할 이벤트
+        }
+      }
+
+      /* 카페명으로 검색: google(이름)
+         주소명으로 검색: naver(주소) */
+      /*  function onChange() {
+        let value = document.getElementById("SelectSearch").options[
+          document.getElementById("SelectSearch").selectedIndex
+        ].value;
+        console.log(value);
+
+        if (value == "naver") {
+          //주소명으로 검색이면
+          category = "주소";
+          console.log(category);
+        } else {
+          //카페명으로 검색이면
+          console.log(category);
+        }
+      } */
+
+      //검색바에 검색한 키워드를 콘솔에 출력
+      function serverSearch() {
+        var keyword = document.getElementById("searchTerm").value;
+        console.log(keyword);
+        //console.log(category);
+
+        message = '"' + keyword + '"' + " 에 대한 검색결과 입니다";
+        console.log(message);
+
+        location.href = "map/map.html";
+
+        let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name";
+        //"https://cafeaddy.xyz:8080/api/name";
+
+        if (!keyword) {
+          alert("카페를 다시 검색해 주세요!");
+          location.href = "home.html";
+        }
+
+        axios({
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          url: searchUrl,
+          data: {},
+          params: {
+            cafeName: keyword,
+            // option: category,
+          },
+        })
+          .then((data) => {
+            console.log(data.data);
+
+            // if (data == null) {
+            //   alert("데이터가 없습니다.");
+            // }
+            //listdata = data;
+            //console.log(listdata);
+            //list();
+
+            // for (let i = 0; i < data.length; i++) {
+            // $("#cafeList").append(
+            //  "<ul class='cafeList' value='" + data.data + "' </ul>"
+            //);
+            // }
+          })
+          .catch((error) => {
+            console.log("error:", error.response);
+          });
+      }
+    </script>
   </body>
 </html>
