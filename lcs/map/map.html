@@ -106,9 +106,7 @@ marine.operation(); -->
     <!-- 맵 출력 -->
     <div id="map"></div>
     <script>
-      const markers = [];
       let cafeData = [];
-      let show = false;
       //  컨테이너에 div 값을 가져오는 코드
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -343,7 +341,7 @@ marine.operation(); -->
           })
             .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
-              res(aaa((cafeData = data.data)));
+              res(getCafeSyncInfo((cafeData = data.data)));
             })
             .catch((error) => {
               console.log("error:", error.response);
@@ -355,21 +353,24 @@ marine.operation(); -->
       };
 
       // aaa 함수는 위에서 보내온 데이터를 받아서 다시 bbb함수로 전달
-      aaa = (cafeData) => {
+      getCafeSyncInfo = (cafeData) => {
         return new Promise((res, reject) => {
           if (cafeData) {
             //console.log("마커데이터가 받아진것같습니다.");
             //console.log(cafeData);
-            res(bbb(cafeData));
+            res(getCafeSyncInfoTrue(cafeData));
           } else {
-            reject(console.log("실패2"));
+            reject(console.log("아직 데이터가 완전히 받아지지 않았음"));
           }
         });
       };
 
       //aaa함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 bbb함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
-      aaa(true).then(
-        (bbb = (cafe) => {
+      getCafeSyncInfo(true).then(
+        (getCafeSyncInfoTrue = (cafe) => {
+          let markers = [];
+          // 클러스터 초기화
+          clusterer.clear();
           cafe.map((marker, index) => {
             // console.log(marker);
             let content =
@@ -451,11 +452,14 @@ marine.operation(); -->
             // 커스텀 오버레이를 지도에 표시합니다
             // customOverlay.setMap(map);
           });
-
           // 클러스터에 마커 추가
           clusterer.addMarkers(markers);
+
           // markes배열에 계속 푸쉬가 되는 현상 방지를 위한 배열 초기화
-          markers.length = 0;
+          // markers.length = 0;
+
+          // console.log(markers);
+          // console.log(markers.length);
         })
       );
     </script>
