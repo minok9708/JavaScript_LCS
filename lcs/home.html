@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" style="height: 100%">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- 테스트 -->
@@ -47,14 +47,14 @@
             onkeydown="enterSearch()"
             name="search"
           />
-          <button type="submit" class="searchButton" onclick="serverSearch()">
+          <button type="submit" class="searchButton" onclick="keywordSubmit()">
             <!-- 아이콘 -->
             <i class="fa fa-search"></i>
           </button>
         </div>
       </div>
     </center>
-    <div class="container" onclick="location.href='map/map.html'">
+    <div class="container" onclick="data()">
       <a>내 위치로 카페 찾기</a>
     </div>
 
@@ -62,7 +62,7 @@
       //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
-          serverSearch(); // 실행할 이벤트
+          keywordSubmit(); // 실행할 이벤트
         }
       }
 
@@ -85,8 +85,10 @@
       } */
 
       //검색바에 검색한 키워드를 콘솔에 출력
-      function serverSearch() {
-        var keyword = document.getElementById("searchTerm").value;
+      function keywordSubmit() {
+        let keyword = document.getElementById("searchTerm").value;
+
+        let check = true;
         console.log(keyword);
         //console.log(category);
 
@@ -94,10 +96,16 @@
         console.log(message);
 
         if (!keyword) {
-          alert("카페를 다시 검색해 주세요!");
-          location.href = "home.html";
+          alert("다시 검색해 주세요!");
+          location.href = "/home.html";
+        } else {
+          location.href = "map/map.html?cafeName:" + check + ":" + keyword;
         }
-        location.href = "map/map.html?cafeName:" + keyword;
+      }
+
+      function data() {
+        let check = false;
+        location.href = "map/map.html?check:" + check;
       }
     </script>
   </body>
