@@ -348,7 +348,7 @@ marine.operation(); -->
             .catch((error) => {
               console.log("error:", error.response);
               //실패하면 reject("에러처리 함수로 보내거나 텍스트")
-              reject("실패");
+              reject(console.log("실패1"));
             });
         });
       };
@@ -361,7 +361,7 @@ marine.operation(); -->
             //console.log(cafeData);
             res(bbb(cafeData));
           } else {
-            reject(ddd);
+            reject(console.log("실패2"));
           }
         });
       };
