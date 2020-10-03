@@ -120,6 +120,19 @@ marine.operation(); -->
     <script>
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
+
+      alert(location.href);
+      // let temp;
+      // let data = [];
+      // temp = location.href.toString().split("?");
+      // console.log(`temp값:${temp}`);
+      // data = temp[1].toString().split(":");
+      // console.log(`data값:${data}`);
+      // check = data[0].toString().split(":");
+      // console.log(`check값:${check[1]}`);
+      // keyword = data[1].toString().split(":");
+      // console.log(`keyword값:${[keyword[1]]}`);
+
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
       const options = {
@@ -136,19 +149,6 @@ marine.operation(); -->
         minLevel: 8, // 클러스터 할 최소 지도 레벨
       });
 
-      let test = location.href;
-      console.log(test);
-      let temp = location.href.split("?");
-      //split("?");
-      console.log(temp);
-      let data = temp[1].split("=");
-      let check = data[1]; // true | false
-      console.log(check);
-      let keyword = data[3]; //keyword
-      console.log(keyword);
-
-      // document.getElementById("searchBar").innerHTML = keyword;
-
       // 지도 줌인 레벨 조정
       map.setMinLevel(3);
       // 지도 줌아웃 레벨 조정
@@ -158,40 +158,45 @@ marine.operation(); -->
       // 지도의 우측에 확대 축소 컨트롤을 추가
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+      alert(window.location.href);
+
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
-        if (check === "false") {
-          //false ->현위치검색하기 버튼 눌렀을 때
-          findLocation();
-          searchPlaces();
-          //console.log("위치찾기 함수 실행");
-        } else {
-          //true -> 홈 페이지에서 검색바로 검색했을 때
-          //axios 보내서 리스트 받아와서 마커 표시
-          //console.log(keyword);
+        findLocation();
+        searchPlaces();
+        // if (check[1] === "false") {
+        //   //false ->현위치검색하기 버튼 눌렀을 때
+        //   console.log("체크값이 false일때");
+        //   // findLocation();
+        //   // searchPlaces();
+        //   //console.log("위치찾기 함수 실행");
+        // } else {
+        //   //true -> 홈 페이지에서 검색바로 검색했을 때
+        //   //axios 보내서 리스트 받아와서 마커 표시
+        //   //console.log(keyword);
+        //   console.log("체크값 일단 반대일때@@@@@@@@@@@@@@@@@@@");
+        //   let searchUrl = "https://cafeaddy.xyz:8080/api/name";
 
-          let searchUrl = "https://cafeaddy.xyz:8080/api/name";
-
-          axios({
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            url: searchUrl,
-            data: {},
-            params: {
-              name: keyword,
-              //option: category,
-            },
-          })
-            .then((data) => {
-              console.log(data.data);
-            })
-            .catch((error) => {
-              console.log("error:", error.response);
-            });
-        }
+        //   axios({
+        //     method: "post",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       Accept: "application/json",
+        //     },
+        //     url: searchUrl,
+        //     data: {},
+        //     params: {
+        //       name: keyword[1],
+        //       //option: category,
+        //     },
+        //   })
+        //     .then((data) => {
+        //       console.log(data.data);
+        //     })
+        //     .catch((error) => {
+        //       console.log("error:", error.response);
+        //     });
+        // }
       }, 100);
 
       // 키보드로 엔터를 눌럿을때
@@ -252,7 +257,7 @@ marine.operation(); -->
         let imageSrc =
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
@@ -394,7 +399,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({ data }) => {
+            .then(({data}) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
               // res(getCafeSyncInfo((cafeData = data.data)));
               // casheData = data.data;
