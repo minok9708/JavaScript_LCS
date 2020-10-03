@@ -62,7 +62,7 @@ marine.operation(); -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
     <!-- 외부 css파일 사용 -->
-    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/lcs/com//css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 -->
     <link
@@ -75,7 +75,7 @@ marine.operation(); -->
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/com/css/mobile_map.css"
+      href="/lcs/com/css/mobile_map.css"
       type="text/css"
     />
     <!-- 테스트 -->
@@ -124,19 +124,6 @@ marine.operation(); -->
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
         minLevel: 8, // 클러스터 할 최소 지도 레벨
       });
-
-      let test = location.href;
-      console.log(test);
-      let temp = location.href.split("?");
-      //split("?");
-      console.log(temp);
-      let data = temp[1].split("=");
-      let check = data[1]; // true | false
-      console.log(check);
-      let keyword = data[3]; //keyword
-      console.log(keyword);
-
-      // document.getElementById("searchBar").innerHTML = keyword;
 
       // 지도 줌인 레벨 조정
       map.setMinLevel(3);
