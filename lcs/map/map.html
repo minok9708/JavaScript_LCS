@@ -36,7 +36,7 @@ marine.operation(); -->
 <!-- 화면 꽉차게 height: 100% -->
 <html lang="en" style="height: 100%">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
@@ -114,7 +114,6 @@ marine.operation(); -->
       <button id="content_box_btn">상세정보</button>
     </div>
     <script>
-      let cafeData = [];
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
       const container = document.getElementById("map");
@@ -133,6 +132,19 @@ marine.operation(); -->
         minLevel: 8, // 클러스터 할 최소 지도 레벨
       });
 
+      let test = location.href;
+      console.log(test);
+      let temp = location.href.split("?");
+      //split("?");
+      console.log(temp);
+      let data = temp[1].split("=");
+      let check = data[1]; // true | false
+      console.log(check);
+      let keyword = data[3]; //keyword
+      console.log(keyword);
+
+      // document.getElementById("searchBar").innerHTML = keyword;
+
       // 지도 줌인 레벨 조정
       map.setMinLevel(3);
       // 지도 줌아웃 레벨 조정
@@ -144,9 +156,38 @@ marine.operation(); -->
 
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
-        searchPlaces();
-        findLocation();
-        console.log("위치찾기 함수 실행");
+        if (check === "false") {
+          //false ->현위치검색하기 버튼 눌렀을 때
+          findLocation();
+          searchPlaces();
+          //console.log("위치찾기 함수 실행");
+        } else {
+          //true -> 홈 페이지에서 검색바로 검색했을 때
+          //axios 보내서 리스트 받아와서 마커 표시
+          //console.log(keyword);
+
+          let searchUrl = "https://cafeaddy.xyz:8080/api/name";
+
+          axios({
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            url: searchUrl,
+            data: {},
+            params: {
+              name: keyword,
+              //option: category,
+            },
+          })
+            .then((data) => {
+              console.log(data.data);
+            })
+            .catch((error) => {
+              console.log("error:", error.response);
+            });
+        }
       }, 100);
 
       // 키보드로 엔터를 눌럿을때
@@ -162,6 +203,7 @@ marine.operation(); -->
       const findLocation = () => {
         // 현위치 마커 표시
         // HTML5의 geolocation으로 사용할 수 있는지 확인
+        console.log("현위치");
         if (navigator.geolocation) {
           // GeoLocation을 이용해서 접속 위치를 얻어오는것
           navigator.geolocation.getCurrentPosition((position) => {
@@ -356,6 +398,7 @@ marine.operation(); -->
               // res(removeDuplicatesArray(casheData));
 
               res(getCafeSyncInfo(data.data));
+
             })
             .catch((error) => {
               console.log("error:", error.response);
@@ -365,6 +408,7 @@ marine.operation(); -->
             });
         });
       };
+
 
       // // 배열 중복요소 제거 함수
       // function removeDuplicatesArray(arr) {
@@ -400,7 +444,6 @@ marine.operation(); -->
           }
         });
       };
-
       //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
