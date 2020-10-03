@@ -25,12 +25,16 @@
     <script>
       function setValue(check, text) {
         let keyword = document.getElementById("searchTerm").value;
-        if (check == true && !keyword) {
+        if (check === true && !keyword) {
           alert("다시 검색해주세요");
           location.href = "home.html";
         } else {
-          window.location.href =
-            "map/map.html?check=" + check + ":" + "keyword=" + keyword;
+          window.location.href +
+            "map/map.html?check:" +
+            check +
+            ":" +
+            "keyword=" +
+            keyword;
         }
       }
     </script>
@@ -78,7 +82,7 @@
       //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
-          setValue(); // 실행할 이벤트
+          setValue(true); // 실행할 이벤트
         }
       }
 
