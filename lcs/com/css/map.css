@@ -268,3 +268,15 @@
   opacity: 1;
   width: 120%;
 }
+
+/* 콘텐트 박스 */
+#content_box {
+  position: absolute;
+  visibility: hidden;
+  top: 1000px;
+  left: 100px;
+  width: 500px;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  z-index: 5;
+}
