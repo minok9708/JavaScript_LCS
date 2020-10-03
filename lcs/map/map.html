@@ -110,8 +110,12 @@ marine.operation(); -->
       <div id="content_box_close_btn" img src="#"></div>
       <div id="content_box_addr">주소</div>
       <div id="content_box_phone">번호</div>
-      <div id="content_box_table">테이블</div>
-      <button id="content_box_btn">상세정보</button>
+      <div id="test_box">
+        <div id="content_box_floorNumber">층</div>
+        <div id="content_box_useSeatCnt">사용중인 테이블</div>
+        <div id="content_box_totalSeatCnt">총 테이블</div>
+        <button id="content_box_btn">상세정보</button>
+      </div>
     </div>
     <script>
       let casheData = [];
@@ -393,12 +397,9 @@ marine.operation(); -->
             .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
               // res(getCafeSyncInfo((cafeData = data.data)));
-
               // casheData = data.data;
               // res(removeDuplicatesArray(casheData));
-
               res(getCafeSyncInfo(data.data));
-
             })
             .catch((error) => {
               console.log("error:", error.response);
@@ -408,7 +409,6 @@ marine.operation(); -->
             });
         });
       };
-
 
       // // 배열 중복요소 제거 함수
       // function removeDuplicatesArray(arr) {
@@ -447,6 +447,7 @@ marine.operation(); -->
       //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
+          console.log(cafe.seatInfos);
           let markers = [];
           const event = null;
           // 클러스터 초기화
@@ -469,7 +470,6 @@ marine.operation(); -->
               marker.phone +
               "</div>" +
               '                <div class="sit ellipsis">' +
-              "테이블 10 / 25" +
               marker.seatInfos +
               "</div>" +
               '                <button class="info_btn" ' +
@@ -516,8 +516,12 @@ marine.operation(); -->
                   marker.parcelAddr;
                 document.getElementById("content_box_phone").innerHTML =
                   marker.phone;
-                document.getElementById("content_box_table").innerHTML =
-                  "10 / 25";
+                document.getElementById("content_box_floorNumber").innerHTML =
+                  marker.seatInfos[0].floorNumber + "층";
+                document.getElementById("content_box_useSeatCnt").innerHTML =
+                  "  " + marker.seatInfos[0].useSeatCnt + "/";
+                document.getElementById("content_box_totalSeatCnt").innerHTML =
+                  marker.seatInfos[0].totalSeatCnt;
               });
 
               kakao.maps.event.addListener(map, "click", function () {
@@ -535,6 +539,8 @@ marine.operation(); -->
 
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
+                console.log(marker);
+                console.log(marker.seatInfos[0].totalSeatCnt);
                 // 커스텀 오버레이 z-index 값 설정
                 customOverlay.setZIndex(3);
                 if (clickedOverlay) {

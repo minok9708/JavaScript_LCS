@@ -94,13 +94,23 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 81vh;
-  left: 2vh;
-  width: 52vh;
-  max-width: 60vh;
-  height: 120px;
+  justify-content: center;
+  visibility: visible;
+  top: 75vh;
+  left: 2vw;
+  width: 95vw;
+  height: auto;
   background-color: rgb(255, 255, 255);
   opacity: 0.95;
+  z-index: 0;
+  overflow: visible;
+}
+
+#content_box #test_box {
+  padding-left: 5px;
+  padding-top: 2px;
+  display: inline-flex;
+  font-family: content;
 }
 
 #content_box #content_box_title {
@@ -126,24 +136,21 @@
   padding-left: 5px;
 }
 
-#content_box #content_box_table {
+/* #content_box #content_box_floorNumber {
   font-family: content;
   font-weight: 700;
   margin-top: 20px;
   padding-left: 5px;
-}
-
-#content_box #content_box_btn {
-}
+} */
 
 /* 모바일 오버레이 상세정보 버튼 */
 #content_box_btn {
   width: 75px;
-  height: auto;
   font-size: 0.8rem;
-  top: -22px;
-  left: 265px;
   padding: 5px;
+  top: 30px;
+  right: 0px;
+  bottom: 1px;
   font-weight: bold;
   font-family: content;
   text-transform: uppercase !important;
@@ -152,15 +159,15 @@
   cursor: hand;
   text-align: center;
   text-transform: capitalize;
-  position: relative !important;
-  overflow: visible !important;
+  position: absolute;
+  overflow: hidden !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  background: #353232 !important;
+  background-color: #353232 !important;
   border: none;
-  border-radius: 7px;
+  border-radius: 0px 0px 7px 7px;
   z-index: 10;
 }
 
@@ -193,6 +200,7 @@
   content: "";
   width: 0%;
   height: 100%;
+
   display: block;
   background: #ddddff;
   position: absolute;
@@ -212,10 +220,12 @@
 #content_box_btn:hover::before,
 #content_box_btn:hover::before {
   opacity: 1;
-  width: 116%;
+  left: -15px;
+  width: 135%;
 }
 #content_box_btn:hover::after,
 #content_box_btn:hover::after {
   opacity: 1;
-  width: 120%;
+  left: -15px;
+  width: 135%;
 }
