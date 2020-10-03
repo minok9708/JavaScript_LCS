@@ -116,6 +116,18 @@ marine.operation(); -->
     <script>
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
+      let temp = [];
+      let data = [];
+      let test = location.href;
+      console.log(test);
+      temp = location.href.toString().split("?");
+      console.log(`temp값:${temp}`);
+      data = temp[1].toString().split(":");
+      console.log(`data값:${data}`);
+      check = data[0].toString().split("=");
+      console.log(`check값:${check[1]}`);
+      keyword = data[1].toString().split("=");
+      console.log(`keyword값:${[keyword[1]]}`);
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
