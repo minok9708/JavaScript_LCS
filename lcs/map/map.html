@@ -61,23 +61,23 @@ marine.operation(); -->
     <!-- 커스텀윈도우 디자인을 사용하기 위한 호출 -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
-      <!-- 외부 css파일 사용 -->
-      <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
+    <!-- 외부 css파일 사용 -->
+    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
 
-      <!-- 검색 아이콘 -->
-      <link
-        rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-        type="text/css"
-      />
-  
-      <!-- width 768px밑으로 넘어가면 모바일 css가 적용됨 -->
-      <link
-        rel="stylesheet"
-        media="screen and (max-width: 768px)"
-        href="/com/css/mobile_map.css"
-        type="text/css"
-      />
+    <!-- 검색 아이콘 -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      type="text/css"
+    />
+
+    <!-- width 768px밑으로 넘어가면 모바일 css가 적용됨 -->
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 768px)"
+      href="/com/css/mobile_map.css"
+      type="text/css"
+    />
     <!-- 테스트 -->
   </head>
 
@@ -116,19 +116,6 @@ marine.operation(); -->
     <script>
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
-      // let check = [];
-      // let temp = [];
-      // let data = [];
-      // let test = location.href;
-      // console.log(test);
-      // temp = location.href.split("?");
-      // console.log(`temp값:${temp}`);
-      // data = temp[1].split(":");
-      // console.log(`data값:${data}`);
-      // check = data[0].split("=");
-      // console.log(`check값:${check[1]}`);
-      // keyword = data[1].split("=");
-      // console.log(`keyword값:${[keyword[1]]}`);
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -154,6 +141,8 @@ marine.operation(); -->
       let zoomControl = new kakao.maps.ZoomControl();
       // 지도의 우측에 확대 축소 컨트롤을 추가
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+      alert(window.location.href);
 
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
