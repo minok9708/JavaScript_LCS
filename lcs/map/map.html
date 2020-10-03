@@ -465,7 +465,7 @@ marine.operation(); -->
               "        </div>" +
               '        <div class="body">' +
               '            <div class="desc">' +
-              '                <div class="ellipsis">' +
+              '                <div class="addr">' +
               "" +
               marker.parcelAddr +
               "</div>" +
@@ -473,9 +473,17 @@ marine.operation(); -->
               "" +
               marker.phone +
               "</div>" +
-              '                <div class="sit ellipsis">' +
-              marker.seatInfos +
+              '                <div class="overlay">' +
+              '                <div class="sit">' +
+              marker.seatInfos[0].useSeatCnt +
               "</div>" +
+              '                <div class="divide">' +
+              "/" +
+              "</div>" +
+              '                <div class="sit_full">' +
+              marker.seatInfos[0].totalSeatCnt +
+              "</div>" +
+              "                </div>" +
               '                <button class="info_btn" ' +
               'onclick="' +
               "location.href='/search/cafe_info.html'" +
@@ -483,7 +491,7 @@ marine.operation(); -->
               "> " +
               "상세정보" +
               "</button>" +
-              "            </div>" +
+              "            </>" +
               "        </div>" +
               "    </div>" +
               "</div>";
