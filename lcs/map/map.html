@@ -105,9 +105,16 @@ marine.operation(); -->
     </form>
     <!-- 맵 출력 -->
     <div id="map"></div>
+    <div id="content_box">
+      <div id="content_box_title">제목</div>
+      <div id="content_box_close_btn" img src="#"></div>
+      <div id="content_box_addr">주소</div>
+      <div id="content_box_phone">번호</div>
+      <div id="content_box_table">테이블</div>
+      <button id="content_box_btn">상세정보</button>
+    </div>
     <script>
-      let cafeData = [];
-
+      let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -228,7 +235,7 @@ marine.operation(); -->
         let imageSrc =
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
@@ -370,20 +377,49 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({data}) => {
-              //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 aaa함수로 매개변수(데이터)로 전달
-              res(getCafeSyncInfo((cafeData = data.data)));
+            .then(({ data }) => {
+              //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
+              // res(getCafeSyncInfo((cafeData = data.data)));
+
+              // casheData = data.data;
+              // res(removeDuplicatesArray(casheData));
+
+              res(getCafeSyncInfo(data.data));
+
             })
             .catch((error) => {
               console.log("error:", error.response);
               //실패하면 reject("에러처리 함수로 보내거나 텍스트")
-              alert("데이터가 없습니다.");
+              // alert("데이터가 없습니다.");
               reject("실패");
             });
         });
       };
 
-      // aaa 함수는 위에서 보내온 데이터를 받아서 다시 bbb함수로 전달
+
+      // // 배열 중복요소 제거 함수
+      // function removeDuplicatesArray(arr) {
+      //   let tempArr = [];
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if (tempArr.length == 0) {
+      //       tempArr.push(arr[i]);
+      //     } else {
+      //       let duplicatesFlag = true;
+      //       for (let j = 0; j < tempArr.length; j++) {
+      //         if (tempArr[j] == arr[i]) {
+      //           duplicatesFlag = false;
+      //           break;
+      //         }
+      //       }
+      //       if (duplicatesFlag) {
+      //         tempArr.push(arr[i]);
+      //       }
+      //     }
+      //   }
+      //   getCafeSyncInfoTrue(tempArr);
+      // }
+
+      // getCafeSyncInfo 함수는 위에서 보내온 데이터를 받아서 다시 bbb함수로 전달
       getCafeSyncInfo = (cafeData) => {
         return new Promise((res, reject) => {
           if (cafeData) {
@@ -395,15 +431,14 @@ marine.operation(); -->
           }
         });
       };
-
-      //aaa함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 bbb함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
+      //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
           let markers = [];
+          const event = null;
           // 클러스터 초기화
           clusterer.clear();
           cafe.map((marker, index) => {
-            // console.log(marker);
             let content =
               '<div class="wrap">' +
               '    <div class="info">' +
@@ -454,31 +489,55 @@ marine.operation(); -->
             });
 
             markers.push(m);
-            // 커스텀 오버레이를 생성합니다
-            let customOverlay = new kakao.maps.CustomOverlay({
-              position: m.getPosition(),
-              content: content,
-              clickable: true,
-              zindex: 3,
-            });
 
-            //마커 클릭시 이벤트 처리
-            kakao.maps.event.addListener(m, "click", function () {
-              // 커스텀 오버레이 z-index 값 설정
-              customOverlay.setZIndex(3);
-              if (clickedOverlay) {
-                //console.log("null이 아닐때");
-                clickedOverlay.setMap(null);
-              }
-              customOverlay.setMap(map);
-              // 커스텀 오버레이의 z-index값 파악
-              console.log(customOverlay.getZIndex());
-              clickedOverlay = customOverlay;
-            });
+            let minWidth = 768;
+            if (minWidth >= window.outerWidth) {
+              console.log(window.outerWidth);
+              //마커 클릭시 이벤트 처리
+              kakao.maps.event.addListener(m, "click", function () {
+                document.getElementById("content_box").style.visibility =
+                  "visible";
+                document.getElementById("content_box_title").innerHTML =
+                  marker.name;
+                document.getElementById("content_box_addr").innerHTML =
+                  marker.parcelAddr;
+                document.getElementById("content_box_phone").innerHTML =
+                  marker.phone;
+                document.getElementById("content_box_table").innerHTML =
+                  "10 / 25";
+              });
 
-            kakao.maps.event.addListener(map, "click", function () {
-              customOverlay.setMap(null);
-            });
+              kakao.maps.event.addListener(map, "click", function () {
+                document.getElementById("content_box").style.visibility =
+                  "hidden";
+              });
+            } else {
+              // 커스텀 오버레이를 생성합니다
+              let customOverlay = new kakao.maps.CustomOverlay({
+                position: m.getPosition(),
+                content: content,
+                clickable: true,
+                zindex: 3,
+              });
+
+              //마커 클릭시 이벤트 처리
+              kakao.maps.event.addListener(m, "click", function () {
+                // 커스텀 오버레이 z-index 값 설정
+                customOverlay.setZIndex(3);
+                if (clickedOverlay) {
+                  //console.log("null이 아닐때");
+                  clickedOverlay.setMap(null);
+                }
+                customOverlay.setMap(map);
+                // 커스텀 오버레이의 z-index값 파악
+                console.log(customOverlay.getZIndex());
+                clickedOverlay = customOverlay;
+
+                kakao.maps.event.addListener(map, "click", function () {
+                  customOverlay.setMap(null);
+                });
+              });
+            }
 
             // 커스텀 오버레이를 지도에 표시합니다
             // customOverlay.setMap(map);
