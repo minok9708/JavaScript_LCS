@@ -116,10 +116,9 @@ marine.operation(); -->
     <script>
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
-      let temp = [];
+      let temp;
       let data = [];
-      let test = location.href;
-      console.log(test);
+      alert(location.href);
       temp = location.href.toString().split("?");
       console.log(`temp값:${temp}`);
       data = temp[1].toString().split(":");
