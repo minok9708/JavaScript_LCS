@@ -105,7 +105,14 @@ marine.operation(); -->
     </form>
     <!-- 맵 출력 -->
     <div id="map"></div>
-    <div id="content_box"></div>
+    <div id="content_box">
+      <div id="content_box_title">제목</div>
+      <div id="content_box_close_btn" img src="#"></div>
+      <div id="content_box_addr">주소</div>
+      <div id="content_box_phone">번호</div>
+      <div id="content_box_table">테이블</div>
+      <button id="content_box_btn">상세정보</button>
+    </div>
     <script>
       let cafeData = [];
       let casheData = [];
@@ -402,7 +409,6 @@ marine.operation(); -->
           // 클러스터 초기화
           clusterer.clear();
           cafe.map((marker, index) => {
-            // console.log(marker);
             let content =
               '<div class="wrap">' +
               '    <div class="info">' +
@@ -457,16 +463,23 @@ marine.operation(); -->
             let minWidth = 768;
             if (minWidth >= window.outerWidth) {
               console.log(window.outerWidth);
-
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
-                document.getElementById("content_box").style.display = "block";
-                document.getElementById("content_box").innerHTML =
-                  marker.name + "\n" + marker.parcelAddr;
+                document.getElementById("content_box").style.visibility =
+                  "visible";
+                document.getElementById("content_box_title").innerHTML =
+                  marker.name;
+                document.getElementById("content_box_addr").innerHTML =
+                  marker.parcelAddr;
+                document.getElementById("content_box_phone").innerHTML =
+                  marker.phone;
+                document.getElementById("content_box_table").innerHTML =
+                  "10 / 25";
               });
 
               kakao.maps.event.addListener(map, "click", function () {
-                document.getElementById("content_box").style.display = "none";
+                document.getElementById("content_box").style.visibility =
+                  "hidden";
               });
             } else {
               // 커스텀 오버레이를 생성합니다

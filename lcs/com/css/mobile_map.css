@@ -185,11 +185,61 @@
   text-align: right;
 }
 
-/* 커스텀 오버레이 상세정보 버튼  */
-.info_btn {
-  left: 162px;
-  bottom: 26px;
-  font-size: 0.9rem;
+/* 모바일 커스텀 오버레이 */
+#content_box {
+  border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 81vh;
+  left: 2vh;
+  width: 52vh;
+  max-width: 60vh;
+  height: 120px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.95;
+}
+
+#content_box #content_box_title {
+  padding: 5px;
+  border-radius: 10px 10px 0 0;
+  font-family: title;
+  background-color: #282c37;
+  color: #ffffff;
+}
+
+#content_box #content_box_addr {
+  font-family: content;
+  font-weight: 700;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+
+#content_box #content_box_phone {
+  font-family: content;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding-top: 2px;
+  padding-left: 5px;
+}
+
+#content_box #content_box_table {
+  font-family: content;
+  font-weight: 700;
+  margin-top: 20px;
+  padding-left: 5px;
+}
+
+#content_box #content_box_btn {
+}
+
+/* 모바일 오버레이 상세정보 버튼 */
+#content_box_btn {
+  width: 75px;
+  height: auto;
+  font-size: 0.8rem;
+  top: -22px;
+  left: 265px;
   padding: 5px;
   font-weight: bold;
   font-family: content;
@@ -199,8 +249,8 @@
   cursor: hand;
   text-align: center;
   text-transform: capitalize;
-  position: relative;
-  overflow: hidden !important;
+  position: relative !important;
+  overflow: visible !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -211,11 +261,11 @@
   z-index: 10;
 }
 
-.info_btn:hover {
+#content_box_btn:hover {
   font-weight: bold;
   color: #ffffff !important;
 }
-.info_btn::before {
+#content_box_btn::before {
   content: "";
   width: 0%;
   height: 100%;
@@ -236,7 +286,7 @@
   box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
 }
 
-.info_btn::after {
+#content_box_btn::after {
   content: "";
   width: 0%;
   height: 100%;
@@ -256,22 +306,13 @@
   transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
   box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
 }
-.info_btn:hover::before,
-.info_btn:hover::before {
+#content_box_btn:hover::before,
+#content_box_btn:hover::before {
   opacity: 1;
   width: 116%;
 }
-.info_btn:hover::after,
-.info_btn:hover::after {
+#content_box_btn:hover::after,
+#content_box_btn:hover::after {
   opacity: 1;
   width: 120%;
-}
-#content_box {
-  position: absolute;
-  display: none;
-  top: 800px;
-  left: 100px;
-  width: 600px;
-  height: 200px;
-  background-color: rgb(255, 255, 255);
 }

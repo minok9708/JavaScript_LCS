@@ -272,7 +272,7 @@
 /* 콘텐트 박스 */
 #content_box {
   position: absolute;
-  display: none;
+  visibility: hidden;
   top: 1000px;
   left: 100px;
   width: 500px;
