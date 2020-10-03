@@ -27,9 +27,9 @@
         let keyword = document.getElementById("searchTerm").value;
         if (check === true && !keyword) {
           alert("다시 검색해주세요");
-          location.href = "home.html";
+          window.location.href = "home.html";
         } else {
-          location.href =
+          window.location.href =
             "map/map.html?" + "check:" + check + ":" + "keyword=" + keyword;
         }
       }
