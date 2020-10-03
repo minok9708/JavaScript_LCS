@@ -116,19 +116,19 @@ marine.operation(); -->
     <script>
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
-      let check = [];
-      let temp = [];
-      let data = [];
-      let test = location.href;
-      console.log(test);
-      temp = location.href.split("?");
-      console.log(`temp값:${temp}`);
-      data = temp[1].split(":");
-      console.log(`data값:${data}`);
-      check = data[0].split("=");
-      console.log(`check값:${check[1]}`);
-      keyword = data[1].split("=");
-      console.log(`keyword값:${[keyword[1]]}`);
+      // let check = [];
+      // let temp = [];
+      // let data = [];
+      // let test = location.href;
+      // console.log(test);
+      // temp = location.href.split("?");
+      // console.log(`temp값:${temp}`);
+      // data = temp[1].split(":");
+      // console.log(`data값:${data}`);
+      // check = data[0].split("=");
+      // console.log(`check값:${check[1]}`);
+      // keyword = data[1].split("=");
+      // console.log(`keyword값:${[keyword[1]]}`);
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -157,13 +157,13 @@ marine.operation(); -->
 
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
-        // findLocation();
-        // searchPlaces();
+        findLocation();
+        searchPlaces();
         if (check[1] === "false") {
           //false ->현위치검색하기 버튼 눌렀을 때
           console.log("체크값이 false일때");
-          findLocation();
-          searchPlaces();
+          // findLocation();
+          // searchPlaces();
           //console.log("위치찾기 함수 실행");
         } else {
           //true -> 홈 페이지에서 검색바로 검색했을 때
