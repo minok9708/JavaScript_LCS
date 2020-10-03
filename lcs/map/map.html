@@ -116,17 +116,18 @@ marine.operation(); -->
     <script>
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
-      let temp;
-      let data = [];
+
       alert(location.href);
-      temp = location.href.toString().split("?");
-      console.log(`temp값:${temp}`);
-      data = temp[1].toString().split(":");
-      console.log(`data값:${data}`);
-      check = data[0].toString().split(":");
-      console.log(`check값:${check[1]}`);
-      keyword = data[1].toString().split(":");
-      console.log(`keyword값:${[keyword[1]]}`);
+      // let temp;
+      // let data = [];
+      // temp = location.href.toString().split("?");
+      // console.log(`temp값:${temp}`);
+      // data = temp[1].toString().split(":");
+      // console.log(`data값:${data}`);
+      // check = data[0].toString().split(":");
+      // console.log(`check값:${check[1]}`);
+      // keyword = data[1].toString().split(":");
+      // console.log(`keyword값:${[keyword[1]]}`);
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -159,39 +160,39 @@ marine.operation(); -->
       setTimeout(() => {
         findLocation();
         searchPlaces();
-        if (check[1] === "false") {
-          //false ->현위치검색하기 버튼 눌렀을 때
-          console.log("체크값이 false일때");
-          // findLocation();
-          // searchPlaces();
-          //console.log("위치찾기 함수 실행");
-        } else {
-          //true -> 홈 페이지에서 검색바로 검색했을 때
-          //axios 보내서 리스트 받아와서 마커 표시
-          //console.log(keyword);
-          console.log("체크값 일단 반대일때@@@@@@@@@@@@@@@@@@@");
-          let searchUrl = "https://cafeaddy.xyz:8080/api/name";
+        // if (check[1] === "false") {
+        //   //false ->현위치검색하기 버튼 눌렀을 때
+        //   console.log("체크값이 false일때");
+        //   // findLocation();
+        //   // searchPlaces();
+        //   //console.log("위치찾기 함수 실행");
+        // } else {
+        //   //true -> 홈 페이지에서 검색바로 검색했을 때
+        //   //axios 보내서 리스트 받아와서 마커 표시
+        //   //console.log(keyword);
+        //   console.log("체크값 일단 반대일때@@@@@@@@@@@@@@@@@@@");
+        //   let searchUrl = "https://cafeaddy.xyz:8080/api/name";
 
-          axios({
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            url: searchUrl,
-            data: {},
-            params: {
-              name: keyword[1],
-              //option: category,
-            },
-          })
-            .then((data) => {
-              console.log(data.data);
-            })
-            .catch((error) => {
-              console.log("error:", error.response);
-            });
-        }
+        //   axios({
+        //     method: "post",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       Accept: "application/json",
+        //     },
+        //     url: searchUrl,
+        //     data: {},
+        //     params: {
+        //       name: keyword[1],
+        //       //option: category,
+        //     },
+        //   })
+        //     .then((data) => {
+        //       console.log(data.data);
+        //     })
+        //     .catch((error) => {
+        //       console.log("error:", error.response);
+        //     });
+        // }
       }, 100);
 
       // 키보드로 엔터를 눌럿을때
