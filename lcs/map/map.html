@@ -451,12 +451,14 @@ marine.operation(); -->
       //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
-          console.log(cafe.seatInfos);
+          console.log(cafe);
+          let i = 0;
           let markers = [];
           const event = null;
           // 클러스터 초기화
           clusterer.clear();
           cafe.map((marker, index) => {
+            console.log(i++ + "번 카페");
             let content =
               '<div class="wrap">' +
               '    <div class="info">' +
@@ -497,11 +499,26 @@ marine.operation(); -->
               "</div>";
 
             // 서버에서 얻어온 마커에 아이콘 변경
-            let imageSrc = "http://maps.google.com/mapfiles/ms/icons/red.png", // 마커이미지의 주소입니다
-              imageSize = new kakao.maps.Size(32, 32); // 마커이미지의 크기입니다
 
-            let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+            // let img = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
+            let red = new kakao.maps.MarkerImage(
+              "http://maps.google.com/mapfiles/ms/icons/red.png",
+              new kakao.maps.Size(31, 35),
+              new kakao.maps.Point(13, 34)
+            );
+
+            let normal = new kakao.maps.MarkerImage(
+              "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png",
+              new kakao.maps.Size(31, 35),
+              new kakao.maps.Point(13, 34)
+            );
+
+            let min = new kakao.maps.MarkerImage(
+              "",
+              new kakao.maps.Size(31, 35),
+              new kakao.maps.Point(13, 34)
+            );
             let m = new kakao.maps.Marker({
               map: map,
               position: new kakao.maps.LatLng(
@@ -509,12 +526,24 @@ marine.operation(); -->
                 marker.longitude
               ),
               // 마커 아이콘 이미지
-              // image: markerImage,
               title: marker.name,
             });
 
             markers.push(m);
 
+            if (marker.seatInfos[0].useSeatCnt <= 6) {
+              console.log("사람수가 6명 이하");
+              m.setImage(red);
+            } else if (
+              marker.seatInfos[0].useSeatCnt > 6 &&
+              marker.seatInfos[0].useSeatCnt <= 12
+            ) {
+              console.log("사람수가 7명 이상");
+              m.setImage(normal);
+            } else {
+              console.log("사람수가 12명 이상");
+              m.setImage();
+            }
             let minWidth = 768;
             if (minWidth >= window.outerWidth) {
               console.log(window.outerWidth);
@@ -553,8 +582,6 @@ marine.operation(); -->
 
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
-                console.log(marker);
-                console.log(marker.seatInfos[0].totalSeatCnt);
                 // 커스텀 오버레이 z-index 값 설정
                 customOverlay.setZIndex(3);
                 if (clickedOverlay) {
