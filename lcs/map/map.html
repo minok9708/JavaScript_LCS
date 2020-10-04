@@ -136,7 +136,7 @@ marine.operation(); -->
       //   return result;
       // }
 
-      let temp;
+      /* let temp;
       let data = [];
       temp = location.href.split("?");
       //console.log(`temp값:${temp}`);
@@ -151,7 +151,7 @@ marine.operation(); -->
       check = test[1].split("=");
       //console.log(`check 값: ${check[1]}`);
       check = check[1];
-      //console.log(check);
+      //console.log(check); */
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -179,7 +179,7 @@ marine.operation(); -->
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
-        if (check === "true") {
+        /*  if (check === "true") {
           //console.log("검색바로 검색햇을때 서버로 데이터 요청");
 
           let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/cafeName=";
@@ -196,9 +196,10 @@ marine.operation(); -->
               console.log(error.response);
             });
         } else if (check === "false") {
-          findLocation();
-          searchPlaces();
-        }
+          
+        } */
+        findLocation();
+        searchPlaces();
       }, 100);
 
       // 키보드로 엔터를 눌럿을때
@@ -208,7 +209,7 @@ marine.operation(); -->
         }
       }
 
-      getSearchMarkerInfo = (keywordList) => {
+      /* getSearchMarkerInfo = (keywordList) => {
         //console.log(keywordList);
         console.log("실행되지?");
         keywordList.map((value, index) => {
@@ -282,7 +283,7 @@ marine.operation(); -->
           });
         });
       };
-
+ */
       // 장소 검색 객체를 생성합니다
       let ps = new kakao.maps.services.Places();
 
