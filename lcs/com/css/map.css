@@ -93,9 +93,9 @@
   position: absolute;
   left: 0;
   bottom: 40px;
-  width: 500px;
+  width: 50vw;
   height: 170px;
-  margin-left: -49px;
+  margin-left: -80px;
   text-align: left;
   overflow: hidden;
   font-size: 12px;
@@ -147,7 +147,7 @@
   height: 200px;
 }
 /* 카페 주소 */
-.desc .ellipsis {
+.desc .addr {
   margin-left: 10px;
   font-size: 1rem;
   font-weight: bold;
@@ -164,11 +164,30 @@
   color: #66a986;
   margin-left: 10px;
 }
+
+.desc .overlay {
+  margin-top: 35px;
+  display: inline-flex;
+  font-family: content;
+  font-weight: bold;
+  vertical-align: baseline;
+}
 /* 카페 테이블 상황  */
 .desc .sit {
+  font-size: 1rem;
+  color: red;
   text-align: left;
-  font-size: 15px;
-  margin-top: 40px;
+  margin-left: 10px;
+}
+
+.desc .divide {
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+.desc .sit_full {
+  font-size: 1rem;
+  color: #0582f7;
   margin-left: 10px;
 }
 
@@ -189,8 +208,8 @@
 
 /* 커스텀 오버레이 상세정보 버튼  */
 .info_btn {
-  left: 220px;
-  bottom: 27px;
+  left: 145px;
+  top: 0px;
   font-size: 0.9rem;
   padding: 5px;
   font-weight: bold;
