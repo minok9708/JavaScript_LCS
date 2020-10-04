@@ -187,3 +187,7 @@ body {
     opacity: 0.5;
   }
 }
+
+.ttaa {
+  visibility: hidden;
+}
