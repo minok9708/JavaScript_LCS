@@ -62,7 +62,7 @@ marine.operation(); -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
     <!-- 외부 css파일 사용 -->
-    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/lcs/com/css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 -->
     <link
@@ -75,7 +75,7 @@ marine.operation(); -->
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/com/css/mobile_map.css"
+      href="/lcs/com/css/mobile_map.css"
       type="text/css"
     />
     <!-- 테스트 -->
@@ -123,20 +123,7 @@ marine.operation(); -->
       let casheData = [];
       //  컨테이너에 div 값을 가져오는 코드
 
-      // function receive_get_data(param) {
-      //   let result = null;
-      //   let tmp = [];
-      //   let items = window.location.search.substring(1).split("&");
-      //   console.log(window.location);
-      //   console.log(window.location.search);
-      //   for (var i = 0; i < items.length; i++) {
-      //     tmp = items[i].split("=");
-      //     if (tmp[0] === param) result = decodeURIComponent(tmp[1]);
-      //   }
-      //   return result;
-      // }
-
-      /* let temp;
+      let temp;
       let data = [];
       temp = location.href.split("?");
       //console.log(`temp값:${temp}`);
@@ -151,7 +138,7 @@ marine.operation(); -->
       check = test[1].split("=");
       //console.log(`check 값: ${check[1]}`);
       check = check[1];
-      //console.log(check); */
+      //console.log(check);
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -179,7 +166,7 @@ marine.operation(); -->
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
-        /*  if (check === "true") {
+        if (check === "true") {
           //console.log("검색바로 검색햇을때 서버로 데이터 요청");
 
           let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/cafeName=";
@@ -196,8 +183,7 @@ marine.operation(); -->
               console.log(error.response);
             });
         } else if (check === "false") {
-          
-        } */
+        }
         findLocation();
         searchPlaces();
       }, 100);
@@ -209,7 +195,7 @@ marine.operation(); -->
         }
       }
 
-      /* getSearchMarkerInfo = (keywordList) => {
+      getSearchMarkerInfo = (keywordList) => {
         //console.log(keywordList);
         console.log("실행되지?");
         keywordList.map((value, index) => {
@@ -283,7 +269,7 @@ marine.operation(); -->
           });
         });
       };
- */
+
       // 장소 검색 객체를 생성합니다
       let ps = new kakao.maps.services.Places();
 
@@ -447,9 +433,9 @@ marine.operation(); -->
         // console.log(message);
 
         //idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
-        // if (check === "false") {
-        getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
-        //  }
+        if (check === "false") {
+          getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
+        }
       });
 
       //------------------------------------------------------------------------
