@@ -21,19 +21,6 @@
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-
-    <script>
-      function setValue(check, text) {
-        let keyword = document.getElementById("searchTerm").value;
-        if (check === true && !keyword) {
-          alert("다시 검색해주세요");
-          window.location.href = "home.html";
-        } else {
-          window.location.href = "map/map.html";
-          // ?" + "check:" + check + "&" + "keyword:" + keyword
-        }
-      }
-    </script>
   </head>
   <body class="home_body">
     <center class="home_center">
@@ -55,14 +42,14 @@
           <form
             id="form"
             method="get"
-            action="map/map"
+            action="map/map.html"
             onsubmit="keywordCheck()"
           >
             <input
               type="text"
               class="searchTerm"
               id="searchTerm"
-              placeholder="카페를 검색해주세요 :)"
+              placeholder="  카페를 검색해주세요 :)"
               onkeydown="enterSearch()"
               name="keyword"
             />
@@ -79,7 +66,7 @@
         </div>
       </div>
     </center>
-    <form id="form_test" method="get" action="map/map">
+    <form id="form_test" method="get" action="map/map.html">
       <input type="text" class="ttaa" name="keyword" />
       <button class="container" name="check" value="false">
         <a>내 위치로 카페 찾기</a>
