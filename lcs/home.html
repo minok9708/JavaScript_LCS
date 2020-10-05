@@ -39,7 +39,12 @@
             <option id="google" value="google">카페명 검색</option>
             <option id="naver" value="naver">주소명 검색</option>
           </select> -->
-          <form method="get" action="map/map">
+          <form
+            id="form"
+            method="get"
+            action="map/map"
+            onsubmit="keywordCheck()"
+          >
             <input
               type="text"
               class="searchTerm"
@@ -73,6 +78,16 @@
       function enterSearch() {
         if (event.keyCode == 13) {
           setValue(true); // 실행할 이벤트
+        }
+      }
+
+      function keywordCheck() {
+        let keyword = document.getElementById("searchTerm").value;
+        console.log(keyword);
+
+        if (keyword == "") {
+          alert("키워드를 다시 입력해주세요!");
+          form.action = "home";
         }
       }
 
