@@ -121,6 +121,24 @@ marine.operation(); -->
     </div>
     <script>
       let casheData = [];
+      //  컨테이너에 div 값을 가져오는 코드
+
+      let temp;
+      let data = [];
+      temp = location.href.split("?");
+      //console.log(`temp값:${temp}`);
+      test = temp[1].split("&");
+      //console.log(`test값:${test}`);
+
+      keyword = test[0].split("=");
+      //console.log(`keyword 값: ${keyword[1]}`);
+      keyword = keyword[1];
+      //console.log(keyword);
+
+      check = test[1].split("=");
+      //console.log(`check 값: ${check[1]}`);
+      check = check[1];
+      //console.log(check);
 
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
@@ -148,6 +166,24 @@ marine.operation(); -->
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       //위에 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
+        if (check === "true") {
+          //console.log("검색바로 검색햇을때 서버로 데이터 요청");
+
+          let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/cafeName=";
+
+          axios({
+            url: searchUrl + keyword,
+            method: "get",
+          })
+            .then((data) => {
+              console.log(data.data.data);
+              getSearchMarkerInfo(data.data.data);
+            })
+            .catch((error) => {
+              console.log(error.response);
+            });
+        } else if (check === "false") {
+        }
         findLocation();
         searchPlaces();
       }, 100);
@@ -158,6 +194,81 @@ marine.operation(); -->
           searchPlaces(); // 실행할 이벤트
         }
       }
+
+      getSearchMarkerInfo = (keywordList) => {
+        //console.log(keywordList);
+        console.log("실행되지?");
+        keywordList.map((value, index) => {
+          let contenta =
+            '<div class="wrap">' +
+            '    <div class="info">' +
+            '        <div class="title">' +
+            value.name +
+            "        </div>" +
+            '        <div class="body">' +
+            '            <div class="desc">' +
+            '                <div class="addr">' +
+            "" +
+            value.parcelAddr +
+            "</div>" +
+            '                <div class="phone">' +
+            "" +
+            value.phone +
+            "</div>" +
+            '                <div class="overlay">' +
+            '                <div class="sit">' +
+            value.seatInfos[0].useSeatCnt +
+            "</div>" +
+            '                <div class="divide">' +
+            "/" +
+            "</div>" +
+            '                <div class="sit_full">' +
+            value.seatInfos[0].totalSeatCnt +
+            "</div>" +
+            "                </div>" +
+            '                <button class="info_btn" ' +
+            'onclick="' +
+            "location.href='/search/cafe_info.html'" +
+            '"' +
+            "> " +
+            "상세정보" +
+            "</button>" +
+            "            </>" +
+            "        </div>" +
+            "    </div>" +
+            "</div>";
+          // ----------------------------------------------------- 마커 객체 생성 부분 시작 ------------------------------------------------
+          let imageSrc = "http://maps.google.com/mapfiles/ms/icons/red.png", // 마커이미지의 주소입니다
+            imageSize = new kakao.maps.Size(32, 32); // 마커이미지의 크기입니다
+
+          let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+          let keywordMarker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(value.latitude, value.longitude),
+            // 마커 아이콘 이미지
+            // image: markerImage,
+            title: value.name,
+          });
+
+          kakao.maps.event.addListener(keywordMarker, "click", function () {
+            console.log("마커를 클릭");
+            customOverlayA.setMap(map);
+          });
+
+          let customOverlayA = new kakao.maps.CustomOverlay({
+            position: keywordMarker.getPosition(),
+            content: contenta,
+            clickable: true,
+            zindex: 9999,
+          });
+
+          kakao.maps.event.addListener(map, "click", function () {
+            console.log("맵을 클릭");
+            customOverlayA.setMap(null);
+          });
+        });
+      };
 
       // 장소 검색 객체를 생성합니다
       let ps = new kakao.maps.services.Places();
@@ -317,7 +428,9 @@ marine.operation(); -->
           " 레벨 입니다.";
 
         //idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
-        getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
+        if (check === "false") {
+          getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
+        }
       });
 
       //------------------------------------------------------------------------
@@ -502,6 +615,7 @@ marine.operation(); -->
               });
             } else {
               // 커스텀 오버레이를 생성합니다
+
               let customOverlay = new kakao.maps.CustomOverlay({
                 position: m.getPosition(),
                 content: content,
