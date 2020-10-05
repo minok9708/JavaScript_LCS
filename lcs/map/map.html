@@ -62,7 +62,7 @@ marine.operation(); -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
     <!-- 외부 css파일 사용 -->
-    <link href="/lcs/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 -->
     <link
@@ -75,7 +75,7 @@ marine.operation(); -->
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/lcs/com/css/mobile_map.css"
+      href="/com/css/mobile_map.css"
       type="text/css"
     />
     <!-- 테스트 -->
@@ -315,7 +315,7 @@ marine.operation(); -->
       // 지도에 마커와 인포윈도우를 표시하는 함수
       displayMarker = (locPosition, message) => {
         // 현위치 마커 이미지 변경
-        let imageSrc = "/lcs/img/location.png", // 마커이미지의 주소입니다
+        let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -547,19 +547,19 @@ marine.operation(); -->
             // C:\Users\ehqow\Documents\project\lcs\img
             // 서버에서 얻어온 마커에 아이콘 변경
             let high = new kakao.maps.MarkerImage(
-              "/lcs/img/red.png",
+              "/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
 
             let normal = new kakao.maps.MarkerImage(
-              "/lcs/img/yellow.png",
+              "/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
 
             let low = new kakao.maps.MarkerImage(
-              "/lcs/img/green.png",
+              "/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
