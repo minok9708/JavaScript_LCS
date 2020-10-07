@@ -6,7 +6,7 @@
 
     <!-- 테스트 -->
     <title>Home</title>
-    <link href="com/css/home.css" rel="stylesheet" type="text/css" />
+    <link href="/lcs/com/css/home.css" rel="stylesheet" type="text/css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -16,7 +16,7 @@
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="com/css/mobile.css"
+      href="/lcs/com/css/mobile.css"
     />
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
@@ -42,8 +42,8 @@
           <form
             id="form"
             method="get"
-            action="map/map"
-            onsubmit="keywordCheck()"
+            action="map/map.html"
+            onsubmit="return keywordCheck();"
           >
             <input
               type="text"
@@ -66,7 +66,7 @@
         </div>
       </div>
     </center>
-    <form id="form_test" method="get" action="map/map">
+    <form id="form_test" method="get" action="map/map.html">
       <input type="text" class="ttaa" name="keyword" />
       <button class="container" name="check" value="false">
         <a>내 위치로 카페 찾기</a>
@@ -87,7 +87,7 @@
 
         if (keyword == "") {
           alert("키워드를 다시 입력해주세요!");
-          form.action = "home";
+          return false;
         }
       }
 
