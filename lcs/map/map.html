@@ -488,23 +488,35 @@ marine.operation(); -->
           }
         });
       };
+
+      // info = (useSeatTotal) => {
+      //   let zxczxc = [];
+      //   for (let i; i < useSeatTotal.seatInfos.length; i++) {
+      //     zxczxc.push(i);
+      //   }
+
+      //   return zxczxc;
+      // };
+
       //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
-          // console.log(cafe);
           let markers = [];
-          let qq = 0;
-          let ww = 0;
           // 클러스터 초기화
           clusterer.clear();
-          // let seatTotal = 0;
 
           cafe.map((marker, index) => {
-            // for (let i = 0; i < marker.seatInfos.length; i++) {
-            //   qq += marker.seatInfos[i].useSeatCnt;
-            // }
-            // console.log(qq);
+            let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+            let aa = 0; // 카페의 총 테이블 수 - 임시
+            let cc = 0;
 
+            for (let i = 0; i < marker.seatInfos.length; i++) {
+              tt += marker.seatInfos[i].useSeatCnt;
+              aa += marker.seatInfos[i].totalSeatCnt;
+              cc += aa - tt;
+            }
+
+            console.log(`남은좌석 : ${cc}`);
             let content =
               '<div class="wrap">' +
               '    <div class="info">' +
@@ -523,13 +535,13 @@ marine.operation(); -->
               "</div>" +
               '                <div class="overlay">' +
               '                <div class="sit">' +
-              marker.seatInfos[0].useSeatCnt +
+              tt +
               "</div>" +
               '                <div class="divide">' +
               "/" +
               "</div>" +
               '                <div class="sit_full">' +
-              marker.seatInfos[0].totalSeatCnt +
+              aa +
               "</div>" +
               "                </div>" +
               '                <button class="info_btn" ' +
@@ -562,6 +574,8 @@ marine.operation(); -->
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
+
+            // 마커 객체 생성 이름은 m
             let m = new kakao.maps.Marker({
               map: map,
               position: new kakao.maps.LatLng(
@@ -574,6 +588,21 @@ marine.operation(); -->
 
             // 클러스터 푸쉬
             markers.push(m);
+
+            console.log(
+              marker.id + " " + marker.name + " 사용률 " + (tt / aa) * 100 + "%"
+            );
+            if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
+              m.setImage(low);
+            } else if ((tt / aa) * 100 >= 30 && 60 >= (tt / aa) * 100) {
+              m.setImage(normal);
+            } else if ((tt / aa) * 100 >= 60 && 100 >= (tt / aa) * 100) {
+              m.setImage(high);
+            }
+
+            tt = 0;
+            aa = 0;
+            cc = 0;
 
             let minWidth = 768;
             if (minWidth >= window.outerWidth) {
@@ -629,19 +658,7 @@ marine.operation(); -->
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
                 for (let i = 0; i < marker.seatInfos.length; i++) {
-                  console.log(
-                    marker.name +
-                      " " +
-                      marker.seatInfos[i].floorNumber +
-                      "층" +
-                      "\n사용중인 테이블 : " +
-                      marker.seatInfos[i].useSeatCnt +
-                      "개\n" +
-                      "총 테이블 : " +
-                      marker.seatInfos[i].totalSeatCnt +
-                      "개"
-                  );
-
+                  console.log("마커클릭");
                   desktopSeatTotal += marker.seatInfos[i].totalSeatCnt;
                   desktopSeatUseTotal += marker.seatInfos[i].useSeatCnt;
 
@@ -674,20 +691,6 @@ marine.operation(); -->
                 desktopSeatTotal = 0;
                 desktopSeatUseTotal = 0;
               });
-            }
-
-            if (marker.seatInfos[0].useSeatCnt <= 6) {
-              // console.log("사람수가 6명 이하");
-              m.setImage(high);
-            } else if (
-              marker.seatInfos[0].useSeatCnt > 6 &&
-              marker.seatInfos[0].useSeatCnt <= 12
-            ) {
-              // console.log("사람수가 7명 이상");
-              m.setImage(normal);
-            } else {
-              // console.log("사람수가 12명 이상");
-              m.setImage(low);
             }
           });
           // 클러스터에 마커 추가
