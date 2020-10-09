@@ -133,6 +133,10 @@
   font-weight: bold;
   font-family: title1;
 }
+
+.info .floor {
+  display: inline-flex;
+}
 .info .close:hover {
   cursor: pointer;
 }
@@ -162,34 +166,69 @@
   text-align: left;
   font-weight: bold;
   color: #66a986;
-  margin-left: 10px;
+  margin-left: 11px;
 }
 
-.desc .overlay {
+.desc .seat_info {
+  font-family: content;
+  font-size: 13px;
+  opacity: 0.9;
+  border: 2px solid #060126;
+  border-radius: 100px;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 100px;
+  /* border-top: 1px solid #060126; */
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.useTotalSeatDisplay {
+  color: #fc0404;
+  font-weight: bold;
+}
+
+.totalSeatDisplay {
+  color: #0582f7;
+  font-weight: bold;
+}
+
+.desc .seat_info th,
+td {
+  padding: 3px;
+  border-bottom: 1px solid #060126;
+  border-left: 1px solid #060126;
+}
+
+.desc .seat_info td {
+  /* border-left: 1px solid #060126; */
+}
+
+/* .desc .overlay {
   margin-top: 35px;
   display: inline-flex;
   font-family: content;
   font-weight: bold;
   vertical-align: baseline;
-}
+} */
 /* 카페 테이블 상황  */
-.desc .sit {
+/* .desc .sit {
   font-size: 1rem;
   color: red;
   text-align: left;
   margin-left: 10px;
-}
+} */
 
-.desc .divide {
+/* .desc .divide {
   font-size: 1rem;
   margin-left: 10px;
-}
+} */
 
-.desc .sit_full {
+/* .desc .sit_full {
   font-size: 1rem;
   color: #0582f7;
   margin-left: 10px;
-}
+} */
 
 .info:after {
   content: "";
@@ -208,8 +247,8 @@
 
 /* 커스텀 오버레이 상세정보 버튼  */
 .info_btn {
-  left: 145px;
-  top: 0px;
+  left: 223px;
+  top: -25px;
   font-size: 0.9rem;
   padding: 5px;
   font-weight: bold;

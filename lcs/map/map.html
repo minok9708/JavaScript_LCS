@@ -468,7 +468,7 @@
             for (let i = 0; i < marker.seatInfos.length; i++) {
               tt += marker.seatInfos[i].useSeatCnt;
               aa += marker.seatInfos[i].totalSeatCnt;
-              ll += marker.seatInfos[i].floorNumber;
+              ll = marker.seatInfos[i].floorNumber;
               cc += aa - tt;
             }
 
@@ -478,27 +478,46 @@
               '        <div class="title">' +
               marker.name +
               "        </div>" +
+              // '        <div class="floor">' +
+              // "총" +
+              // ll +
+              // "층" +
+              // "        </div>" +
               '        <div class="body">' +
               '            <div class="desc">' +
               '                <div class="addr">' +
-              "" +
               marker.parcelAddr +
               "</div>" +
               '                <div class="phone">' +
-              "" +
               marker.phone +
               "</div>" +
-              '                <div class="overlay">' +
-              '                <div class="sit">' +
+              '                <table class="seat_info">' +
+              "<th>" +
+              "사용중" +
+              "</th>" +
+              "<th>" +
+              "전체 테이블" +
+              "</th>" +
+              "<tr>" +
+              '<td class="useTotalSeatDisplay">' +
               tt +
-              "</div>" +
-              '                <div class="divide">' +
-              "/" +
-              "</div>" +
-              '                <div class="sit_full">' +
+              "</td>" +
+              '<td class="totalSeatDisplay">' +
               aa +
-              "</div>" +
-              "                </div>" +
+              "</td>" +
+              "</tr>" +
+              "</table>" +
+              // '                <div class="overlay">' +
+              // '                <div class="sit">' +
+              // tt +
+              // "</div>" +
+              // '                <div class="divide">' +
+              // "/" +
+              // "</div>" +
+              // '                <div class="sit_full">' +
+              // aa +
+              // "</div>" +
+              // "                </div>" +
               '                <button class="info_btn" ' +
               'onclick="' +
               "location.href='/search/cafe_info.html'" +
@@ -506,7 +525,7 @@
               "> " +
               "상세정보" +
               "</button>" +
-              "            </>" +
+              // "            </>" +
               "        </div>" +
               "    </div>" +
               "</div>";
@@ -546,7 +565,15 @@
             markers.push(m);
 
             console.log(
-              marker.id + " " + marker.name + " 사용률 " + (tt / aa) * 100 + "%"
+              marker.id +
+                " " +
+                marker.name +
+                " 사용률 " +
+                (tt / aa) * 100 +
+                "%" +
+                "\n" +
+                ll +
+                "층"
             );
             if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
               m.setImage(low);
@@ -573,7 +600,7 @@
                 for (let i = 0; i < marker.seatInfos.length; i++) {
                   seatTotal += marker.seatInfos[i].totalSeatCnt;
                   seatUseTotal += marker.seatInfos[i].useSeatCnt;
-                  floorTotal += marker.seatInfos[i].floorNumber;
+                  floorTotal = marker.seatInfos[i].floorNumber;
                 }
                 // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
                 document.getElementById("content_box").style.visibility =
@@ -584,10 +611,10 @@
                   marker.parcelAddr;
                 document.getElementById("content_box_phone").innerHTML =
                   marker.phone;
-                document.getElementById("content_box_floorNumber").innerHTML =
-                  floorTotal + "층";
-                //  document.getElementById("content_box_useSeatCnt").innerHTML =
-                // seatUseTotal + "&nbsp";
+                // document.getElementById("content_box_floorNumber").innerHTML =
+                //   floorTotal + "층";
+                document.getElementById("content_box_useSeatCnt").innerHTML =
+                  seatUseTotal + "&nbsp";
                 document.getElementById("content_box_devide").innerHTML =
                   "/" + "&nbsp";
                 document.getElementById(
