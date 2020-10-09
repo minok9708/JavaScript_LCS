@@ -85,6 +85,8 @@
       </div>
     </div>
     <script>
+      //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
+      let clickedOverlay = null;
       let temp;
       let data = [];
       temp = location.href.split("?");
@@ -146,9 +148,9 @@
               console.log(error.response);
             });
         } else if (check === "false") {
+          findLocation();
+          searchPlaces();
         }
-        findLocation();
-        searchPlaces();
       }, 100);
 
       // 키보드로 엔터를 눌럿을때
@@ -160,7 +162,6 @@
 
       getSearchMarkerInfo = (keywordList) => {
         //console.log(keywordList);
-        console.log("실행되지?");
         keywordList.map((value, index) => {
           let contenta =
             '<div class="wrap">' +
@@ -214,16 +215,23 @@
             title: value.name,
           });
 
-          kakao.maps.event.addListener(keywordMarker, "click", function () {
-            console.log("마커를 클릭");
-            customOverlayA.setMap(map);
-          });
-
           let customOverlayA = new kakao.maps.CustomOverlay({
             position: keywordMarker.getPosition(),
             content: contenta,
             clickable: true,
             zindex: 9999,
+          });
+
+          kakao.maps.event.addListener(keywordMarker, "click", function () {
+            console.log("마커를 클릭");
+
+            // 커스텀 오버레이 z-index 값 설정
+            customOverlayA.setZIndex(3);
+            if (clickedOverlay) {
+              clickedOverlay.setMap(null);
+            }
+            customOverlayA.setMap(map);
+            clickedOverlay = customOverlayA;
           });
 
           kakao.maps.event.addListener(map, "click", function () {
@@ -383,9 +391,6 @@
           getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
         }
       });
-
-      //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
-      let clickedOverlay = null;
 
       // getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
       const getCafeInfo = (ne1, ne2, sw1, sw2) => {
@@ -600,7 +605,6 @@
               });
             } else {
               // 커스텀 오버레이를 생성합니다
-
               let customOverlay = new kakao.maps.CustomOverlay({
                 position: m.getPosition(),
                 content: content,
