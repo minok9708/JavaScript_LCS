@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입페이지</title>
     <link href="/lcs/com/css/sign_up.css" rel="stylesheet" type="text/css" />
+
+     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   </head>
   <body>
     <header id="header">
@@ -145,8 +148,42 @@
           return false;
         }
 
+
+        console.log("이메일: " + email + " 비밀번호:" + pw);
+        console.log("비밀번호 확인: " + re_pw);
+        console.log("이름: " + name );
+        console.log( "연락처: " + phone);
+
         //모든 검사를 다 통과했을 경우
-        alert("회원가입되셨습니다!!!!!!")
+        // let signUpUrl = "https://cafeaddy.xyz:8080/api/name";
+
+        //   axios({
+        //     method: "post",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       Accept: "application/json",
+        //     },
+        //     url: signUpUrl,
+        //     data: {},
+        //     params: {
+        //       email:email,
+        //       pw:pw,
+        //       name:name,
+        //       phone:phone,
+        //     },
+        //   })
+        //     .then(({data}) => {
+        //       console.log(data);
+
+        //       if(data === true){
+        //         alert("회원가입 성공!!!!!")
+        //       }else{
+        //         alert("회원가입 실패...")
+        //       }
+        //     })
+        //     .catch((error) => {
+        //       console.log("error:", error.response);
+        //     });
       };
     </script>
   </body>
