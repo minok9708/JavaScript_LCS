@@ -106,13 +106,14 @@
 }
 
 #content_box #test_box {
-  padding-left: 5px;
+  padding-left: 10px;
   display: inline-flex;
   font-family: content;
 }
 
 #content_box #content_box_title {
   padding: 5px;
+  padding-left: 10px;
   border-radius: 10px 10px 0 0;
   font-family: title;
   background-color: #282c37;
@@ -124,7 +125,7 @@
   font-family: content;
   font-size: 0.9rem;
   font-weight: 700;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 #content_box #content_box_phone {
@@ -132,7 +133,7 @@
   color: #66a986;
   font-size: 0.85rem;
   font-weight: 700;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 #content_box #content_box_useSeatCnt {
