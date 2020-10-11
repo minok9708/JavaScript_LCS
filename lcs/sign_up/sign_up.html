@@ -27,19 +27,20 @@
             value="중복확인"
             autofocus
             required
+            onclick="doubleCheck()"
           />
         </div>
+        <br /><h4 id ="emailText" ></h4></small>
       </div>
 
       <div class="password">
         <div id="passwordForm" style="display: inline-block">
-          <br />
           비밀번호<small style="color: red"> *</small><br />
           <input type="password" id="pw" autofocus required />
         </div>
-
+        <br />
         <div id="re_pw_form" style="display: inline-block">
-          비밀번호 확인<small style="color: red"> *</small><br />
+          <br /> 비밀번호 확인<small style="color: red"> *</small><br />
           <input type="password" id="re_pw" autofocus required />
         </div>
       </div>
@@ -79,10 +80,10 @@
       let reigistInfo = function () {
         let pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;/* 대소문자 숫자 특수문자 혼합 8자리 이상 */
         let emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
-        let phoneCheck =/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;//연락처 정규식
+        let phoneCheck = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;     //연락처 정규식
+        //let nameCheck = /^[가-힣a-zA-Z]+$/; //이름 정규식
 
         email = document.getElementById("email").value;
-        auth_btn = document.getElementById("auth_btn").value;
         pw = document.getElementById("pw").value;
         re_pw = document.getElementById("re_pw").value;
         name = document.getElementById("name").value;
@@ -135,6 +136,12 @@
           alert("이름을 작성하세요!");
           return false;
         } 
+
+         //이름 유효성 정규식 검사
+        //  if(!nameCheck.test(name)){
+        //   alert("이름 형식이 올바르지 않습니다.");
+        //   return false;
+        // }
         
         //연락처 공백 검사
         if (phone == "") {
@@ -147,7 +154,6 @@
           alert("연락처 형식이 올바르지 않습니다.ex)010-0000-0000");
           return false;
         }
-
 
         console.log("이메일: " + email + " 비밀번호:" + pw);
         console.log("비밀번호 확인: " + re_pw);
@@ -184,6 +190,45 @@
         //     .catch((error) => {
         //       console.log("error:", error.response);
         //     });
+      };
+      
+      //이메일 중복체크 버튼 구현
+      function doubleCheck(){
+        email = document.getElementById("email").value;
+        emailText =document.getElementById("emailText").value;
+
+        let emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+
+        if (email === "") {
+          alert("이메일을 다시입력하세요!");
+          return false;
+        }
+
+        if(!emailCheck.test(email)){
+          alert("이메일 형식이 올바르지 않습니다.");
+          return false;
+        }
+        console.log("유효성 검사 한 이메일:"+ email);
+
+        let emailCheckUrl = "https://cafeaddy.xyz:8080/api/owner/duplicate";
+
+          axios({
+            method: "get",
+            url: emailCheckUrl,
+            data: {},
+            params: {
+             email: email,
+            },
+          })
+            .then(({data}) => {
+              console.log("사용할 수있는 이메일 입니다."); //중복이 안되는 경우
+              document.getElementById('emailText').innerHTML="<h5 style='color: blue'>사용할 수 있는 이메일 입니다.<h5>"
+            })
+            .catch((error) => {
+              console.log("error:", error.response); //중복이 되는 경우
+              console.log("중복입니다.");
+              document.getElementById('emailText').innerHTML="<h5 style='color: red'>중복된 이메일 입니다.<h5>"
+            })
       };
     </script>
   </body>
