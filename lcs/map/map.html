@@ -109,7 +109,7 @@
       // 맵 초기기본옵션 설정
       const options = {
         center: new kakao.maps.LatLng(37.5906981, 127.0739813),
-        level: 3,
+        level: 5,
         draggable: true,
       };
       // 카카오맵 컨테이너 인자값과 옵션인자값을 주고 생성
@@ -133,9 +133,9 @@
       setTimeout(() => {
         if (check === "true") {
           //console.log("검색바로 검색햇을때 서버로 데이터 요청");
+          findLocation();
 
           let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/cafeName=";
-
           console.log(keyword);
           axios({
             url: searchUrl + keyword,
