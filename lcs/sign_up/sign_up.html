@@ -29,6 +29,7 @@
             required
             onclick="doubleCheck()"
           />
+          <input type="hidden" id="checked_email" value= 0>
         </div>
         <br /><h4 id ="emailText" ></h4></small>
       </div>
@@ -89,12 +90,6 @@
         name = document.getElementById("name").value;
         phone = document.getElementById("phone").value;
 
-        console.log("이메일: " + email + " 비밀번호:" + pw);
-        console.log("비밀번호 확인: " + re_pw);
-        console.log("이름: " + name );
-        console.log( "연락처: " + phone);
-
-
         //이메일 공백 검사
         if (email === "") {
           alert("이메일을 다시입력하세요!");
@@ -104,6 +99,12 @@
         //이메일 유효성 정규식 검사
         if(!emailCheck.test(email)){
           alert("이메일 형식이 올바르지 않습니다.");
+          return false;
+        }
+
+        //중복확인 버튼을 안눌럿을 경우 ---> 회원가입 요청 못보내게
+        if(checked_email === 0 ){
+          alert("중복확인 버튼을 눌러주세요!!");
           return false;
         }
 
@@ -159,6 +160,10 @@
         console.log("비밀번호 확인: " + re_pw);
         console.log("이름: " + name );
         console.log( "연락처: " + phone);
+        
+
+        //다 모든조건을 만족 할때,
+        alert("회원가입 성공!!");
 
         //모든 검사를 다 통과했을 경우
         // let signUpUrl = "https://cafeaddy.xyz:8080/api/name";
@@ -196,8 +201,12 @@
       function doubleCheck(){
         email = document.getElementById("email").value;
         emailText =document.getElementById("emailText").value;
+        checked_email = document.getElementById("checked_email").value;
 
         let emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+
+        checked_email=1; //중복체크 버튼을 눌렀을 때
+        console.log(checked_email)
 
         if (email === "") {
           alert("이메일을 다시입력하세요!");
@@ -209,6 +218,7 @@
           return false;
         }
         console.log("유효성 검사 한 이메일:"+ email);
+         console.log(checked_email);
 
         let emailCheckUrl = "https://cafeaddy.xyz:8080/api/owner/duplicate";
 
@@ -221,12 +231,13 @@
             },
           })
             .then(({data}) => {
-              console.log("사용할 수있는 이메일 입니다."); //중복이 안되는 경우
+              //console.log("사용할 수있는 이메일 입니다."); //중복체크 통과(중복이 아닌경우)
               document.getElementById('emailText').innerHTML="<h5 style='color: blue'>사용할 수 있는 이메일 입니다.<h5>"
+              // console.log(checked_email);
             })
             .catch((error) => {
-              console.log("error:", error.response); //중복이 되는 경우
-              console.log("중복입니다.");
+              console.log("error:", error.response);  //중복체크 미통과(중복인경우)
+              //console.log("중복입니다.");
               document.getElementById('emailText').innerHTML="<h5 style='color: red'>중복된 이메일 입니다.<h5>"
             })
       };
