@@ -1,37 +1,3 @@
-<!-- 모든 변수는 let이나 const 사용 var 금지 -->
-<!-- 모든 함수는 화살표함수를 사용 이유는 화살표 함수 사용시 콜백함수 표기를 단순하게 할수 있고
-this바인딩을 하지않아도 됨 -->
-<!-- 메소드를 화살표 함수로 정의하면 함수 내부의 this는 window 객체를 가리키기 때문에 문제가 발생함 -->
-<!-- 이벤트리스너는 () => 이렇게하지말고 function()으로 해야함 -->
-<!--  https://poiemaweb.com/es6-arrow-function -->
-<!-- 이런 경우엔 다음과 같이 ES6의 축약 메소드를 사용하는 것이 좋음 -->
-
-<!-- @@@@@@@@ before 일반 화살표함수 사용 @@@@@@@@-->
-<!-- const marine = {
-    action: 'attack',
-    operation: () => { <--------- 차이점
-        console.log(this.action); // undefined
-    }
-};
-marine.operation(); -->
-
-<!-- @@@@@@@@ after 축약메소드 사용 @@@@@@@@-->
-<!-- const marine = {
-  action: 'attack',
-  operation() { <------- 여기를 보면됨
-      console.log(this.action); // attack
-  }
-};
-marine.operation(); -->
-
-<!-- 화살표함수 설명 링크 : https://freestrokes.tistory.com/103 -->
-<!-- 1. 맵 객체 생성 -->
-<!-- 2. 현재위치 사용가능하면 현재위치를 받아와서 마커 표시후 시점변환 -->
-<!-- 3. 초기경계위치를 바탕으로 현재화면안에있는 마커데이터만 수신 -->
-<!-- 4. 3번에서 받아온 마커데이터를 바탕으로 화면에 표시 -->
-<!-- 5. 사용자가 화면을 옮기는 이벤트를 수행할때 마다 그에 맞게 화면에 마커 표시 -->
-<!-- 6. 마커마다 커스텀 오버레이를 활용하여 사용자가 마커를 클릭하는 이벤트를 수행했을시 Adobe XD 오버레이디자인에 맞게 출력 -->
-<!-- 7. 사용자는 마커를 눌러 오버레이를 보고 오버레이에 상세정보 버튼을 눌러 상세정보 페이지로 데이터와 함께 이동 -->
 <!DOCTYPE html>
 <!-- 화면 꽉차게 height: 100% -->
 <html lang="en" style="height: 100%">
@@ -44,7 +10,7 @@ marine.operation(); -->
     />
 
     <!-- 타이틀바 이름 -->
-    <title>지도</title>
+    <title>Map</title>
 
     <!-- 카카오맵을 사용하기 위한 Api호출 -->
     <script
@@ -64,7 +30,7 @@ marine.operation(); -->
     <!-- 외부 css파일 사용 -->
     <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
 
-    <!-- 검색 아이콘 -->
+    <!-- 검색 아이콘 링크 -->
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -78,7 +44,6 @@ marine.operation(); -->
       href="/com/css/mobile_map.css"
       type="text/css"
     />
-    <!-- 테스트 -->
   </head>
 
   <!-- Map.Html Body -->
@@ -120,9 +85,8 @@ marine.operation(); -->
       </div>
     </div>
     <script>
-      let casheData = [];
-      //  컨테이너에 div 값을 가져오는 코드
-
+      //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
+      let clickedOverlay = null;
       let temp;
       let data = [];
       temp = location.href.split("?");
@@ -140,6 +104,7 @@ marine.operation(); -->
       check = check[1];
       //console.log(check);
 
+      //  컨테이너에 div 값을 가져오는 코드
       const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
       const options = {
@@ -164,7 +129,7 @@ marine.operation(); -->
       let zoomControl = new kakao.maps.ZoomControl();
       // 지도의 우측에 확대 축소 컨트롤을 추가
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-      //위에 객체가 실행후 0.1초후에 실행
+      // 맵 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
         if (check === "true") {
           //console.log("검색바로 검색햇을때 서버로 데이터 요청");
@@ -183,9 +148,9 @@ marine.operation(); -->
               console.log(error.response);
             });
         } else if (check === "false") {
+          findLocation();
+          searchPlaces();
         }
-        findLocation();
-        searchPlaces();
       }, 100);
 
       // 키보드로 엔터를 눌럿을때
@@ -197,7 +162,6 @@ marine.operation(); -->
 
       getSearchMarkerInfo = (keywordList) => {
         //console.log(keywordList);
-        console.log("실행되지?");
         keywordList.map((value, index) => {
           let contenta =
             '<div class="wrap">' +
@@ -250,7 +214,6 @@ marine.operation(); -->
             // image: markerImage,
             title: value.name,
           });
-
           let clickedOverlayA = null;
 
           kakao.maps.event.addListener(keywordMarker, "click", function () {
@@ -273,6 +236,18 @@ marine.operation(); -->
             content: contenta,
             clickable: true,
             zindex: 9999,
+          });
+
+          kakao.maps.event.addListener(keywordMarker, "click", function () {
+            console.log("마커를 클릭");
+
+            // 커스텀 오버레이 z-index 값 설정
+            customOverlayA.setZIndex(3);
+            if (clickedOverlay) {
+              clickedOverlay.setMap(null);
+            }
+            customOverlayA.setMap(map);
+            clickedOverlay = customOverlayA;
           });
 
           kakao.maps.event.addListener(map, "click", function () {
@@ -330,7 +305,7 @@ marine.operation(); -->
         let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-
+        
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
           imageSize,
@@ -393,18 +368,6 @@ marine.operation(); -->
         map.panTo(bounds);
       }
 
-      //----------------------------------------------------------------------------------------------------------------------------------
-
-      // 지도가 이동, 확대, 축소로 인해 지도영역이 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록
-      // 화살표 함수 사용
-      // 여기다가 뭘 넣어야할지 의문
-      // 아예 필요없을수도 idle이 대체
-      // const bounds_change = kakao.maps.event.addListener(
-      //   map,
-      //   "bounds_changed",
-      //   () => {}
-      // );
-
       // 지도 시점이 완전히 변화했을때 수행되는 이벤트 등록
       // boundsChange와 다름
       // https://code-zzolbo.tistory.com/33
@@ -445,11 +408,6 @@ marine.operation(); -->
         }
       });
 
-      //------------------------------------------------------------------------
-      //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
-      let clickedOverlay = null;
-      //---------------------------------------------------------------------------
-
       // getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
       const getCafeInfo = (ne1, ne2, sw1, sw2) => {
         //   통신코드는 비동기이기 때문에 동기로 바꿔주기 위하여 프로미스를 사용
@@ -472,7 +430,7 @@ marine.operation(); -->
               swLatitude: sw2,
             },
           })
-            .then(({data}) => {
+            .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
               // res(getCafeSyncInfo((cafeData = data.data)));
               // casheData = data.data;
@@ -500,22 +458,35 @@ marine.operation(); -->
           }
         });
       };
+
+      // info = (useSeatTotal) => {
+      //   let zxczxc = [];
+      //   for (let i; i < useSeatTotal.seatInfos.length; i++) {
+      //     zxczxc.push(i);
+      //   }
+
+      //   return zxczxc;
+      // };
+
       //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
-          // console.log(cafe);
           let markers = [];
-          let qq = 0;
-          let ww = 0;
           // 클러스터 초기화
           clusterer.clear();
-          // let seatTotal = 0;
 
           cafe.map((marker, index) => {
-            // for (let i = 0; i < marker.seatInfos.length; i++) {
-            //   qq += marker.seatInfos[i].useSeatCnt;
-            // }
-            // console.log(qq);
+            let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+            let aa = 0; // 카페의 총 테이블 수 - 임시
+            let cc = 0; // 카페의 빈자리 수 = 임시
+            let ll = 0; // 카페의 총 층수
+
+            for (let i = 0; i < marker.seatInfos.length; i++) {
+              tt += marker.seatInfos[i].useSeatCnt;
+              aa += marker.seatInfos[i].totalSeatCnt;
+              ll = marker.seatInfos[i].floorNumber;
+              cc += aa - tt;
+            }
 
             let content =
               '<div class="wrap">' +
@@ -523,27 +494,46 @@ marine.operation(); -->
               '        <div class="title">' +
               marker.name +
               "        </div>" +
+              // '        <div class="floor">' +
+              // "총" +
+              // ll +
+              // "층" +
+              // "        </div>" +
               '        <div class="body">' +
               '            <div class="desc">' +
               '                <div class="addr">' +
-              "" +
               marker.parcelAddr +
               "</div>" +
               '                <div class="phone">' +
-              "" +
               marker.phone +
               "</div>" +
-              '                <div class="overlay">' +
-              '                <div class="sit">' +
-              marker.seatInfos[0].useSeatCnt +
-              "</div>" +
-              '                <div class="divide">' +
-              "/" +
-              "</div>" +
-              '                <div class="sit_full">' +
-              marker.seatInfos[0].totalSeatCnt +
-              "</div>" +
-              "                </div>" +
+              '                <table class="seat_info">' +
+              "<th>" +
+              "사용중" +
+              "</th>" +
+              "<th>" +
+              "전체 테이블" +
+              "</th>" +
+              "<tr>" +
+              '<td class="useTotalSeatDisplay">' +
+              tt +
+              "</td>" +
+              '<td class="totalSeatDisplay">' +
+              aa +
+              "</td>" +
+              "</tr>" +
+              "</table>" +
+              // '                <div class="overlay">' +
+              // '                <div class="sit">' +
+              // tt +
+              // "</div>" +
+              // '                <div class="divide">' +
+              // "/" +
+              // "</div>" +
+              // '                <div class="sit_full">' +
+              // aa +
+              // "</div>" +
+              // "                </div>" +
               '                <button class="info_btn" ' +
               'onclick="' +
               "location.href='/search/cafe_info.html'" +
@@ -551,30 +541,32 @@ marine.operation(); -->
               "> " +
               "상세정보" +
               "</button>" +
-              "            </>" +
+              // "            </>" +
               "        </div>" +
               "    </div>" +
               "</div>";
-            // C:\Users\minok\Desktop\lcs\lcs\img
-            // C:\Users\ehqow\Documents\project\lcs\img
-            // 서버에서 얻어온 마커에 아이콘 변경
+            // 마커 사용량에 따른 마커 이미지 변경
+            // 사용량이 60% 이상일때 Red 마커
             let high = new kakao.maps.MarkerImage(
               "/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
-
+            // 사용량이 30 ~ 60%일때 Yellow 마커
             let normal = new kakao.maps.MarkerImage(
               "/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
-
+            
+            // 사용량이 30% 이하일때 Green 마커
             let low = new kakao.maps.MarkerImage(
               "/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
+
+            // 마커 객체 생성 이름은 m - 나중에 변경
             let m = new kakao.maps.Marker({
               map: map,
               position: new kakao.maps.LatLng(
@@ -587,19 +579,49 @@ marine.operation(); -->
 
             // 클러스터 푸쉬
             markers.push(m);
+            
+            console.log(
+              marker.id +
+                " " +
+                marker.name +
+                " 사용률 " +
+                (tt / aa) * 100 +
+                "%" +
+                "\n" +
+                ll +
+                "층"
+            );
+            if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
+              m.setImage(low);
+            } else if ((tt / aa) * 100 >= 30 && 60 >= (tt / aa) * 100) {
+              m.setImage(normal);
+            } else if ((tt / aa) * 100 > 60 && 100 >= (tt / aa) * 100) {
+              m.setImage(high);
+            }
+
+            tt = 0;
+            aa = 0;
+            cc = 0;
+            ll = 0;
 
             let minWidth = 768;
+            // 모바일일때
             if (minWidth >= window.outerWidth) {
-              console.log(window.outerWidth);
+              // console.log(window.outerWidth);  // 현재 사용중인 화면의 크기 측정
               //마커 클릭시 이벤트 처리
               let seatTotal = 0;
               let seatUseTotal = 0;
               kakao.maps.event.addListener(m, "click", function () {
+                let seatTotal = 0;
+                let seatUseTotal = 0;
+                let floorTotal = 0;
                 for (let i = 0; i < marker.seatInfos.length; i++) {
                   seatTotal += marker.seatInfos[i].totalSeatCnt;
                   seatUseTotal += marker.seatInfos[i].useSeatCnt;
+                  floorTotal = marker.seatInfos[i].floorNumber;
                 }
-                console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
+                
+                // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
                 document.getElementById("content_box").style.visibility =
                   "visible";
                 document.getElementById("content_box_title").innerHTML =
@@ -609,7 +631,7 @@ marine.operation(); -->
                 document.getElementById("content_box_phone").innerHTML =
                   marker.phone;
                 // document.getElementById("content_box_floorNumber").innerHTML =
-                //   marker.seatInfos[0].floorNumber + "층";
+                //   floorTotal + "층";
                 document.getElementById("content_box_useSeatCnt").innerHTML =
                   seatUseTotal + "&nbsp";
                 document.getElementById("content_box_devide").innerHTML =
@@ -620,6 +642,8 @@ marine.operation(); -->
 
                 seatTotal = 0;
                 seatUseTotal = 0;
+                floorTotal = 0;
+                
               });
 
               kakao.maps.event.addListener(map, "click", function () {
@@ -628,7 +652,6 @@ marine.operation(); -->
               });
             } else {
               // 커스텀 오버레이를 생성합니다
-
               let customOverlay = new kakao.maps.CustomOverlay({
                 position: m.getPosition(),
                 content: content,
@@ -636,71 +659,46 @@ marine.operation(); -->
                 zindex: 3,
               });
 
-              let desktopSeatTotal = 0;
-              let desktopSeatUseTotal = 0;
+              // let desktopSeatTotal = 0;
+              // let desktopSeatUseTotal = 0;
 
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
-                for (let i = 0; i < marker.seatInfos.length; i++) {
-                  console.log(
-                    marker.name +
-                      " " +
-                      marker.seatInfos[i].floorNumber +
-                      "층" +
-                      "\n사용중인 테이블 : " +
-                      marker.seatInfos[i].useSeatCnt +
-                      "개\n" +
-                      "총 테이블 : " +
-                      marker.seatInfos[i].totalSeatCnt +
-                      "개"
-                  );
+                // for (let i = 0; i < marker.seatInfos.length; i++) {
+                //   console.log("마커클릭");
+                //   desktopSeatTotal += marker.seatInfos[i].totalSeatCnt;
+                //   desktopSeatUseTotal += marker.seatInfos[i].useSeatCnt;
 
-                  desktopSeatTotal += marker.seatInfos[i].totalSeatCnt;
-                  desktopSeatUseTotal += marker.seatInfos[i].useSeatCnt;
-
-                  // 커스텀 오버레이 z-index 값 설정
-                  customOverlay.setZIndex(3);
-                  if (clickedOverlay) {
-                    //console.log("null이 아닐때");
-                    clickedOverlay.setMap(null);
-                  }
-                  customOverlay.setMap(map);
-                  // 커스텀 오버레이의 z-index값 파악
-                  // console.log(customOverlay.getZIndex());
-                  clickedOverlay = customOverlay;
-
-                  kakao.maps.event.addListener(map, "click", function () {
-                    customOverlay.setMap(null);
-                  });
+                // 커스텀 오버레이 z-index 값 설정
+                customOverlay.setZIndex(3);
+                if (clickedOverlay) {
+                  //console.log("null이 아닐때");
+                  clickedOverlay.setMap(null);
                 }
-                console.log(
-                  marker.name + " 총 테이블 : " + desktopSeatTotal + "개"
-                );
+                customOverlay.setMap(map);
+                // 커스텀 오버레이의 z-index값 파악
+                // console.log(customOverlay.getZIndex());
+                clickedOverlay = customOverlay;
 
-                console.log(
-                  marker.name +
-                    " 사용중인 총 테이블 : " +
-                    desktopSeatUseTotal +
-                    "개"
-                );
+                kakao.maps.event.addListener(map, "click", function () {
+                  customOverlay.setMap(null);
+                });
 
-                desktopSeatTotal = 0;
-                desktopSeatUseTotal = 0;
+                // }
+                // console.log(
+                //   marker.name + " 총 테이블 : " + desktopSeatTotal + "개"
+                // );
+
+                // console.log(
+                //   marker.name +
+                //     " 사용중인 총 테이블 : " +
+                //     desktopSeatUseTotal +
+                //     "개"
+                // );
+
+                // desktopSeatTotal = 0;
+                // desktopSeatUseTotal = 0;
               });
-            }
-
-            if (marker.seatInfos[0].useSeatCnt <= 6) {
-              // console.log("사람수가 6명 이하");
-              m.setImage(high);
-            } else if (
-              marker.seatInfos[0].useSeatCnt > 6 &&
-              marker.seatInfos[0].useSeatCnt <= 12
-            ) {
-              // console.log("사람수가 7명 이상");
-              m.setImage(normal);
-            } else {
-              // console.log("사람수가 12명 이상");
-              m.setImage(low);
             }
           });
           // 클러스터에 마커 추가
