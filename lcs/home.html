@@ -42,8 +42,8 @@
           <form
             id="form"
             method="get"
-            action="map/map.html"
-            onsubmit="keywordCheck()"
+            action="map/map"
+            onsubmit="return keywordCheck();"
           >
             <input
               type="text"
@@ -87,7 +87,7 @@
 
         if (keyword == "") {
           alert("키워드를 다시 입력해주세요!");
-          form.action = "home";
+          return false;
         }
       }
 
