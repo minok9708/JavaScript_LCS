@@ -85,7 +85,8 @@
         let pwCheck = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;/* 대소문자 숫자 특수문자 혼합 8자리 이상 */
         let emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
         let phoneCheck = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;     //연락처 정규식
-        //let nameCheck = /^[가-힣a-zA-Z]+$/; //이름 정규식
+        let nameCheck =/^[가-힝]{2,}$/;
+        let nameCheck1 =/^[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
 
         email = document.getElementById("email").value;
         pw = document.getElementById("pw").value;
@@ -96,7 +97,7 @@
         if(vvv === true) {
           console.log("중복일때 실행되는된다잉");
          console.log(`중복 논리 값 : ${vvv}`);
-         alert("응 너 중 복 이 야 ");
+         alert("중복된이메일 입니다. 사용가능한 이메일을 작성해주세요.");
          return false;
         }
 
@@ -148,10 +149,10 @@
         } 
 
          //이름 유효성 정규식 검사
-        //  if(!nameCheck.test(name)){
-        //   alert("이름 형식이 올바르지 않습니다.");
-        //   return false;
-        // }
+         if(!nameCheck.test(name)){
+          alert("이름 형식이 올바르지 않습니다.(한글 2자리 이상!!)");
+          return false;
+        }
         
         //연락처 공백 검사
         if (phone == "") {
