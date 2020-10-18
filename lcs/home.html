@@ -21,6 +21,12 @@
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    
+    <!-- jQuery부분 -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   </head>
   <body class="home_body">
     <center class="home_center">
@@ -50,8 +56,9 @@
               class="searchTerm"
               id="searchTerm"
               placeholder="  카페를 검색해주세요 :)"
-              onkeydown="enterSearch()"
+              onchange="dataSubmit()"
               name="keyword"
+              autocomplete="on"
             />
 
             <button
@@ -66,7 +73,7 @@
         </div>
       </div>
     </center>
-    <form id="form_test" method="get" action="map/map.html">
+    <form id="form_test" method="get" action="map/map">
       <input type="text" class="ttaa" name="keyword" />
       <button class="container" name="check" value="false">
         <a>내 위치로 카페 찾기</a>
@@ -74,6 +81,14 @@
     </form>
 
     <script>
+    let autoData=[];//서버의 카페 이름 받을 변수
+
+    setTimeout(function() {
+        dataSubmit();
+        autoText();
+        }, {once: true}, 1000);
+
+
       //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
@@ -81,6 +96,7 @@
         }
       }
 
+      //키워드가 공백인지 아닌지 확인 함수
       function keywordCheck() {
         let keyword = document.getElementById("searchTerm").value;
         console.log(keyword);
@@ -90,6 +106,44 @@
           return false;
         }
       }
+      
+      function dataSubmit(){
+        
+        let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/brands";
+
+        axios({
+            url: searchUrl,
+            method: "get",
+          })
+            .then((data) => { 
+              // console.log(data.data.data);
+              autoData = data.data.data;
+              //console.log(autoData);
+              //console.log("데이터 다받음")
+              autoText(autoData)
+            })
+            .catch((error) => {
+              console.log(error.response);
+            });
+      }
+
+      function autoText(data) {
+
+        //var availableCity = ["서울","부산","대구","광주","울산"];
+        //console.log(autoData);
+        $("#searchTerm").autocomplete({ 
+          
+          source:autoData, //자동완성 대상
+          select: function(event, ui) {//아이템을 선택 할 때
+            console.log(ui.item);
+            },
+          focus: function(event, ui) {//한글 에러 잡기 용도로
+            return false;
+            //event.preventDefault();
+            }
+          });
+        };
+
 
       /* 카페명으로 검색: google(이름)
          주소명으로 검색: naver(주소) */
@@ -98,7 +152,6 @@
           document.getElementById("SelectSearch").selectedIndex
         ].value;
         console.log(value);
-
         if (value == "naver") {
           //주소명으로 검색이면
           category = "주소";
