@@ -83,13 +83,10 @@
     <script>
     let autoData=[];//서버의 카페 이름 받을 변수
 
-
     setTimeout(function() {
         dataSubmit();
-        console.log(autoData)
-        console.log("데이터 다받음!!");
         autoText();
-        }, 1000);
+        }, {once: true}, 1000);
 
 
       //키보드로 엔터를 눌럿을때
@@ -112,35 +109,31 @@
       
       function dataSubmit(){
         
-        let keyword = document.getElementById("searchTerm").value;
-
-        console.log(keyword);
-        
-        let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/";
+        let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/brands";
 
         axios({
-            url: searchUrl + keyword,
+            url: searchUrl,
             method: "get",
           })
             .then((data) => { 
               // console.log(data.data.data);
               autoData = data.data.data;
-              console.log(autoData);
+              //console.log(autoData);
+              //console.log("데이터 다받음")
+              autoText(autoData)
             })
             .catch((error) => {
               console.log(error.response);
             });
-
       }
 
-      function autoText() {
+      function autoText(data) {
 
-        var availableCity = ["서울","부산","대구","광주","울산"];
+        //var availableCity = ["서울","부산","대구","광주","울산"];
         //console.log(autoData);
-
         $("#searchTerm").autocomplete({ 
           
-          source:availableCity, //자동완성 대상
+          source:autoData, //자동완성 대상
           select: function(event, ui) {//아이템을 선택 할 때
             console.log(ui.item);
             },

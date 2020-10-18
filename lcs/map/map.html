@@ -136,15 +136,15 @@
           findLocation();
 
           let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/";
-          console.log(keyword);
+          // console.log(keyword);
           axios({
             url: searchUrl + keyword,
             method: "get",
           })
             .then((data) => { 
-              console.log(searchUrl+keyword);
+              // console.log(searchUrl+keyword);
 
-              console.log(data.data.data);
+              //console.log(data.data.data);
               getSearchMarkerInfo(data.data.data);
             })
             .catch((error) => {
