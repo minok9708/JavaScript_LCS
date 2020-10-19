@@ -185,7 +185,7 @@
             value.name +
             '                <button class="info_btn" ' +
             'onclick="' +
-            "location.href='/search/cafe_info.html'" +
+            "submitData()" +
             '"' +
             "> " +
             "상세정보" +
@@ -228,13 +228,6 @@
             // value.seatInfos[0].totalSeatCnt +
             // "</div>" +
             // "                </div>" +
-            '                <button class="info_btn" ' +
-            'onclick="' +
-            "submitData()" +
-            '"' +
-            "> " +
-            "상세정보" +
-            "</button>" +
             "            </>" +
             // "            </>" +
             "        </div>" +
@@ -325,6 +318,25 @@
             customOverlayA.setMap(map);
             clickedOverlay = customOverlayA;
 
+            // if(){
+            // location.href =
+            //   "/lcs/search/cafe_info.html" +
+            //   "&name:" +
+            //   value.name +
+            //   "&phone" +
+            //   value.phone +
+            //   "&addr" +
+            //   value.parcelAddr +
+            //   "&open" +
+            //   value.openTime +
+            //   "&close" +
+            //   value.closeTime +
+            //   "&seat" +
+            //   value.seatInfos[0].totalSeatCnt;
+            // }
+          });
+          submitData = () => {
+            console.log(value);
             location.href =
               "/lcs/search/cafe_info.html" +
               "&name:" +
@@ -339,9 +351,6 @@
               value.closeTime +
               "&seat" +
               value.seatInfos[0].totalSeatCnt;
-          });
-          submitData = () => {
-            location.href = "/lcs/search/cafe_info.html";
           };
 
           kakao.maps.event.addListener(map, "click", function () {
@@ -620,7 +629,6 @@
               // aa +
               // "</div>" +
               // "                </div>" +
-<<<<<<< HEAD
               '                <button class="info_btn" ' +
               'onclick="' +
               "location.href='/lcs/search/cafe_info.html'" +
@@ -628,9 +636,6 @@
               "> " +
               "상세정보" +
               "</button>" +
-=======
-              
->>>>>>> cf18ed6af1a77b03a84cedb4c4330e4655e4ae53
               // "            </>" +
               "        </div>" +
               "    </div>" +
