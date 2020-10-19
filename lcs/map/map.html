@@ -28,7 +28,7 @@
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
     <!-- 외부 css파일 사용 -->
-    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/lcs/com/css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 링크 -->
     <link
@@ -41,7 +41,7 @@
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/com/css/mobile_map.css"
+      href="/lcs/com/css/mobile_map.css"
       type="text/css"
     />
   </head>
@@ -141,7 +141,7 @@
             url: searchUrl + keyword,
             method: "get",
           })
-            .then((data) => { 
+            .then((data) => {
               // console.log(searchUrl+keyword);
 
               //console.log(data.data.data);
@@ -164,21 +164,19 @@
       }
 
       getSearchMarkerInfo = (keywordList) => {
-  
-        
-
         keywordList.map((value, index) => {
-        let tt = 0; // 카페의 총 사용중인 테이블 - 임시
-        let aa = 0; // 카페의 총 테이블 수 - 임시
-        let cc = 0; // 카페의 빈자리 수 = 임시
-        let ll = 0; // 카페의 총 층수
+          //console.log(value)
+          let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+          let aa = 0; // 카페의 총 테이블 수 - 임시
+          let cc = 0; // 카페의 빈자리 수 = 임시
+          let ll = 0; // 카페의 총 층수
 
-        for (let i = 0; i < value.seatInfos.length; i++) {
-              tt += value.seatInfos[i].useSeatCnt;
-              aa += value.seatInfos[i].totalSeatCnt;
-              ll = value.seatInfos[i].floorNumber;
-              cc += aa - tt;
-            }
+          for (let i = 0; i < value.seatInfos.length; i++) {
+            tt += value.seatInfos[i].useSeatCnt;
+            aa += value.seatInfos[i].totalSeatCnt;
+            ll = value.seatInfos[i].floorNumber;
+            cc += aa - tt;
+          }
 
           let contenta =
             '<div class="wrap">' +
@@ -197,21 +195,21 @@
             value.phone +
             "</div>" +
             '                <table class="seat_info">' +
-              "<th>" +
-              "사용중" +
-              "</th>" +
-              "<th>" +
-              "전체 테이블" +
-              "</th>" +
-              "<tr>" +
-              '<td class="useTotalSeatDisplay">' +
-              tt +
-              "</td>" +
-              '<td class="totalSeatDisplay">' +
-              aa +
-              "</td>" +
-              "</tr>" +
-              "</table>" +
+            "<th>" +
+            "사용중" +
+            "</th>" +
+            "<th>" +
+            "전체 테이블" +
+            "</th>" +
+            "<tr>" +
+            '<td class="useTotalSeatDisplay">' +
+            tt +
+            "</td>" +
+            '<td class="totalSeatDisplay">' +
+            aa +
+            "</td>" +
+            "</tr>" +
+            "</table>" +
             // '                <div class="overlay">' +
             // '                <div class="sit">' +
             // value.seatInfos[0].useSeatCnt +
@@ -225,7 +223,7 @@
             // "                </div>" +
             '                <button class="info_btn" ' +
             'onclick="' +
-            "location.href='/search/cafe_info.html'" +
+            "submitData()" +
             '"' +
             "> " +
             "상세정보" +
@@ -234,6 +232,7 @@
             "        </div>" +
             "    </div>" +
             "</div>";
+
           // ----------------------------------------------------- 마커 객체 생성 부분 시작 ------------------------------------------------
           // let imageSrc = "", // 마커이미지의 주소입니다
           //   imageSize = new kakao.maps.Size(32, 32); // 마커이미지의 크기입니다
@@ -242,24 +241,24 @@
           // 마커 사용량에 따른 마커 이미지 변경
           // 사용량이 60% 이상일때 Red 마커
           let high = new kakao.maps.MarkerImage(
-              "/img/red.png",
-              new kakao.maps.Size(24, 35),
-              new kakao.maps.Point(13, 34)
-            );
-            // 사용량이 30 ~ 60%일때 Yellow 마커
-            let normal = new kakao.maps.MarkerImage(
-              "/img/yellow.png",
-              new kakao.maps.Size(24, 35),
-              new kakao.maps.Point(13, 34)
-            );
-            
-            // 사용량이 30% 이하일때 Green 마커
-            let low = new kakao.maps.MarkerImage(
-              "/img/green.png",
-              new kakao.maps.Size(24, 35),
-              new kakao.maps.Point(13, 34)
-            );
-            
+            "/lcs/img/red.png",
+            new kakao.maps.Size(24, 35),
+            new kakao.maps.Point(13, 34)
+          );
+          // 사용량이 30 ~ 60%일때 Yellow 마커
+          let normal = new kakao.maps.MarkerImage(
+            "/lcs/img/yellow.png",
+            new kakao.maps.Size(24, 35),
+            new kakao.maps.Point(13, 34)
+          );
+
+          // 사용량이 30% 이하일때 Green 마커
+          let low = new kakao.maps.MarkerImage(
+            "/lcs/img/green.png",
+            new kakao.maps.Size(24, 35),
+            new kakao.maps.Point(13, 34)
+          );
+
           let keywordMarker = new kakao.maps.Marker({
             map: map,
             position: new kakao.maps.LatLng(value.latitude, value.longitude),
@@ -268,37 +267,34 @@
             title: value.name,
           });
 
-
           if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
-              keywordMarker.setImage(low);
-            } else if ((tt / aa) * 100 >= 30 && 60 >= (tt / aa) * 100) {
-              keywordMarker.setImage(normal);
-            } else if ((tt / aa) * 100 > 60 && 100 >= (tt / aa) * 100) {
-              keywordMarker.setImage(high);
-            }
+            keywordMarker.setImage(low);
+          } else if ((tt / aa) * 100 >= 30 && 60 >= (tt / aa) * 100) {
+            keywordMarker.setImage(normal);
+          } else if ((tt / aa) * 100 > 60 && 100 >= (tt / aa) * 100) {
+            keywordMarker.setImage(high);
+          }
 
-            tt = 0;
-            aa = 0;
-            cc = 0;
-            ll = 0;
+          tt = 0;
+          aa = 0;
+          cc = 0;
+          ll = 0;
 
           let mmm = new kakao.maps.LatLng(value.latitude, value.longitude);
 
           map.panTo(mmm);
 
-
           let clickedOverlayA = null;
 
           kakao.maps.event.addListener(keywordMarker, "click", function () {
-            
             // 커스텀 오버레이 z-index 값 설정
             customOverlayA.setZIndex(3);
 
-            if (clickedOverlayA) {      
+            if (clickedOverlayA) {
               clickedOverlayA.setMap(null);
             }
             customOverlayA.setMap(map);
-        
+
             clickedOverlayA = customOverlayA;
           });
 
@@ -309,9 +305,10 @@
             zindex: 9999,
           });
 
+          //console.log(value)
           kakao.maps.event.addListener(keywordMarker, "click", function () {
-            // console.log("마커를 클릭");
-
+            console.log("마커를 클릭");
+            console.log(value);
             // 커스텀 오버레이 z-index 값 설정
             customOverlayA.setZIndex(3);
             if (clickedOverlay) {
@@ -319,7 +316,25 @@
             }
             customOverlayA.setMap(map);
             clickedOverlay = customOverlayA;
+
+            location.href =
+              "/lcs/search/cafe_info.html" +
+              "&name:" +
+              value.name +
+              "&phone" +
+              value.phone +
+              "&addr" +
+              value.parcelAddr +
+              "&open" +
+              value.openTime +
+              "&close" +
+              value.closeTime +
+              "&seat" +
+              value.seatInfos[0].totalSeatCnt;
           });
+          submitData = () => {
+            location.href = "/lcs/search/cafe_info.html";
+          };
 
           kakao.maps.event.addListener(map, "click", function () {
             // console.log("맵을 클릭");
@@ -353,7 +368,7 @@
               "</div>"; // 인포윈도우에 표시될 내용
 
             // 마커와 인포윈도우를 표시
-            displayMarker(locPosition);        
+            displayMarker(locPosition);
           });
         } else {
           // HTML5의 GeoLocation을 사용할 수 없을때 디폴트 마커 표시 위치와 인포윈도우 내용을 설정
@@ -372,10 +387,10 @@
       // 지도에 마커와 인포윈도우를 표시하는 함수
       displayMarker = (locPosition, message) => {
         // 현위치 마커 이미지 변경
-        let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
+        let imageSrc = "/lcs/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-        
+
         let markerImage = new kakao.maps.MarkerImage(
           imageSrc,
           imageSize,
@@ -500,15 +515,14 @@
               swLatitude: sw2,
             },
           })
-            .then(({ data }) => {
+            .then(({data}) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
               // res(getCafeSyncInfo((cafeData = data.data)));
               // casheData = data.data;
               // res(removeDuplicatesArray(casheData));
               res(getCafeSyncInfo(data.data));
             })
-            .catch((error) => {
-            });
+            .catch((error) => {});
         });
       };
 
@@ -593,7 +607,7 @@
               // "                </div>" +
               '                <button class="info_btn" ' +
               'onclick="' +
-              "location.href='/search/cafe_info.html'" +
+              "location.href='/lcs/search/cafe_info.html'" +
               '"' +
               "> " +
               "상세정보" +
@@ -602,23 +616,24 @@
               "        </div>" +
               "    </div>" +
               "</div>";
+
             // 마커 사용량에 따른 마커 이미지 변경
             // 사용량이 60% 이상일때 Red 마커
             let high = new kakao.maps.MarkerImage(
-              "/img/red.png",
+              "/lcs/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
             // 사용량이 30 ~ 60%일때 Yellow 마커
             let normal = new kakao.maps.MarkerImage(
-              "/img/yellow.png",
+              "/lcs/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
-            
+
             // 사용량이 30% 이하일때 Green 마커
             let low = new kakao.maps.MarkerImage(
-              "/img/green.png",
+              "/lcs/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
@@ -636,7 +651,7 @@
 
             // 클러스터 푸쉬
             markers.push(m);
-            
+
             // console.log(
             //   marker.id +
             //     " " +
@@ -667,18 +682,22 @@
             if (minWidth >= window.outerWidth) {
               // console.log(window.outerWidth);  // 현재 사용중인 화면의 크기 측정
               //마커 클릭시 이벤트 처리
-              let seatTotal = 0;
-              let seatUseTotal = 0;
+
               kakao.maps.event.addListener(m, "click", function () {
                 let seatTotal = 0;
                 let seatUseTotal = 0;
                 let floorTotal = 0;
+                let uu = 0;
+
                 for (let i = 0; i < marker.seatInfos.length; i++) {
                   seatTotal += marker.seatInfos[i].totalSeatCnt;
                   seatUseTotal += marker.seatInfos[i].useSeatCnt;
                   floorTotal = marker.seatInfos[i].floorNumber;
+                  uu = marker.seatInfos[i].useSeatCnt;
+                  console.log(floorTotal + "층");
+                  console.log("사용중인 자리" + uu);
                 }
-                
+
                 // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
                 document.getElementById("content_box").style.visibility =
                   "visible";
@@ -701,7 +720,6 @@
                 seatTotal = 0;
                 seatUseTotal = 0;
                 floorTotal = 0;
-                
               });
 
               kakao.maps.event.addListener(map, "click", function () {
