@@ -220,7 +220,7 @@ table {
   left: 0;
   bottom: 40px;
   width: 500px;
-  height: 170px;
+  height: 110px;
   margin-left: -49px;
   text-align: left;
   overflow: hidden;
@@ -234,30 +234,33 @@ table {
 }
 /* 커스텀 오버레이 내용 부분  */
 .wrap .info {
-  width: 300px;
-  height: 160px;
-  border-radius: 10px;
-  border-bottom: 2px solid rgb(255, 255, 255);
-  border-right: 1px solid #ccc;
+  width: 500px;
+  height: 100px;
+  border-radius: 1px;
+  /* border-bottom: 2px solid rgb(255, 255, 255); */
+  /* border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc; */
   overflow: hidden;
   background: #ffffff;
+  opacity: 0.95;
   font-family: content;
+  box-shadow: 1px 1px 1px 1px #999;
 }
 .wrap .info:nth-child(1) {
   border: 0;
-  box-shadow: 0px 1px 2px #888;
+  /* box-shadow: 1px 1px 2px 1px #888; */
 }
 /* 커스텀 오버레이 타이틀 바 */
 .info .title {
-  padding: 5px 0px 5px 15px;
+  padding: 5px 0px 0px 15px;
   height: 30px;
-  background: #060126;
+  /* background: #060126; */
   border-bottom: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
-  color: #fff;
+  color: #060126;
   font-weight: bold;
-  font-family: title1;
 }
 
 .info .floor {
@@ -274,56 +277,62 @@ table {
 .info .desc {
   position: relative;
   margin: 5px 0 0 5px;
-  height: 200px;
 }
 /* 카페 주소 */
 .desc .addr {
+  padding-top: 2px;
   margin-left: 10px;
   font-size: 1rem;
-  font-weight: bold;
+  width: 370px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 /* 카페 번호 */
 .desc .phone {
   font-size: 15px;
   text-align: left;
-  font-weight: bold;
-  color: #66a986;
+  color: #4780ca;
   margin-left: 11px;
 }
 
 .desc .seat_info {
   font-family: content;
+  font-weight: bold;
   font-size: 13px;
   opacity: 0.9;
-  border: 2px solid #060126;
-  border-radius: 100px;
-  margin-top: 10px;
+  border: 0px solid #060126;
+  margin-top: 12px;
   margin-left: 10px;
-  width: 100px;
   /* border-top: 1px solid #060126; */
   border-collapse: collapse;
   text-align: center;
+  position: absolute;
+  left: 370px;
+  top: -10px;
 }
 
 .useTotalSeatDisplay {
   color: #fc0404;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .totalSeatDisplay {
   color: #0582f7;
   font-weight: bold;
+  font-size: 15px;
 }
 
 .desc .seat_info th,
 td {
-  padding: 3px;
-  border-bottom: 1px solid #060126;
-  border-left: 1px solid #060126;
+  padding: 2px;
+
+  /* border-bottom: 1px solid #060126; */
+  /* border-left: 1px solid #060126; */
 }
 
 .desc .seat_info td {
@@ -373,25 +382,24 @@ td {
 
 /* 커스텀 오버레이 상세정보 버튼  */
 .info_btn {
-  left: 223px;
-  top: -25px;
-  font-size: 0.9rem;
-  padding: 5px;
-  font-weight: bold;
+  left: 425px;
+  top: 4px;
+  font-size: 0.8rem;
+  padding: 6px;
   font-family: content;
   text-transform: uppercase !important;
-  letter-spacing: 2px;
-  color: rgb(238, 238, 238);
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: #fff;
   cursor: hand;
-  text-align: center;
   text-transform: capitalize;
-  position: relative;
+  position: absolute;
   overflow: hidden !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  background: #353232 !important;
+  background: #909496 !important;
   border: none;
   border-radius: 7px;
   z-index: 10;
@@ -406,7 +414,7 @@ td {
   width: 0%;
   height: 100%;
   display: block;
-  background: #0582f7;
+  background: #517ded;
   position: absolute;
   -ms-transform: skewX(-20deg);
   -webkit-transform: skewX(-20deg);
