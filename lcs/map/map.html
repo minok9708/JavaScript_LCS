@@ -183,7 +183,7 @@
             '    <div class="info">' +
             '        <div class="title">' +
             value.name +
-            '                <button class="info_btn" ' +
+            '                <button class="info_btn" id="info_btn" ' +
             'onclick="' +
             "submitData()" +
             '"' +
@@ -318,40 +318,40 @@
             customOverlayA.setMap(map);
             clickedOverlay = customOverlayA;
 
-            // if(){
-            // location.href =
-            //   "/lcs/search/cafe_info.html" +
-            //   "&name:" +
-            //   value.name +
-            //   "&phone" +
-            //   value.phone +
-            //   "&addr" +
-            //   value.parcelAddr +
-            //   "&open" +
-            //   value.openTime +
-            //   "&close" +
-            //   value.closeTime +
-            //   "&seat" +
-            //   value.seatInfos[0].totalSeatCnt;
-            // }
+            let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+            let aa = 0; // 카페의 총 테이블 수 - 임시
+            let cc = 0; // 카페의 빈자리 수 = 임시
+            let ll = 0; // 카페의 총 층수
+
+            for (let i = 0; i < value.seatInfos.length; i++) {
+              tt += value.seatInfos[i].useSeatCnt;
+              aa += value.seatInfos[i].totalSeatCnt;
+              ll = value.seatInfos[i].floorNumber;
+              cc += aa - tt;
+            }
+            console.log(aa);
+
+            document.getElementById("info_btn").onclick = function () {
+              console.log("클릭했습니다");
+              //데이터만 보내면됨
+              console.log(value);
+              console.log(aa);
+
+              location.href =
+                "/lcs/search/cafe_info.html?" +
+                value.name +
+                "&" +
+                value.phone +
+                "&" +
+                value.parcelAddr +
+                "&" +
+                value.openTime +
+                "&" +
+                value.closeTime +
+                "&" +
+                aa;
+            };
           });
-          submitData = () => {
-            console.log(value);
-            location.href =
-              "/lcs/search/cafe_info.html" +
-              "&name:" +
-              value.name +
-              "&phone" +
-              value.phone +
-              "&addr" +
-              value.parcelAddr +
-              "&open" +
-              value.openTime +
-              "&close" +
-              value.closeTime +
-              "&seat" +
-              value.seatInfos[0].totalSeatCnt;
-          };
 
           kakao.maps.event.addListener(map, "click", function () {
             // console.log("맵을 클릭");
@@ -797,7 +797,7 @@
                 // );
 
                 // desktopSeatTotal = 0;
-                // desktopSeatUseTotal = 0;
+                // desktopSeatUseTota  = 0;
               });
             }
           });
