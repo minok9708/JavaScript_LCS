@@ -216,7 +216,7 @@ table {
 /* 모바일 커스텀 오버레이 */
 #content_box {
   position: absolute;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   top: 75vh;
@@ -224,7 +224,7 @@ table {
   width: 95vw;
   height: auto;
   background-color: rgb(255, 255, 255);
-  opacity: 0.95;
+  opacity: 0.9;
   z-index: 0;
   overflow: visible;
 }
@@ -236,26 +236,28 @@ table {
 }
 
 #content_box #content_box_title {
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
   padding: 5px;
+  margin-top: 2px;
   padding-left: 10px;
-  font-family: title;
   color: #000000;
 }
 
 #content_box #content_box_addr {
-  margin-top: 5px;
-  font-family: content;
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
   font-size: 0.9rem;
-  font-weight: 700;
   padding-left: 10px;
 }
 
 #content_box #content_box_phone {
   font-family: content;
-  color: #66a986;
+  padding-top: 5px;
+  color: #4780ca;
   font-size: 0.85rem;
-  font-weight: 700;
-  padding-left: 10px;
+  padding-left: 11px;
 }
 
 #content_box #content_box_useSeatCnt {
@@ -281,6 +283,17 @@ table {
   font-weight: bold;
 }
 
+#content_box_title_info {
+  display: inline-flex;
+}
+
+#content_box_btn {
+  padding: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 0.8rem;
+  margin-left: 78vw;
+}
 /* #content_box #content_box_floorNumber {
   font-family: content;
   font-weight: 700;
@@ -289,9 +302,10 @@ table {
 } */
 
 /* 모바일 오버레이 상세정보 버튼 */
-#content_box_btn {
-  width: 45px;
-  font-size: 0.8rem;
+/* #content_box_btn {
+  font-size: 0.7rem;
+  padding: 5px;
+  margin: 5px;
   font-weight: bold;
   font-family: content;
   text-transform: uppercase !important;
@@ -309,9 +323,9 @@ table {
   background-color: #353232 !important;
   border: none;
   z-index: 10;
-}
+} */
 
-#content_box_btn:hover {
+/* #content_box_btn:hover {
   font-weight: bold;
   color: #ffffff !important;
 }
@@ -340,7 +354,6 @@ table {
   content: "";
   width: 0%;
   height: 100%;
-
   display: block;
   background: #ddddff;
   position: absolute;
@@ -368,4 +381,4 @@ table {
   opacity: 1;
   left: -15px;
   width: 135%;
-}
+} */
