@@ -227,6 +227,8 @@ table {
   opacity: 0.9;
   z-index: 0;
   overflow: visible;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px 1px #000000;
 }
 
 #content_box #test_box {
@@ -237,24 +239,37 @@ table {
 
 #content_box #content_box_title {
   position: absolute;
+  font-family: content;
   font-size: 15px;
   font-weight: bold;
-  padding: 5px;
+  letter-spacing: 3px;
+  padding-top: 3px;
   margin-top: 2px;
+
   padding-left: 10px;
   color: #000000;
 }
 
+#content_box #content_divide {
+  border: 1px solid #ccc;
+}
+
 #content_box #content_box_addr {
-  padding-top: 5px;
-  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  width: 240px;
   font-size: 0.9rem;
   padding-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 #content_box #content_box_phone {
   font-family: content;
-  padding-top: 5px;
+  padding-top: 8px;
+  height: 25px;
   color: #4780ca;
   font-size: 0.85rem;
   padding-left: 11px;
@@ -289,11 +304,50 @@ table {
 
 #content_box_btn {
   padding: 1px;
+  width: 60px;
+  height: auto;
   margin-top: 2px;
   margin-bottom: 2px;
-  font-size: 0.8rem;
+  font-size: 12px;
+  font-weight: bold;
   margin-left: 78vw;
+  background-color: white;
+  color: black;
+  border: 1.5px solid #574343; /* Green */
+  border-radius: 10px;
+  opacity: 0.85;
 }
+
+#seat_info {
+  font-family: content;
+  font-weight: bold;
+  font-size: 12px;
+  opacity: 0.9;
+  border: 0px solid #060126;
+  /* border-top: 1px solid #060126; */
+  border-collapse: collapse;
+  text-align: center;
+  position: absolute;
+  left: 67vw;
+  bottom: 16px;
+}
+
+#seat_info th {
+  padding: 4px;
+}
+
+#useTotalSeatDisplay {
+  color: #fc0404;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#totalSeatDisplay {
+  color: #0582f7;
+  font-weight: bold;
+  font-size: 14px;
+}
+
 /* #content_box #content_box_floorNumber {
   font-family: content;
   font-weight: 700;
