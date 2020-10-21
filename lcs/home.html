@@ -7,16 +7,26 @@
     <!-- 테스트 -->
     <title>Home</title>
     <link href="com/css/home.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    />
 
     <!-- 768px밑으로 넘어가면 모바일 css가 적용됨 -->
-    <link rel="stylesheet" media="screen and (max-width: 768px)" href="com/css/mobile.css" />
+    <link
+      rel="stylesheet"
+      media="screen and (max-width: 768px)"
+      href="com/css/mobile.css"
+    />
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
     <!-- jQuery부분 -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
@@ -37,7 +47,12 @@
             <option id="google" value="google">카페명 검색</option>
             <option id="naver" value="naver">주소명 검색</option>
           </select> -->
-          <form id="form" method="get" action="map/map.html" onsubmit="return keywordCheck();">
+          <form
+            id="form"
+            method="get"
+            action="map/map.html"
+            onsubmit="return keywordCheck();"
+          >
             <input
               type="text"
               class="searchTerm"
@@ -48,7 +63,12 @@
               autocomplete="on"
             />
 
-            <button type="submit" class="searchButton" name="check" value="true">
+            <button
+              type="submit"
+              class="searchButton"
+              name="check"
+              value="true"
+            >
               <i class="fa fa-search"></i>
             </button>
           </form>
@@ -63,37 +83,37 @@
     </form>
 
     <script>
-      let autoData = [] //서버의 카페 이름 받을 변수
+      let autoData = []; //서버의 카페 이름 받을 변수
 
       setTimeout(
         function () {
-          dataSubmit()
-          autoText()
+          dataSubmit();
+          autoText();
         },
         { once: true },
         1000
-      )
+      );
 
       //키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode == 13) {
-          setValue(true) // 실행할 이벤트
+          setValue(true); // 실행할 이벤트
         }
       }
 
       //키워드가 공백인지 아닌지 확인 함수
       function keywordCheck() {
-        let keyword = document.getElementById("searchTerm").value
-        console.log(keyword)
+        let keyword = document.getElementById("searchTerm").value;
+        console.log(keyword);
 
         if (keyword == "") {
-          alert("키워드를 다시 입력해주세요!")
-          return false
+          alert("키워드를 다시 입력해주세요!");
+          return false;
         }
       }
 
       function dataSubmit() {
-        let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/brands"
+        let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/brands";
 
         axios({
           url: searchUrl,
@@ -101,14 +121,14 @@
         })
           .then((data) => {
             // console.log(data.data.data);
-            autoData = data.data.data
+            autoData = data.data.data;
             //console.log(autoData);
             //console.log("데이터 다받음")
-            autoText(autoData)
+            autoText(autoData);
           })
           .catch((error) => {
-            console.log(error.response)
-          })
+            console.log(error.response);
+          });
       }
 
       function autoText(data) {
@@ -118,14 +138,14 @@
           source: autoData, //자동완성 대상
           select: function (event, ui) {
             //아이템을 선택 할 때
-            console.log(ui.item)
+            console.log(ui.item);
           },
           focus: function (event, ui) {
             //한글 에러 잡기 용도로
-            return false
+            return false;
             //event.preventDefault();
           },
-        })
+        });
       }
 
       /* 카페명으로 검색: google(이름)
