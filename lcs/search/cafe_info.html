@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>카패 통합정보 페이지</title>
+    <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   </head>
 
-  <link href="/com/css/cafe_info.css" rel="stylesheet" type="text/css" />
+  <link href="/lcs/com/css/cafe_info.css" rel="stylesheet" type="text/css" />
   <body>
     <div id="content">
-      <div>
-        <h1>스타벅스 지행역점</h1>
+      <div id="cafeName">
+        <h1></h1>
       </div>
       <div id="table_state">
         <p>빈 테이블 수 / 총 테이블 수</p>
@@ -21,15 +23,58 @@
       </div>
       <hr id="mid_line" />
       <div>
-        <p>연락처</p>
-        <hr />
-        <p>주소</p>
-        <hr />
-        <p>영업시간</p>
-        <hr />
-        <p>총 테이블 수</p>
-        <hr />
+        <div id="cafePhone"></div>
+
+        <div id="cafeAddr"></div>
+
+        <div id="cafeOpenTime"></div>
+
+        <div id="cafeAllSeat"></div>
       </div>
     </div>
+    <script>
+      let temp;
+      let data = [];
+
+      temp = location.href.split("?");
+      console.log(`temp값:${temp}`);
+
+      test = temp[1].split("&");
+      console.log(`test값:${test}`);
+
+      name = test[0];
+      console.log("카페명:" + name);
+
+      phone = test[1];
+      console.log("카페연락처:" + phone);
+
+      addr = test[2];
+      console.log("카페 주소:" + addr);
+
+      openTime = test[3];
+      console.log("오픈시간:" + openTime);
+
+      closeTime = test[4];
+      console.log("마감시간:" + closeTime);
+
+      table = test[5];
+      console.log("총 테이블:" + table);
+
+      cafeName = document.getElementById("cafeName");
+      cafeName.innerHTML = "<h1>" + name + "</h1>";
+
+      cafePhone = document.getElementById("cafePhone");
+      cafePhone.innerHTML = "<p>연락처   " + phone + "</p><hr />";
+
+      cafeAddr = document.getElementById("cafeAddr");
+      cafeAddr.innerHTML = "<p>주소   " + addr + "</p><hr />";
+
+      cafeOpenTime = document.getElementById("cafeOpenTime");
+      cafeOpenTime.innerHTML =
+        " <p>영업시간   " + openTime + " ~ " + closeTime + "</p><hr />";
+
+      cafeAllSeat = document.getElementById("cafeAllSeat");
+      cafeAllSeat.innerHTML = "<p>총 테이블 수   " + table + "</p><hr />";
+    </script>
   </body>
 </html>
