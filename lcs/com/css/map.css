@@ -245,7 +245,7 @@ table {
   background: #ffffff;
   opacity: 0.95;
   font-family: content;
-  box-shadow: 1px 1px 1px 1px #999;
+  box-shadow: 0px 0px 2px 1px #999;
 }
 .wrap .info:nth-child(1) {
   border: 0;
