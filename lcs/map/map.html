@@ -2,7 +2,7 @@
 <!-- 화면 꽉차게 height: 100% -->
 <html lang="en" style="height: 100%">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
@@ -322,20 +322,26 @@
             let aa = 0; // 카페의 총 테이블 수 - 임시
             let cc = 0; // 카페의 빈자리 수 = 임시
             let ll = 0; // 카페의 총 층수
+            let bb = []; //카페 해당하는 층의 사용중인 자리수
 
             for (let i = 0; i < value.seatInfos.length; i++) {
+              bb[i] = value.seatInfos[i].useSeatCnt;
               tt += value.seatInfos[i].useSeatCnt;
               aa += value.seatInfos[i].totalSeatCnt;
               ll = value.seatInfos[i].floorNumber;
               cc += aa - tt;
             }
-            console.log(aa);
+            console.log("총 테이블 수" + aa);
+            console.log("층 넘버" + ll);
 
+            //상세페이지로 데이터 전송
             document.getElementById("info_btn").onclick = function () {
               console.log("클릭했습니다");
               //데이터만 보내면됨
               console.log(value);
-              console.log(aa);
+              //console.log(aa);
+              //console.log(ll);
+              console.log(bb);
 
               location.href =
                 "/lcs/search/cafe_info.html?" +
@@ -349,7 +355,11 @@
                 "&" +
                 value.closeTime +
                 "&" +
-                aa;
+                aa +
+                "&" +
+                ll +
+                "&" +
+                bb;
             };
           });
 
@@ -581,9 +591,9 @@
               '    <div class="info">' +
               '        <div class="title">' +
               marker.name +
-              '                <button class="info_btn" ' +
+              '                <button class="info_btn" id="info_btn" ' +
               'onclick="' +
-              "location.href='/search/cafe_info.html'" +
+              "submitData()" +
               '"' +
               "> " +
               "상세정보" +
@@ -629,13 +639,6 @@
               // aa +
               // "</div>" +
               // "                </div>" +
-              '                <button class="info_btn" ' +
-              'onclick="' +
-              "location.href='/lcs/search/cafe_info.html'" +
-              '"' +
-              "> " +
-              "상세정보" +
-              "</button>" +
               // "            </>" +
               "        </div>" +
               "    </div>" +
@@ -779,6 +782,30 @@
                 // 커스텀 오버레이의 z-index값 파악
                 // console.log(customOverlay.getZIndex());
                 clickedOverlay = customOverlay;
+
+                document.getElementById("info_btn").onclick = function () {
+                  console.log("클릭했습니다");
+                  //데이터만 보내면됨
+                  console.log(marker);
+                  console.log(uu);
+                  console.log(seatTotal);
+
+                  /* location.href =
+                    "/lcs/search/cafe_info.html?" +
+                    marker.name +
+                    "&" +
+                    marker.phone +
+                    "&" +
+                    marker.parcelAddr +
+                    "&" +
+                    marker.openTime +
+                    "&" +
+                    marker.closeTime +
+                    "&" +
+                    aa +
+                    "&" +
+                    ll; */
+                };
 
                 kakao.maps.event.addListener(map, "click", function () {
                   customOverlay.setMap(null);

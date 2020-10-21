@@ -16,10 +16,7 @@
       </div>
       <div id="table_state">
         <p>빈 테이블 수 / 총 테이블 수</p>
-        <p>1층</p>
-        <p>2층</p>
-        <p>3층</p>
-        <p>4층</p>
+        <div id="tableInfo"></div>
       </div>
       <hr id="mid_line" />
       <div>
@@ -35,6 +32,7 @@
     <script>
       let temp;
       let data = [];
+      let i = 0;
 
       temp = location.href.split("?");
       console.log(`temp값:${temp}`);
@@ -60,6 +58,15 @@
       table = test[5];
       console.log("총 테이블:" + table);
 
+      floor = test[6];
+      console.log("층 수:" + floor);
+
+      floorSeat = test[7];
+      console.log("층 별 자리수:" + floorSeat);
+      toArray = floorSeat.split(",");
+      console.log(typeof floorSeat);
+      console.log(toArray);
+
       cafeName = document.getElementById("cafeName");
       cafeName.innerHTML = "<h1>" + name + "</h1>";
 
@@ -75,6 +82,12 @@
 
       cafeAllSeat = document.getElementById("cafeAllSeat");
       cafeAllSeat.innerHTML = "<p>총 테이블 수   " + table + "</p><hr />";
+
+      tableInfo = document.getElementById("tableInfo");
+
+      for (i = 0; i < floor; i++) {
+        tableInfo.innerHTML += "<p>" + (i + 1) + "층 " + toArray[i] + "</p>";
+      }
     </script>
   </body>
 </html>
