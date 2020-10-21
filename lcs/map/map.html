@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
     />
-
+    <!-- 테스트 -->
     <!-- 타이틀바 이름 -->
     <title>Map</title>
 
@@ -57,7 +57,12 @@
         onkeypress="enterSearch()"
       />
 
-      <button id="search_Btn" type="button" value="검색" onclick="searchPlaces()">
+      <button
+        id="search_Btn"
+        type="button"
+        value="검색"
+        onclick="searchPlaces()"
+      >
         <i class="fa fa-search"></i>
       </button>
     </form>
@@ -91,56 +96,56 @@
     </div>
     <script>
       //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
-      let clickedOverlay = null
-      let temp
-      let data = []
-      temp = location.href.split("?")
+      let clickedOverlay = null;
+      let temp;
+      let data = [];
+      temp = location.href.split("?");
       //console.log(`temp값:${temp}`);
-      test = temp[1].split("&")
+      test = temp[1].split("&");
       //console.log(`test값:${test}`);
 
-      keyword = test[0].split("=")
+      keyword = test[0].split("=");
       //console.log(`keyword 값: ${keyword[1]}`);
-      keyword = keyword[1]
+      keyword = keyword[1];
       //console.log(keyword);
 
-      check = test[1].split("=")
+      check = test[1].split("=");
       //console.log(`check 값: ${check[1]}`);
-      check = check[1]
+      check = check[1];
       //console.log(check);
 
       //  컨테이너에 div 값을 가져오는 코드
-      const container = document.getElementById("map")
+      const container = document.getElementById("map");
       // 맵 초기기본옵션 설정
       const options = {
         center: new kakao.maps.LatLng(37.5906981, 127.0739813),
         level: 5,
         draggable: true,
-      }
+      };
       // 카카오맵 컨테이너 인자값과 옵션인자값을 주고 생성
-      let map = new kakao.maps.Map(container, options)
+      let map = new kakao.maps.Map(container, options);
 
       let clusterer = new kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
         minLevel: 8, // 클러스터 할 최소 지도 레벨
-      })
+      });
 
       // 지도 줌인 레벨 조정
-      map.setMinLevel(3)
+      map.setMinLevel(3);
       // 지도 줌아웃 레벨 조정
-      map.setMaxLevel(10)
+      map.setMaxLevel(10);
       // 지도에 확대 축소 컨트롤을 생성
-      let zoomControl = new kakao.maps.ZoomControl()
+      let zoomControl = new kakao.maps.ZoomControl();
       // 지도의 우측에 확대 축소 컨트롤을 추가
-      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT)
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       // 맵 객체가 실행후 0.1초후에 실행
       setTimeout(() => {
         if (check === "true") {
           //console.log("검색바로 검색햇을때 서버로 데이터 요청");
-          findLocation()
+          findLocation();
 
-          let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/"
+          let searchUrl = "https://cafeaddy.xyz:8080/api/cafes/name/";
           // console.log(keyword);
           axios({
             url: searchUrl + keyword,
@@ -150,36 +155,36 @@
               // console.log(searchUrl+keyword);
 
               //console.log(data.data.data);
-              getSearchMarkerInfo(data.data.data)
+              getSearchMarkerInfo(data.data.data);
             })
             .catch((error) => {
-              console.log(error.response)
-            })
+              console.log(error.response);
+            });
         } else if (check === "false") {
-          findLocation()
-          searchPlaces()
+          findLocation();
+          searchPlaces();
         }
-      }, 100)
+      }, 100);
 
       // 키보드로 엔터를 눌럿을때
       function enterSearch() {
         if (event.keyCode === 13) {
-          searchPlaces() // 실행할 이벤트
+          searchPlaces(); // 실행할 이벤트
         }
       }
 
       getSearchMarkerInfo = (keywordList) => {
         keywordList.map((value, index) => {
-          let tt = 0 // 카페의 총 사용중인 테이블 - 임시
-          let aa = 0 // 카페의 총 테이블 수 - 임시
-          let cc = 0 // 카페의 빈자리 수 = 임시
-          let ll = 0 // 카페의 총 층수
+          let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+          let aa = 0; // 카페의 총 테이블 수 - 임시
+          let cc = 0; // 카페의 빈자리 수 = 임시
+          let ll = 0; // 카페의 총 층수
 
           for (let i = 0; i < value.seatInfos.length; i++) {
-            tt += value.seatInfos[i].useSeatCnt
-            aa += value.seatInfos[i].totalSeatCnt
-            ll = value.seatInfos[i].floorNumber
-            cc += aa - tt
+            tt += value.seatInfos[i].useSeatCnt;
+            aa += value.seatInfos[i].totalSeatCnt;
+            ll = value.seatInfos[i].floorNumber;
+            cc += aa - tt;
           }
 
           let contenta =
@@ -223,7 +228,7 @@
             "</table>" +
             "        </div>" +
             "    </div>" +
-            "</div>"
+            "</div>";
 
           // 마커 사용량에 따른 마커 이미지 변경
           // 사용량이 60% 이상일때 Red 마커
@@ -231,20 +236,20 @@
             "/img/red.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
-          )
+          );
           // 사용량이 30 ~ 60%일때 Yellow 마커
           let normal = new kakao.maps.MarkerImage(
             "/img/yellow.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
-          )
+          );
 
           // 사용량이 30% 이하일때 Green 마커
           let low = new kakao.maps.MarkerImage(
             "/img/green.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
-          )
+          );
 
           let keywordMarker = new kakao.maps.Marker({
             map: map,
@@ -252,99 +257,106 @@
             // 마커 아이콘 이미지
             // image: markerImage,
             title: value.name,
-          })
+          });
 
           if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
-            keywordMarker.setImage(low)
+            keywordMarker.setImage(low);
           } else if ((tt / aa) * 100 >= 30 && 60 >= (tt / aa) * 100) {
-            keywordMarker.setImage(normal)
+            keywordMarker.setImage(normal);
           } else if ((tt / aa) * 100 > 60 && 100 >= (tt / aa) * 100) {
-            keywordMarker.setImage(high)
+            keywordMarker.setImage(high);
           }
 
-          tt = 0
-          aa = 0
-          cc = 0
-          ll = 0
+          tt = 0;
+          aa = 0;
+          cc = 0;
+          ll = 0;
 
-          let mmm = new kakao.maps.LatLng(value.latitude, value.longitude)
+          let mmm = new kakao.maps.LatLng(value.latitude, value.longitude);
 
-          map.panTo(mmm)
+          map.panTo(mmm);
 
-          let clickedOverlayA = null
-          let minWidth = 768
+          let clickedOverlayA = null;
+          let minWidth = 768;
 
           if (minWidth >= window.outerWidth) {
-            console.log("true")
+            console.log("true");
             kakao.maps.event.addListener(keywordMarker, "click", function () {
-              let seatTotal = 0
-              let seatUseTotal = 0
-              let floorTotal = 0
+              let seatTotal = 0;
+              let seatUseTotal = 0;
+              let floorTotal = 0;
               for (let i = 0; i < value.seatInfos.length; i++) {
-                seatTotal += value.seatInfos[i].totalSeatCnt
-                seatUseTotal += value.seatInfos[i].useSeatCnt
-                floorTotal = value.seatInfos[i].floorNumber
+                seatTotal += value.seatInfos[i].totalSeatCnt;
+                seatUseTotal += value.seatInfos[i].useSeatCnt;
+                floorTotal = value.seatInfos[i].floorNumber;
               }
 
               // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
-              document.getElementById("content_box").style.visibility = "visible"
-              document.getElementById("content_box_title").innerHTML = value.name
-              document.getElementById("content_box_addr").innerHTML = value.parcelAddr
-              document.getElementById("content_box_phone").innerHTML = value.phone
-              document.getElementById("useTotalSeatDisplay").innerHTML = seatUseTotal
-              document.getElementById("totalSeatDisplay").innerHTML = seatTotal
+              document.getElementById("content_box").style.visibility =
+                "visible";
+              document.getElementById("content_box_title").innerHTML =
+                value.name;
+              document.getElementById("content_box_addr").innerHTML =
+                value.parcelAddr;
+              document.getElementById("content_box_phone").innerHTML =
+                value.phone;
+              document.getElementById(
+                "useTotalSeatDisplay"
+              ).innerHTML = seatUseTotal;
+              document.getElementById("totalSeatDisplay").innerHTML = seatTotal;
 
-              seatTotal = 0
-              seatUseTotal = 0
-              floorTotal = 0
-            })
+              seatTotal = 0;
+              seatUseTotal = 0;
+              floorTotal = 0;
+            });
 
             kakao.maps.event.addListener(map, "click", function () {
-              document.getElementById("content_box").style.visibility = "hidden"
-            })
+              document.getElementById("content_box").style.visibility =
+                "hidden";
+            });
           } else {
-            console.log("false")
+            console.log("false");
             kakao.maps.event.addListener(keywordMarker, "click", function () {
               // 커스텀 오버레이 z-index 값 설정
-              customOverlayA.setZIndex(3)
+              customOverlayA.setZIndex(3);
 
               if (clickedOverlayA) {
-                clickedOverlayA.setMap(null)
+                clickedOverlayA.setMap(null);
               }
-              customOverlayA.setMap(map)
+              customOverlayA.setMap(map);
 
-              clickedOverlayA = customOverlayA
-            })
+              clickedOverlayA = customOverlayA;
+            });
 
             let customOverlayA = new kakao.maps.CustomOverlay({
               position: keywordMarker.getPosition(),
               content: contenta,
               clickable: true,
               zindex: 9999,
-            })
+            });
 
             kakao.maps.event.addListener(keywordMarker, "click", function () {
               // console.log("마커를 클릭");
 
               // 커스텀 오버레이 z-index 값 설정
-              customOverlayA.setZIndex(3)
+              customOverlayA.setZIndex(3);
               if (clickedOverlay) {
-                clickedOverlay.setMap(null)
+                clickedOverlay.setMap(null);
               }
-              customOverlayA.setMap(map)
-              clickedOverlay = customOverlayA
-            })
+              customOverlayA.setMap(map);
+              clickedOverlay = customOverlayA;
+            });
 
             kakao.maps.event.addListener(map, "click", function () {
               // console.log("맵을 클릭");
-              customOverlayA.setMap(null)
-            })
+              customOverlayA.setMap(null);
+            });
           }
-        })
-      }
+        });
+      };
 
       // 장소 검색 객체를 생성합니다
-      let ps = new kakao.maps.services.Places()
+      let ps = new kakao.maps.services.Places();
 
       findLocation = () => {
         // 현위치 마커 표시
@@ -353,9 +365,9 @@
           // GeoLocation을 이용해서 접속 위치를 얻어오는것
           navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude, // 현위치 위도
-              lon = position.coords.longitude // 현위치 경도
+              lon = position.coords.longitude; // 현위치 경도
 
-            let locPosition = new kakao.maps.LatLng(lat, lon) // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
+            let locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
             // 변수안에 html을 표현할때 변수를 넣고자 하면 +를 사용 하여 스트링과 분리하여 자바처럼 변수를 넣으면됨
             // 반복문일 경우 lat[i] lon[i] title[i] 이런식으로 사용가능
             message =
@@ -365,50 +377,54 @@
               // "<br>" +
               // "위도: " +
               // lon +
-              "</div>" // 인포윈도우에 표시될 내용
+              "</div>"; // 인포윈도우에 표시될 내용
 
             // 마커와 인포윈도우를 표시
-            displayMarker(locPosition)
-          })
+            displayMarker(locPosition);
+          });
         } else {
           // HTML5의 GeoLocation을 사용할 수 없을때 디폴트 마커 표시 위치와 인포윈도우 내용을 설정
           let locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-            message = "geolocation을 사용할수 없어요.."
-          displayMarker(locPosition)
+            message = "geolocation을 사용할수 없어요..";
+          displayMarker(locPosition);
         }
         {
           //옵션
-          enableHighAccuracy = true //베터리를 소모해서 더 정확한 위치를 찾음
-          maximumAge = 0 //한번찾은 위치정보를 해당 초만큼 캐싱
-          timeout = Infinity //주어진 초에 찾지못하면 에러발생
+          enableHighAccuracy = true; //베터리를 소모해서 더 정확한 위치를 찾음
+          maximumAge = 0; //한번찾은 위치정보를 해당 초만큼 캐싱
+          timeout = Infinity; //주어진 초에 찾지못하면 에러발생
         }
-      }
+      };
 
       // 지도에 마커와 인포윈도우를 표시하는 함수
       displayMarker = (locPosition, message) => {
         // 현위치 마커 이미지 변경
         let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
-          imageOption = { offset: new kakao.maps.Point(27, 69) } // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+        let markerImage = new kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption
+        );
 
         // 마커 생성
         let marker = new kakao.maps.Marker({
           map: map,
           position: locPosition,
           image: markerImage,
-        })
+        });
 
         // 지도 중심좌표를 접속위치로 시점 변환으로 변경
         // setCenter 함수로도 할수있음 하지만 시점변환을 부드럽게 하고자 하기위해 panTo사용
-        map.panTo(locPosition)
-      }
+        map.panTo(locPosition);
+      };
 
       //키워드로 장소 겁색
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces() {
-        let keyword = document.getElementById("search_Box").value
+        let keyword = document.getElementById("search_Box").value;
         // console.log(keyword);
         // if (!keyword.replace(/^\s+|\s+$/g, "")) {
         //   alert("키워드를 입력해주세요!");
@@ -416,7 +432,7 @@
         // }
 
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-        ps.keywordSearch(keyword, placesSearchCB)
+        ps.keywordSearch(keyword, placesSearchCB);
       }
 
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -424,29 +440,29 @@
         if (status === kakao.maps.services.Status.OK) {
           // 정상적으로 검색이 완료됐으면
           // console.log("장소검색 완료");
-          displayPlaces(data)
+          displayPlaces(data);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-          alert("검색 결과가 존재하지 않습니다.")
-          return
+          alert("검색 결과가 존재하지 않습니다.");
+          return;
         } else if (status === kakao.maps.services.Status.ERROR) {
-          alert("검색 결과 중 오류가 발생했습니다.")
-          return
+          alert("검색 결과 중 오류가 발생했습니다.");
+          return;
         }
       }
 
       // 검색 결과 목록과 마커를 표출하는 함수입니다
       function displayPlaces(places) {
-        bounds = new kakao.maps.LatLngBounds()
+        bounds = new kakao.maps.LatLngBounds();
 
         for (let i = 0; i < places.length; i++) {
           // 마커를 생성하고 지도에 표시합니다
-          let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x)
+          let placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
-          bounds.extend(placePosition)
+          bounds.extend(placePosition);
         }
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        map.panTo(bounds)
+        map.panTo(bounds);
       }
 
       const map_idle = kakao.maps.event.addListener(map, "idle", function () {
@@ -456,20 +472,20 @@
         // 비동기 실행순서 : A B C 가 있으면 B -> A -> C , A -> C -> B 이런식으로 순서가 뒤죽박죽
 
         // 지도 영역정보를 얻어오기
-        let bounds = map.getBounds()
+        let bounds = map.getBounds();
 
         // 영역정보의 남서쪽 정보 얻어오기
-        let swLatlng = bounds.getSouthWest()
+        let swLatlng = bounds.getSouthWest();
 
         // 영역정보의 북동쪽 정보 얻어오기
-        let neLatlng = bounds.getNorthEast()
+        let neLatlng = bounds.getNorthEast();
 
         // 영역정보의 남서쪽 위도, 경도값 변수
-        let swLatitude = swLatlng.getLat()
-        let swLongitude = swLatlng.getLng()
+        let swLatitude = swLatlng.getLat();
+        let swLongitude = swLatlng.getLng();
         // 영역정보의 북동쪽 위도, 경도값 변수
-        let neLatitude = neLatlng.getLat()
-        let neLongitude = neLatlng.getLng()
+        let neLatitude = neLatlng.getLat();
+        let neLongitude = neLatlng.getLng();
 
         let message =
           "지도의 중심좌표는 " +
@@ -478,13 +494,13 @@
           "\n" +
           "확대 레벨은 " +
           map.getLevel() +
-          " 레벨 입니다."
+          " 레벨 입니다.";
 
         //idle 이벤트가 끝날때마다 getCafeInfo함수로 경계값 데이터를 보냄
         if (check === "false") {
-          getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude)
+          getCafeInfo(neLongitude, neLatitude, swLongitude, swLatitude);
         }
-      })
+      });
 
       // getCafeInfo : 받은 데이터를 가지고 서버와 통신을해 데이터를 받는 함수
       const getCafeInfo = (ne1, ne2, sw1, sw2) => {
@@ -492,7 +508,7 @@
         //   프로미스의 목적은 어지간한게 비동기적으로 돌아가는 자바스크립트에서 순차적실행을 위하여 사용
         return new Promise((res, reject) => {
           // 마커데이터 불러오는 통신코드
-          let mapUrl = "https://cafeaddy.xyz:8080/api/cafes/around"
+          let mapUrl = "https://cafeaddy.xyz:8080/api/cafes/around";
           axios({
             method: "get",
             headers: {
@@ -510,11 +526,11 @@
           })
             .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
-              res(getCafeSyncInfo(data.data))
+              res(getCafeSyncInfo(data.data));
             })
-            .catch((error) => {})
-        })
-      }
+            .catch((error) => {});
+        });
+      };
 
       // getCafeSyncInfo 함수는 위에서 보내온 데이터를 받아서 다시 bbb함수로 전달
       getCafeSyncInfo = (cafeData) => {
@@ -522,31 +538,31 @@
           if (cafeData) {
             //console.log("마커데이터가 받아진것같습니다.");
             //console.log(cafeData);
-            res(getCafeSyncInfoTrue(cafeData))
+            res(getCafeSyncInfoTrue(cafeData));
           } else {
             // reject(console.log("아직 데이터가 완전히 받아지지 않았음"));
           }
-        })
-      }
+        });
+      };
 
       //getCafeSyncInfo함수가 참(트루) 그러니깐 완벽히 수행이 되었을때 getCafeSyncInfoTrue함수로 보내온 데이터를 바탕으로 맵함수를 사용해서 마커를 생성
       getCafeSyncInfo(true).then(
         (getCafeSyncInfoTrue = (cafe) => {
-          let markers = []
+          let markers = [];
           // 클러스터 초기화
-          clusterer.clear()
+          clusterer.clear();
 
           cafe.map((marker, index) => {
-            let tt = 0 // 카페의 총 사용중인 테이블 - 임시
-            let aa = 0 // 카페의 총 테이블 수 - 임시
-            let cc = 0 // 카페의 빈자리 수 = 임시
-            let ll = 0 // 카페의 총 층수
+            let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+            let aa = 0; // 카페의 총 테이블 수 - 임시
+            let cc = 0; // 카페의 빈자리 수 = 임시
+            let ll = 0; // 카페의 총 층수
 
             for (let i = 0; i < marker.seatInfos.length; i++) {
-              tt += marker.seatInfos[i].useSeatCnt
-              aa += marker.seatInfos[i].totalSeatCnt
-              ll = marker.seatInfos[i].floorNumber
-              cc += aa - tt
+              tt += marker.seatInfos[i].useSeatCnt;
+              aa += marker.seatInfos[i].totalSeatCnt;
+              ll = marker.seatInfos[i].floorNumber;
+              cc += aa - tt;
             }
 
             let content =
@@ -588,7 +604,7 @@
               "</table>" +
               "        </div>" +
               "    </div>" +
-              "</div>"
+              "</div>";
 
             // 마커 사용량에 따른 마커 이미지 변경
             // 사용량이 60% 이상일때 Red 마커
@@ -596,77 +612,89 @@
               "/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
-            )
+            );
 
             // 사용량이 30 ~ 60%일때 Yellow 마커
             let normal = new kakao.maps.MarkerImage(
               "/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
-            )
+            );
 
             // 사용량이 30% 이하일때 Green 마커
             let low = new kakao.maps.MarkerImage(
               "/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
-            )
+            );
 
             // 마커 객체 생성 이름은 m - 나중에 변경
             let m = new kakao.maps.Marker({
               map: map,
-              position: new kakao.maps.LatLng(marker.latitude, marker.longitude),
+              position: new kakao.maps.LatLng(
+                marker.latitude,
+                marker.longitude
+              ),
               // 마커 아이콘 이미지
               title: marker.name,
-            })
+            });
 
             // 클러스터 푸쉬
-            markers.push(m)
+            markers.push(m);
 
             if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
-              m.setImage(low)
+              m.setImage(low);
             } else if ((tt / aa) * 100 >= 30 && 60 >= (tt / aa) * 100) {
-              m.setImage(normal)
+              m.setImage(normal);
             } else if ((tt / aa) * 100 > 60 && 100 >= (tt / aa) * 100) {
-              m.setImage(high)
+              m.setImage(high);
             }
 
-            tt = 0
-            aa = 0
-            cc = 0
-            ll = 0
+            tt = 0;
+            aa = 0;
+            cc = 0;
+            ll = 0;
 
-            let minWidth = 768
+            let minWidth = 768;
             // 모바일일때
             if (minWidth >= window.outerWidth) {
               //마커 클릭시 이벤트 처리
 
               kakao.maps.event.addListener(m, "click", function () {
-                let seatTotal = 0
-                let seatUseTotal = 0
-                let floorTotal = 0
+                let seatTotal = 0;
+                let seatUseTotal = 0;
+                let floorTotal = 0;
                 for (let i = 0; i < marker.seatInfos.length; i++) {
-                  seatTotal += marker.seatInfos[i].totalSeatCnt
-                  seatUseTotal += marker.seatInfos[i].useSeatCnt
-                  floorTotal = marker.seatInfos[i].floorNumber
+                  seatTotal += marker.seatInfos[i].totalSeatCnt;
+                  seatUseTotal += marker.seatInfos[i].useSeatCnt;
+                  floorTotal = marker.seatInfos[i].floorNumber;
                 }
 
                 // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
-                document.getElementById("content_box").style.visibility = "visible"
-                document.getElementById("content_box_title").innerHTML = marker.name
-                document.getElementById("content_box_addr").innerHTML = marker.parcelAddr
-                document.getElementById("content_box_phone").innerHTML = marker.phone
-                document.getElementById("useTotalSeatDisplay").innerHTML = seatUseTotal
-                document.getElementById("totalSeatDisplay").innerHTML = seatTotal
+                document.getElementById("content_box").style.visibility =
+                  "visible";
+                document.getElementById("content_box_title").innerHTML =
+                  marker.name;
+                document.getElementById("content_box_addr").innerHTML =
+                  marker.parcelAddr;
+                document.getElementById("content_box_phone").innerHTML =
+                  marker.phone;
+                document.getElementById(
+                  "useTotalSeatDisplay"
+                ).innerHTML = seatUseTotal;
+                document.getElementById(
+                  "totalSeatDisplay"
+                ).innerHTML = seatTotal;
 
-                seatTotal = 0
-                seatUseTotal = 0
-                floorTotal = 0
-              })
+                seatTotal = 0;
+                seatUseTotal = 0;
+                floorTotal = 0;
+              });
 
               kakao.maps.event.addListener(map, "click", function () {
-                document.getElementById("content_box").style.visibility = "hidden"
-              })
+                document.getElementById("content_box").style.visibility =
+                  "hidden";
+              });
             } else {
               // 커스텀 오버레이를 생성합니다
               let customOverlay = new kakao.maps.CustomOverlay({
@@ -674,31 +702,31 @@
                 content: content,
                 clickable: true,
                 zindex: 3,
-              })
+              });
 
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
                 // 커스텀 오버레이 z-index 값 설정
-                customOverlay.setZIndex(3)
+                customOverlay.setZIndex(3);
                 if (clickedOverlay) {
                   //console.log("null이 아닐때");
-                  clickedOverlay.setMap(null)
+                  clickedOverlay.setMap(null);
                 }
-                customOverlay.setMap(map)
+                customOverlay.setMap(map);
                 // 커스텀 오버레이의 z-index값 파악
                 // console.log(customOverlay.getZIndex());
-                clickedOverlay = customOverlay
+                clickedOverlay = customOverlay;
 
                 kakao.maps.event.addListener(map, "click", function () {
-                  customOverlay.setMap(null)
-                })
-              })
+                  customOverlay.setMap(null);
+                });
+              });
             }
-          })
+          });
           // 클러스터에 마커 추가
-          clusterer.addMarkers(markers)
+          clusterer.addMarkers(markers);
         })
-      )
+      );
     </script>
   </body>
 </html>
