@@ -329,7 +329,7 @@
                 console.log(dd);
 
                 location.href =
-                  "/search/cafe_info.html?" +
+                  "/search/cafe_info?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -361,7 +361,7 @@
           }
           // 키워드로 검색했을때 데스크탑
           else {
-            console.log("false"); // 데스크탑
+            //console.log("false"); // 데스크탑
             kakao.maps.event.addListener(keywordMarker, "click", function () {
               // 커스텀 오버레이 z-index 값 설정
               customOverlayA.setZIndex(3);
@@ -422,7 +422,7 @@
                 console.log(dd);
 
                 location.href =
-                  "/search/cafe_info.html?" +
+                  "/search/cafe_info?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -838,7 +838,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/search/cafe_info.html?" +
+                    "/search/cafe_info?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -920,7 +920,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/search/cafe_info.html?" +
+                    "/search/cafe_info?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -948,7 +948,7 @@
                 // console.log(
                 //   marker.name + " 총 테이블 : " + desktopSeatTotal + "개"
                 // );
-
+                0;
                 // console.log(
                 //   marker.name +
                 //     " 사용중인 총 테이블 : " +
