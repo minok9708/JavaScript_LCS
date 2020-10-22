@@ -16,10 +16,7 @@
       </div>
       <div id="table_state">
         <p>빈 테이블 수 / 총 테이블 수</p>
-        <p>1층</p>
-        <p>2층</p>
-        <p>3층</p>
-        <p>4층</p>
+        <div id="tableInfo"></div>
       </div>
       <hr id="mid_line" />
       <div>
@@ -35,6 +32,7 @@
     <script>
       let temp;
       let data = [];
+      let i = 0;
 
       temp = location.href.split("?");
       console.log(`temp값:${temp}`);
@@ -60,14 +58,31 @@
       table = test[5];
       console.log("총 테이블:" + table);
 
+      floor = test[6];
+      console.log("층 수:" + floor);
+
+      //층별 사용하는 자릿수
+      floorSeat = test[7];
+      console.log("층 별 사용하는 자리수:" + floorSeat);
+      toArray = floorSeat.split(",");
+      console.log(typeof floorSeat);
+      console.log(toArray);
+
+      //층별 총 테이블 수
+      totalSeat = test[8];
+      console.log("층별 총 테이블 수 " + totalSeat);
+      totalSeatArray = totalSeat.split(",");
+      console.log(typeof floorSeat);
+      console.log(totalSeatArray);
+
       cafeName = document.getElementById("cafeName");
-      cafeName.innerHTML = "<h1>" + name + "</h1>";
+      cafeName.innerHTML = "<h1>" + decodeURI(name) + "</h1>";
 
       cafePhone = document.getElementById("cafePhone");
       cafePhone.innerHTML = "<p>연락처   " + phone + "</p><hr />";
 
       cafeAddr = document.getElementById("cafeAddr");
-      cafeAddr.innerHTML = "<p>주소   " + addr + "</p><hr />";
+      cafeAddr.innerHTML = "<p>주소   " + decodeURI(addr) + "</p><hr />";
 
       cafeOpenTime = document.getElementById("cafeOpenTime");
       cafeOpenTime.innerHTML =
@@ -75,6 +90,19 @@
 
       cafeAllSeat = document.getElementById("cafeAllSeat");
       cafeAllSeat.innerHTML = "<p>총 테이블 수   " + table + "</p><hr />";
+
+      tableInfo = document.getElementById("tableInfo");
+
+      for (i = 0; i < floor; i++) {
+        tableInfo.innerHTML +=
+          "<p>" +
+          (i + 1) +
+          "층 " +
+          (totalSeatArray[i] - toArray[i]) +
+          " / " +
+          totalSeatArray[i] +
+          "</p>";
+      }
     </script>
   </body>
 </html>
