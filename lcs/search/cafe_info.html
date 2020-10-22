@@ -61,20 +61,28 @@
       floor = test[6];
       console.log("층 수:" + floor);
 
+      //층별 사용하는 자릿수
       floorSeat = test[7];
-      console.log("층 별 자리수:" + floorSeat);
+      console.log("층 별 사용하는 자리수:" + floorSeat);
       toArray = floorSeat.split(",");
       console.log(typeof floorSeat);
       console.log(toArray);
 
+      //층별 총 테이블 수
+      totalSeat = test[8];
+      console.log("층별 총 테이블 수 " + totalSeat);
+      totalSeatArray = totalSeat.split(",");
+      console.log(typeof floorSeat);
+      console.log(totalSeatArray);
+
       cafeName = document.getElementById("cafeName");
-      cafeName.innerHTML = "<h1>" + name + "</h1>";
+      cafeName.innerHTML = "<h1>" + decodeURI(name) + "</h1>";
 
       cafePhone = document.getElementById("cafePhone");
       cafePhone.innerHTML = "<p>연락처   " + phone + "</p><hr />";
 
       cafeAddr = document.getElementById("cafeAddr");
-      cafeAddr.innerHTML = "<p>주소   " + addr + "</p><hr />";
+      cafeAddr.innerHTML = "<p>주소   " + decodeURI(addr) + "</p><hr />";
 
       cafeOpenTime = document.getElementById("cafeOpenTime");
       cafeOpenTime.innerHTML =
@@ -86,7 +94,14 @@
       tableInfo = document.getElementById("tableInfo");
 
       for (i = 0; i < floor; i++) {
-        tableInfo.innerHTML += "<p>" + (i + 1) + "층 " + toArray[i] + "</p>";
+        tableInfo.innerHTML +=
+          "<p>" +
+          (i + 1) +
+          "층 " +
+          (totalSeatArray[i] - toArray[i]) +
+          " / " +
+          totalSeatArray[i] +
+          "</p>";
       }
     </script>
   </body>
