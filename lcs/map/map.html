@@ -28,7 +28,7 @@
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
     <!-- 외부 css파일 사용 -->
-    <link href="/lcs/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 링크 -->
     <link
@@ -41,7 +41,7 @@
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/lcs/com/css/mobile_map.css"
+      href="/com/css/mobile_map.css"
       type="text/css"
     />
   </head>
@@ -238,20 +238,20 @@
           // 마커 사용량에 따른 마커 이미지 변경
           // 사용량이 60% 이상일때 Red 마커
           let high = new kakao.maps.MarkerImage(
-            "/lcs/img/red.png",
+            "/img/red.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
           // 사용량이 30 ~ 60%일때 Yellow 마커
           let normal = new kakao.maps.MarkerImage(
-            "/lcs/img/yellow.png",
+            "/img/yellow.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
 
           // 사용량이 30% 이하일때 Green 마커
           let low = new kakao.maps.MarkerImage(
-            "/lcs/img/green.png",
+            "/img/green.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
@@ -329,7 +329,7 @@
                 console.log(dd);
 
                 location.href =
-                  "/lcs/search/cafe_info.html?" +
+                  "/search/cafe_info.html?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -422,7 +422,7 @@
                 console.log(dd);
 
                 location.href =
-                  "/lcs/search/cafe_info.html?" +
+                  "/search/cafe_info.html?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -495,7 +495,7 @@
       // 지도에 마커와 인포윈도우를 표시하는 함수
       displayMarker = (locPosition, message) => {
         // 현위치 마커 이미지 변경
-        let imageSrc = "/lcs/img/location.png", // 마커이미지의 주소입니다
+        let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -728,20 +728,20 @@
             // 마커 사용량에 따른 마커 이미지 변경
             // 사용량이 60% 이상일때 Red 마커
             let high = new kakao.maps.MarkerImage(
-              "/lcs/img/red.png",
+              "/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
             // 사용량이 30 ~ 60%일때 Yellow 마커
             let normal = new kakao.maps.MarkerImage(
-              "/lcs/img/yellow.png",
+              "/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
 
             // 사용량이 30% 이하일때 Green 마커
             let low = new kakao.maps.MarkerImage(
-              "/lcs/img/green.png",
+              "/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
@@ -838,7 +838,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/lcs/search/cafe_info.html?" +
+                    "/search/cafe_info.html?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -920,7 +920,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/lcs/search/cafe_info.html?" +
+                    "/search/cafe_info.html?" +
                     marker.name +
                     "&" +
                     marker.phone +
