@@ -18,7 +18,7 @@
           <form onsubmit="return false">
             <div id="id">
               <input type="text" id="ID" placeholder="아이디를 입력하세요." />
-              <h4 id="idBlank"></h4>
+              <h4 id="idBlank" style="text-align: left; margin-left: 38%"></h4>
             </div>
 
             <div id="pw">
@@ -27,7 +27,7 @@
                 id="PW"
                 placeholder="비밀번호를 입력하세요."
               />
-              <h4 id="pwBlank"></h4>
+              <h4 id="pwBlank" style="text-align: left; margin-left: 38%"></h4>
             </div>
 
             <div id="middle">
@@ -112,7 +112,7 @@
           },
         })
           .then((data) => {
-            console.log(data.data); //권한
+            console.log(data); //권한
 
             if (isLigin === true) {
               //로그인 성공일때
