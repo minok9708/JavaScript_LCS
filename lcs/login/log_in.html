@@ -18,6 +18,7 @@
           <form onsubmit="return false">
             <div id="id">
               <input type="text" id="ID" placeholder="아이디를 입력하세요." />
+              <h4 id="idBlank"></h4>
             </div>
 
             <div id="pw">
@@ -26,6 +27,7 @@
                 id="PW"
                 placeholder="비밀번호를 입력하세요."
               />
+              <h4 id="pwBlank"></h4>
             </div>
 
             <div id="middle">
@@ -66,6 +68,24 @@
       function logIn() {
         let id = document.getElementById("ID").value;
         let pw = document.getElementById("PW").value;
+
+        if (id === "") {
+          document.getElementById("idBlank").innerHTML =
+            "<h5 style='color: red'>아이디를 입력하세요.<h5>";
+          return false;
+        } else {
+          document.getElementById("idBlank").innerHTML =
+            "<h5 style='color: red'><h5>";
+          if (pw === "") {
+            document.getElementById("pwBlank").innerHTML =
+              "<h5 style='color: red'>비밀번호를 입력하세요.<h5>";
+            return false;
+          } else {
+            document.getElementById("pwBlank").innerHTML =
+              "<h5 style='color: red'><h5>";
+          }
+        }
+
         console.log(id);
         console.log(pw);
 
@@ -92,7 +112,21 @@
           },
         })
           .then((data) => {
-            console.log(data.data);
+            console.log(data.data); //권한
+
+            if (isLigin === true) {
+              //로그인 성공일때
+              if (auth === "admin") {
+                //권한이 관리자 일때
+                location.href = "../admin/member/admin_select.html";
+              } else if (auth === "manager") {
+                //권한이 카페메니저일때
+                location.href = "../cafe_manager/manager_select.html";
+              }
+            } else {
+              //로그인 실패 일때
+              alert("가입하지 않은 아이디거나,잘못된 비밀번호입니다.");
+            }
           })
           .catch((error) => {
             console.log("error:", error.response);
