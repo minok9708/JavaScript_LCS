@@ -85,6 +85,20 @@
           </table>
         </div>
       </div>
+      <div id="content_divide">
+        <div id="content_box_addr">주소</div>
+        <div id="content_box_phone">번호</div>
+        <div id="test_box">
+          <table id="seat_info">
+            <th>사용중</th>
+            <th>전체 테이블</th>
+            <tr>
+              <td id="useTotalSeatDisplay"></td>
+              <td id="totalSeatDisplay"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
     <script>
       //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
@@ -281,42 +295,92 @@
           //--------------------------------------------------------------------------------  여기부분 수정 -------------------------------------------------------------------
           // 키워드로 검색했을때 모바일
           if (minWidth >= window.outerWidth) {
-            console.log("true"); //  모바일
+            //console.log("true"); //  모바일
             kakao.maps.event.addListener(keywordMarker, "click", function () {
-              let seatTotal = 0; // 총 테이블 갯수
-              let seatUseTotal = 0; // 총 테이블 사용량
-              let floorTotal = 0; // 카페의 총 층수
+              let tt = 0; // 카페의 총 사용중인 테이블 - 임시
+              let aa = 0; // 카페의 총 테이블 수 - 임시
+              let cc = 0; // 카페의 빈자리 수 = 임시
+              let ll = 0; // 카페의 총 층수
+              let bb = []; //카페 해당하는 층의 사용중인 자리수
+              let dd = [];
 
               for (let i = 0; i < value.seatInfos.length; i++) {
-                seatTotal += value.seatInfos[i].totalSeatCnt;
-                seatUseTotal += value.seatInfos[i].useSeatCnt;
-                floorTotal = value.seatInfos[i].floorNumber;
+                bb[i] = value.seatInfos[i].useSeatCnt;
+                tt += value.seatInfos[i].useSeatCnt;
+                aa += value.seatInfos[i].totalSeatCnt;
+                dd[i] = value.seatInfos[i].totalSeatCnt;
+                ll = value.seatInfos[i].floorNumber;
+                cc += aa - tt;
               }
+              console.log("총 테이블 수" + aa);
+              console.log("층 넘버" + ll);
+              console.log(value);
 
-              document.getElementById("content_box").style.visibility = "visible";
-              document.getElementById("content_box_title").innerHTML = value.name;
-              document.getElementById("content_box_addr").innerHTML = value.parcelAddr;
-              document.getElementById("content_box_phone").innerHTML = value.phone;
-              document.getElementById("useTotalSeatDisplay").innerHTML = seatUseTotal;
-              document.getElementById("totalSeatDisplay").innerHTML = seatTotal;
+              document.getElementById("content_box").style.visibility =
+                "visible";
+              document.getElementById("content_box_title").innerHTML =
+                value.name;
+              document.getElementById("content_box_addr").innerHTML =
+                value.parcelAddr;
+              document.getElementById("content_box_phone").innerHTML =
+                value.phone;
+              document.getElementById("useTotalSeatDisplay").innerHTML = tt;
+              document.getElementById("totalSeatDisplay").innerHTML = aa;
 
               // 모바일 상세정보 버튼 여기다가 내용 기입
               document.getElementById("content_box_btn").onclick = function () {
-                location.href = "/search/cafe_info.html?";
-              };
+                console.log("클릭했습니다");
+                //데이터만 보내면됨
+                console.log(value);
+                //console.log(aa);
+                //console.log(ll);
+                console.log(bb);
+                console.log(dd);
 
+                location.href =
+                  "/search/cafe_info?" +
+                  value.name +
+                  "&" +
+                  value.phone +
+                  "&" +
+                  value.parcelAddr +
+                  "&" +
+                  value.openTime +
+                  "&" +
+                  value.closeTime +
+                  "&" +
+                  aa +
+                  "&" +
+                  ll +
+                  "&" +
+                  bb +
+                  "&" +
+                  dd;
+              };
               seatTotal = 0;
               seatUseTotal = 0;
               floorTotal = 0;
             });
             //--------------------------------------------------------------------------------  여기부분 수정 -------------------------------------------------------------------
             kakao.maps.event.addListener(map, "click", function () {
-              document.getElementById("content_box").style.visibility = "hidden";
+              document.getElementById("content_box").style.visibility =
+                "hidden";
             });
           }
           // 키워드로 검색했을때 데스크탑
           else {
-            console.log("false"); // 데스크탑
+            //console.log("false"); // 데스크탑
+            kakao.maps.event.addListener(keywordMarker, "click", function () {
+              // 커스텀 오버레이 z-index 값 설정
+              customOverlayA.setZIndex(3);
+
+              if (clickedOverlayA) {
+                clickedOverlayA.setMap(null);
+              }
+              customOverlayA.setMap(map);
+
+              clickedOverlayA = customOverlayA;
+            });
 
             let customOverlayA = new kakao.maps.CustomOverlay({
               position: keywordMarker.getPosition(),
@@ -325,12 +389,14 @@
               zindex: 9999,
             });
 
+            //console.log(value)
             kakao.maps.event.addListener(keywordMarker, "click", function () {
+              console.log("마커를 클릭");
+              console.log(value);
               // 커스텀 오버레이 z-index 값 설정
               customOverlayA.setZIndex(3);
-
-              if (clickedOverlayA) {
-                clickedOverlayA.setMap(null);
+              if (clickedOverlay) {
+                clickedOverlay.setMap(null);
               }
               customOverlayA.setMap(map);
               clickedOverlay = customOverlayA;
@@ -353,14 +419,18 @@
               console.log("총 테이블 수" + aa);
               console.log("층 넘버" + ll);
 
+              //상세페이지로 데이터 전송
               document.getElementById("info_btn").onclick = function () {
                 console.log("클릭했습니다");
                 //데이터만 보내면됨
                 console.log(value);
-                console.log(aa);
+                //console.log(aa);
+                //console.log(ll);
+                console.log(bb);
+                console.log(dd);
 
                 location.href =
-                  "/search/cafe_info.html?" +
+                  "/search/cafe_info?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -379,11 +449,11 @@
                   "&" +
                   dd;
               };
+            });
 
-              kakao.maps.event.addListener(map, "click", function () {
-                // console.log("맵을 클릭");
-                customOverlayA.setMap(null);
-              });
+            kakao.maps.event.addListener(map, "click", function () {
+              // console.log("맵을 클릭");
+              customOverlayA.setMap(null);
             });
           }
         });
@@ -723,16 +793,20 @@
               //마커 클릭시 이벤트 처리
 
               kakao.maps.event.addListener(m, "click", function () {
-                let seatTotal = 0;
-                let seatUseTotal = 0;
-                let floorTotal = 0;
-                let uu = 0;
+                let seatTotal = 0; //전체 테이블 수
+                let seatUseTotal = 0; //총 사용중인 자리수
+                let floorTotal = 0; //총 층수
+                let uu = []; //사용중인 자리
+                let cc = []; //해당 층의 테이블 수
+
+                console.log(marker);
 
                 for (let i = 0; i < marker.seatInfos.length; i++) {
                   seatTotal += marker.seatInfos[i].totalSeatCnt;
                   seatUseTotal += marker.seatInfos[i].useSeatCnt;
                   floorTotal = marker.seatInfos[i].floorNumber;
-                  uu = marker.seatInfos[i].useSeatCnt;
+                  cc[i] = marker.seatInfos[i].totalSeatCnt;
+                  uu[i] = marker.seatInfos[i].useSeatCnt;
                   console.log(floorTotal + "층");
                   console.log("사용중인 자리" + uu);
                 }
@@ -749,9 +823,37 @@
                   location.href = "/search/cafe_info.html?";
                 };
 
-                seatTotal = 0;
-                seatUseTotal = 0;
-                floorTotal = 0;
+                document.getElementById(
+                  "content_box_btn"
+                ).onclick = function () {
+                  console.log("클릭했습니다");
+                  //데이터만 보내면됨
+                  console.log(marker);
+                  console.log(uu);
+                  console.log(seatTotal);
+                  console.log("총 층수" + floorTotal);
+                  console.log("해당하는 층의 테이블수" + cc);
+
+                  location.href =
+                    "/search/cafe_info?" +
+                    marker.name +
+                    "&" +
+                    marker.phone +
+                    "&" +
+                    marker.parcelAddr +
+                    "&" +
+                    marker.openTime +
+                    "&" +
+                    marker.closeTime +
+                    "&" +
+                    seatTotal +
+                    "&" +
+                    floorTotal +
+                    "&" +
+                    uu +
+                    "&" +
+                    cc;
+                };
               });
 
               kakao.maps.event.addListener(map, "click", function () {
