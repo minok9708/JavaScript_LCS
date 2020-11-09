@@ -85,20 +85,6 @@
           </table>
         </div>
       </div>
-      <div id="content_divide">
-        <div id="content_box_addr">주소</div>
-        <div id="content_box_phone">번호</div>
-        <div id="test_box">
-          <table id="seat_info">
-            <th>사용중</th>
-            <th>전체 테이블</th>
-            <tr>
-              <td id="useTotalSeatDisplay"></td>
-              <td id="totalSeatDisplay"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
     </div>
     <script>
       //커스텀 오버레이 하나만 열리게 하기 위한 클릭 변수
@@ -316,14 +302,10 @@
               console.log("층 넘버" + ll);
               console.log(value);
 
-              document.getElementById("content_box").style.visibility =
-                "visible";
-              document.getElementById("content_box_title").innerHTML =
-                value.name;
-              document.getElementById("content_box_addr").innerHTML =
-                value.parcelAddr;
-              document.getElementById("content_box_phone").innerHTML =
-                value.phone;
+              document.getElementById("content_box").style.visibility = "visible";
+              document.getElementById("content_box_title").innerHTML = value.name;
+              document.getElementById("content_box_addr").innerHTML = value.parcelAddr;
+              document.getElementById("content_box_phone").innerHTML = value.phone;
               document.getElementById("useTotalSeatDisplay").innerHTML = tt;
               document.getElementById("totalSeatDisplay").innerHTML = aa;
 
@@ -338,7 +320,7 @@
                 console.log(dd);
 
                 location.href =
-                  "/search/cafe_info?" +
+                  "/search/cafe_info.html?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -363,8 +345,7 @@
             });
             //--------------------------------------------------------------------------------  여기부분 수정 -------------------------------------------------------------------
             kakao.maps.event.addListener(map, "click", function () {
-              document.getElementById("content_box").style.visibility =
-                "hidden";
+              document.getElementById("content_box").style.visibility = "hidden";
             });
           }
           // 키워드로 검색했을때 데스크탑
@@ -430,7 +411,7 @@
                 console.log(dd);
 
                 location.href =
-                  "/search/cafe_info?" +
+                  "/search/cafe_info.html?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -819,13 +800,11 @@
                 document.getElementById("useTotalSeatDisplay").innerHTML = seatUseTotal;
                 document.getElementById("totalSeatDisplay").innerHTML = seatTotal;
 
-                document.getElementById("content_box_btn").onclick = function () {
-                  location.href = "/search/cafe_info.html?";
-                };
+                // document.getElementById("content_box_btn").onclick = function () {
+                //   location.href = "/search/cafe_info.html";
+                // };
 
-                document.getElementById(
-                  "content_box_btn"
-                ).onclick = function () {
+                document.getElementById("content_box_btn").onclick = function () {
                   console.log("클릭했습니다");
                   //데이터만 보내면됨
                   console.log(marker);
@@ -835,7 +814,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/search/cafe_info?" +
+                    "/search/cafe_info.html?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -931,10 +910,9 @@
                     "&" +
                     cc;
                 };
-
-                kakao.maps.event.addListener(map, "click", function () {
-                  customOverlay.setMap(null);
-                });
+              });
+              kakao.maps.event.addListener(map, "click", function () {
+                customOverlay.setMap(null);
               });
             }
           });
