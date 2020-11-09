@@ -59,12 +59,7 @@
         onkeypress="enterSearch()"
       />
 
-      <button
-        id="search_Btn"
-        type="button"
-        value="검색"
-        onclick="searchPlaces()"
-      >
+      <button id="search_Btn" type="button" value="검색" onclick="searchPlaces()">
         <i class="fa fa-search"></i>
       </button>
     </form>
@@ -74,7 +69,7 @@
     <div id="content_box">
       <div id="content_box_title_info">
         <div id="content_box_title"></div>
-        <button id="content_box_btn">상세정보</button>
+        <button id="content_box_btn" onclick="submitData()">상세정보</button>
       </div>
       <div id="content_divide">
         <div id="content_box_addr">주소</div>
@@ -307,14 +302,10 @@
               console.log("층 넘버" + ll);
               console.log(value);
 
-              document.getElementById("content_box").style.visibility =
-                "visible";
-              document.getElementById("content_box_title").innerHTML =
-                value.name;
-              document.getElementById("content_box_addr").innerHTML =
-                value.parcelAddr;
-              document.getElementById("content_box_phone").innerHTML =
-                value.phone;
+              document.getElementById("content_box").style.visibility = "visible";
+              document.getElementById("content_box_title").innerHTML = value.name;
+              document.getElementById("content_box_addr").innerHTML = value.parcelAddr;
+              document.getElementById("content_box_phone").innerHTML = value.phone;
               document.getElementById("useTotalSeatDisplay").innerHTML = tt;
               document.getElementById("totalSeatDisplay").innerHTML = aa;
 
@@ -329,7 +320,11 @@
                 console.log(dd);
 
                 location.href =
+<<<<<<< HEAD
                   "/lcs/search/cafe_info?" +
+=======
+                  "/search/cafe_info.html?" +
+>>>>>>> b1a93050b0f502c0f3e1e019fc0e4940426a058e
                   value.name +
                   "&" +
                   value.phone +
@@ -348,15 +343,13 @@
                   "&" +
                   dd;
               };
-
               seatTotal = 0;
               seatUseTotal = 0;
               floorTotal = 0;
             });
             //--------------------------------------------------------------------------------  여기부분 수정 -------------------------------------------------------------------
             kakao.maps.event.addListener(map, "click", function () {
-              document.getElementById("content_box").style.visibility =
-                "hidden";
+              document.getElementById("content_box").style.visibility = "hidden";
             });
           }
           // 키워드로 검색했을때 데스크탑
@@ -422,7 +415,11 @@
                 console.log(dd);
 
                 location.href =
+<<<<<<< HEAD
                   "/lcs/search/cafe_info?" +
+=======
+                  "/search/cafe_info.html?" +
+>>>>>>> b1a93050b0f502c0f3e1e019fc0e4940426a058e
                   value.name +
                   "&" +
                   value.phone +
@@ -497,13 +494,9 @@
         // 현위치 마커 이미지 변경
         let imageSrc = "/lcs/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
-          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-        let markerImage = new kakao.maps.MarkerImage(
-          imageSrc,
-          imageSize,
-          imageOption
-        );
+        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
         // 마커 생성
         let marker = new kakao.maps.Marker({
@@ -623,7 +616,7 @@
               swLatitude: sw2,
             },
           })
-            .then(({data}) => {
+            .then(({ data }) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
               // res(getCafeSyncInfo((cafeData = data.data)));
               // casheData = data.data;
@@ -749,10 +742,7 @@
             // 마커 객체 생성 이름은 m - 나중에 변경
             let m = new kakao.maps.Marker({
               map: map,
-              position: new kakao.maps.LatLng(
-                marker.latitude,
-                marker.longitude
-              ),
+              position: new kakao.maps.LatLng(marker.latitude, marker.longitude),
               // 마커 아이콘 이미지
               title: marker.name,
             });
@@ -811,24 +801,18 @@
                 }
 
                 // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
-                document.getElementById("content_box").style.visibility =
-                  "visible";
-                document.getElementById("content_box_title").innerHTML =
-                  marker.name;
-                document.getElementById("content_box_addr").innerHTML =
-                  marker.parcelAddr;
-                document.getElementById("content_box_phone").innerHTML =
-                  marker.phone;
-                document.getElementById(
-                  "useTotalSeatDisplay"
-                ).innerHTML = seatUseTotal;
-                document.getElementById(
-                  "totalSeatDisplay"
-                ).innerHTML = seatTotal;
+                document.getElementById("content_box").style.visibility = "visible";
+                document.getElementById("content_box_title").innerHTML = marker.name;
+                document.getElementById("content_box_addr").innerHTML = marker.parcelAddr;
+                document.getElementById("content_box_phone").innerHTML = marker.phone;
+                document.getElementById("useTotalSeatDisplay").innerHTML = seatUseTotal;
+                document.getElementById("totalSeatDisplay").innerHTML = seatTotal;
 
-                document.getElementById(
-                  "content_box_btn"
-                ).onclick = function () {
+                // document.getElementById("content_box_btn").onclick = function () {
+                //   location.href = "/search/cafe_info.html";
+                // };
+
+                document.getElementById("content_box_btn").onclick = function () {
                   console.log("클릭했습니다");
                   //데이터만 보내면됨
                   console.log(marker);
@@ -838,7 +822,11 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
+<<<<<<< HEAD
                     "/lcs/search/cafe_info?" +
+=======
+                    "/search/cafe_info.html?" +
+>>>>>>> b1a93050b0f502c0f3e1e019fc0e4940426a058e
                     marker.name +
                     "&" +
                     marker.phone +
@@ -860,8 +848,7 @@
               });
 
               kakao.maps.event.addListener(map, "click", function () {
-                document.getElementById("content_box").style.visibility =
-                  "hidden";
+                document.getElementById("content_box").style.visibility = "hidden";
               });
             } else {
               // 커스텀 오버레이를 생성합니다
@@ -877,11 +864,7 @@
 
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
-                // for (let i = 0; i < marker.seatInfos.length; i++) {
-                //   console.log("마커클릭");
                 console.log(marker);
-                //   desktopSeatTotal += marker.seatInfos[i].totalSeatCnt;
-                //   desktopSeatUseTotal += marker.seatInfos[i].useSeatCnt;
 
                 // 커스텀 오버레이 z-index 값 설정
                 customOverlay.setZIndex(3);
@@ -920,7 +903,11 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
+<<<<<<< HEAD
                     "/lcs/search/cafe_info?" +
+=======
+                    "/search/cafe_info.html?" +
+>>>>>>> b1a93050b0f502c0f3e1e019fc0e4940426a058e
                     marker.name +
                     "&" +
                     marker.phone +
@@ -939,25 +926,9 @@
                     "&" +
                     cc;
                 };
-
-                kakao.maps.event.addListener(map, "click", function () {
-                  customOverlay.setMap(null);
-                });
-
-                // }
-                // console.log(
-                //   marker.name + " 총 테이블 : " + desktopSeatTotal + "개"
-                // );
-                0;
-                // console.log(
-                //   marker.name +
-                //     " 사용중인 총 테이블 : " +
-                //     desktopSeatUseTotal +
-                //     "개"
-                // );
-
-                // desktopSeatTotal = 0;
-                // desktopSeatUseTota  = 0;
+              });
+              kakao.maps.event.addListener(map, "click", function () {
+                customOverlay.setMap(null);
               });
             }
           });

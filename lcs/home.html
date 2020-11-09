@@ -7,26 +7,16 @@
     <!-- 테스트 -->
     <title>Home</title>
     <link href="com/css/home.css" rel="stylesheet" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" />
 
     <!-- 768px밑으로 넘어가면 모바일 css가 적용됨 -->
-    <link
-      rel="stylesheet"
-      media="screen and (max-width: 768px)"
-      href="com/css/mobile.css"
-    />
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="com/css/mobile.css" />
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
     <!-- jQuery부분 -->
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
@@ -47,12 +37,16 @@
             <option id="google" value="google">카페명 검색</option>
             <option id="naver" value="naver">주소명 검색</option>
           </select> -->
+<<<<<<< HEAD
           <form
             id="form"
             method="get"
             action="map/map.html"
             onsubmit="return keywordCheck();"
           >
+=======
+          <form id="form" method="get" action="map/map.html" onsubmit="return keywordCheck();">
+>>>>>>> b1a93050b0f502c0f3e1e019fc0e4940426a058e
             <input
               type="text"
               class="searchTerm"
@@ -63,12 +57,7 @@
               autocomplete="on"
             />
 
-            <button
-              type="submit"
-              class="searchButton"
-              name="check"
-              value="true"
-            >
+            <button type="submit" class="searchButton" name="check" value="true">
               <i class="fa fa-search"></i>
             </button>
           </form>
@@ -90,7 +79,7 @@
           dataSubmit();
           autoText();
         },
-        {once: true},
+        { once: true },
         1000
       );
 
