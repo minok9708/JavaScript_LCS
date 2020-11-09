@@ -27,6 +27,13 @@
     <!-- 커스텀윈도우 디자인을 사용하기 위한 호출 -->
     <!--  <script type="text/javascript" src="/com/js"></script> -->
 
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#headers").load("common/header.html"); // 원하는 파일 경로를 삽입하면 된다
+      });
+    </script>
+
     <!-- 외부 css파일 사용 -->
     <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
 
@@ -64,7 +71,9 @@
       </button>
     </form>
     <!-- 맵 출력 -->
-    <div id="map"></div>
+    <div id="map">
+      <div id="mmm"></div>
+    </div>
     <!-- 모바일 커스텀 오버레이 -->
     <div id="content_box">
       <div id="content_box_title_info">

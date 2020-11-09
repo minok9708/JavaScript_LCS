@@ -11,22 +11,32 @@
   <link href="/com/css/cafe_info.css" rel="stylesheet" type="text/css" />
   <body>
     <div id="content">
-      <div id="cafeName">
-        <h1></h1>
+      <!-- <div id="cafe_logo">이미지</div> -->
+      <div id="cafename_box">
+        <div id="cafeName">
+          <h1></h1>
+        </div>
       </div>
       <div id="table_state">
-        <p>빈 테이블 수 / 총 테이블 수</p>
+        <!-- <p>빈 테이블 수 / 총 테이블 수</p> -->
+        <!-- 층마다 테이블수 표시 -->
         <div id="tableInfo"></div>
       </div>
-      <hr id="mid_line" />
+      <!--  정보 뭉텅이 -->
       <div>
+        <!-- 연락처 -->
+        <hr id="hr_line" />
         <div id="cafePhone"></div>
-
+        <hr id="hr_line" />
+        <!-- 카페주소 -->
         <div id="cafeAddr"></div>
-
-        <div id="cafeOpenTime"></div>
-
+        <hr id="hr_line" />
+        <!-- 카페 영업시간 -->
+        <div id="cafeTime"></div>
+        <hr id="hr_line" />
+        <!-- 카페 총 테이블수 -->
         <div id="cafeAllSeat"></div>
+        <hr id="hr_line" />
       </div>
     </div>
     <script>
@@ -79,16 +89,16 @@
       cafeName.innerHTML = "<h1>" + decodeURI(name) + "</h1>";
 
       cafePhone = document.getElementById("cafePhone");
-      cafePhone.innerHTML = "<p>연락처   " + phone + "</p><hr />";
+      cafePhone.innerHTML = "<p>연락처 : " + phone + "</p>";
 
       cafeAddr = document.getElementById("cafeAddr");
-      cafeAddr.innerHTML = "<p>주소   " + decodeURI(addr) + "</p><hr />";
+      cafeAddr.innerHTML = "<p>주소 : " + decodeURI(addr) + "</p>";
 
-      cafeOpenTime = document.getElementById("cafeOpenTime");
-      cafeOpenTime.innerHTML = " <p>영업시간   " + openTime + " ~ " + closeTime + "</p><hr />";
+      cafeOpenTime = document.getElementById("cafeTime");
+      cafeOpenTime.innerHTML = " <p>영업시간 : " + openTime + " ~ " + closeTime + "</p>";
 
       cafeAllSeat = document.getElementById("cafeAllSeat");
-      cafeAllSeat.innerHTML = "<p>총 테이블 수   " + table + "</p><hr />";
+      cafeAllSeat.innerHTML = "<p>총 테이블 수 : " + table + "</p>";
 
       tableInfo = document.getElementById("tableInfo");
 
@@ -97,8 +107,10 @@
           "<p>" +
           (i + 1) +
           "층 " +
+          "사용중 : " +
           (totalSeatArray[i] - toArray[i]) +
           " / " +
+          "전체 테이블 : " +
           totalSeatArray[i] +
           "</p>";
       }
