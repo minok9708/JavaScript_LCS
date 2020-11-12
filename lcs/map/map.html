@@ -190,15 +190,13 @@
             '    <div class="info">' +
             '        <div class="title">' +
             value.name +
-            "<form method=" +
-            "post" +
-            '" action="' +
-            "/lcs/search/cafe_info.html" +
-            '">' +
-            '       <button class="info_btn" id="info_btn">' +
+            '                <button class="info_btn" id="info_btn" ' +
+            'onclick="' +
+            "submitData()" +
+            '"' +
+            "> " +
             "상세정보" +
             "</button>" +
-            "</form>" +
             "        </div>" +
             '        <div class="body">' +
             '            <div class="desc">' +
@@ -330,25 +328,25 @@
                 console.log(bb);
                 console.log(dd);
 
-                // location.href =
-                //   "/lcs/search/cafe_info.html?" +
-                //   value.name +
-                //   "&" +
-                //   value.phone +
-                //   "&" +
-                //   value.parcelAddr +
-                //   "&" +
-                //   value.openTime +
-                //   "&" +
-                //   value.closeTime +
-                //   "&" +
-                //   aa +
-                //   "&" +
-                //   ll +
-                //   "&" +
-                //   bb +
-                //   "&" +
-                //   dd;
+                location.href =
+                  "/lcs/search/cafe_info.html?" +
+                  value.name +
+                  "&" +
+                  value.phone +
+                  "&" +
+                  value.parcelAddr +
+                  "&" +
+                  value.openTime +
+                  "&" +
+                  value.closeTime +
+                  "&" +
+                  aa +
+                  "&" +
+                  ll +
+                  "&" +
+                  bb +
+                  "&" +
+                  dd;
               };
 
               seatTotal = 0;
@@ -423,25 +421,25 @@
                 console.log(bb);
                 console.log(dd);
 
-                // location.href =
-                //   "/lcs/search/cafe_info.html?" +
-                //   value.name +
-                //   "&" +
-                //   value.phone +
-                //   "&" +
-                //   value.parcelAddr +
-                //   "&" +
-                //   value.openTime +
-                //   "&" +
-                //   value.closeTime +
-                //   "&" +
-                //   aa +
-                //   "&" +
-                //   ll +
-                //   "&" +
-                //   bb +
-                //   "&" +
-                //   dd;
+                location.href =
+                  "/lcs/search/cafe_info.html?" +
+                  value.name +
+                  "&" +
+                  value.phone +
+                  "&" +
+                  value.parcelAddr +
+                  "&" +
+                  value.openTime +
+                  "&" +
+                  value.closeTime +
+                  "&" +
+                  aa +
+                  "&" +
+                  ll +
+                  "&" +
+                  bb +
+                  "&" +
+                  dd;
               };
             });
 
@@ -682,11 +680,6 @@
               "상세정보" +
               "</button>" +
               "        </div>" +
-              // '        <div class="floor">' +
-              // "총" +
-              // ll +
-              // "층" +
-              // "        </div>" +
               '        <div class="body">' +
               '            <div class="desc">' +
               '                <div class="addr">' +
@@ -711,18 +704,6 @@
               "</td>" +
               "</tr>" +
               "</table>" +
-              // '                <div class="overlay">' +
-              // '                <div class="sit">' +
-              // tt +
-              // "</div>" +
-              // '                <div class="divide">' +
-              // "/" +
-              // "</div>" +
-              // '                <div class="sit_full">' +
-              // aa +
-              // "</div>" +
-              // "                </div>" +
-              // "            </>" +
               "        </div>" +
               "    </div>" +
               "</div>";
@@ -761,18 +742,6 @@
 
             // 클러스터 푸쉬
             markers.push(m);
-
-            // console.log(
-            //   marker.id +
-            //     " " +
-            //     marker.name +
-            //     " 사용률 " +
-            //     (tt / aa) * 100 +
-            //     "%" +
-            //     "\n" +
-            //     ll +
-            //     "층"
-            // );
 
             if ((tt / aa) * 100 >= 0 && 30 >= (tt / aa) * 100) {
               m.setImage(low);
@@ -839,25 +808,25 @@
                   console.log("총 층수" + floorTotal);
                   console.log("해당하는 층의 테이블수" + cc);
 
-                  // location.href =
-                  //   "/lcs/search/cafe_info.html?" +
-                  //   marker.name +
-                  //   "&" +
-                  //   marker.phone +
-                  //   "&" +
-                  //   marker.parcelAddr +
-                  //   "&" +
-                  //   marker.openTime +
-                  //   "&" +
-                  //   marker.closeTime +
-                  //   "&" +
-                  //   seatTotal +
-                  //   "&" +
-                  //   floorTotal +
-                  //   "&" +
-                  //   uu +
-                  //   "&" +
-                  //   cc;
+                  location.href =
+                    "/lcs/search/cafe_info.html?" +
+                    marker.name +
+                    "&" +
+                    marker.phone +
+                    "&" +
+                    marker.parcelAddr +
+                    "&" +
+                    marker.openTime +
+                    "&" +
+                    marker.closeTime +
+                    "&" +
+                    seatTotal +
+                    "&" +
+                    floorTotal +
+                    "&" +
+                    uu +
+                    "&" +
+                    cc;
                 };
               });
 
@@ -865,6 +834,7 @@
                 document.getElementById("content_box").style.visibility =
                   "hidden";
               });
+              //데스크탑
             } else {
               // 커스텀 오버레이를 생성합니다
               let customOverlay = new kakao.maps.CustomOverlay({
@@ -873,9 +843,6 @@
                 clickable: true,
                 zindex: 3,
               });
-
-              // let desktopSeatTotal = 0;
-              // let desktopSeatUseTotal = 0;
 
               //마커 클릭시 이벤트 처리
               kakao.maps.event.addListener(m, "click", function () {
@@ -921,44 +888,30 @@
                   console.log("총 층수" + floorTotal);
                   console.log("해당하는 층의 테이블수" + cc);
 
-                  // location.href =
-                  //   "/lcs/search/cafe_info.html?" +
-                  //   marker.name +
-                  //   "&" +
-                  //   marker.phone +
-                  //   "&" +
-                  //   marker.parcelAddr +
-                  //   "&" +
-                  //   marker.openTime +
-                  //   "&" +
-                  //   marker.closeTime +
-                  //   "&" +
-                  //   seatTotal +
-                  //   "&" +
-                  //   floorTotal +
-                  //   "&" +
-                  //   uu +
-                  //   "&" +
-                  //   cc;
+                  location.href =
+                    "/lcs/search/cafe_info.html?" +
+                    marker.name +
+                    "&" +
+                    marker.phone +
+                    "&" +
+                    marker.parcelAddr +
+                    "&" +
+                    marker.openTime +
+                    "&" +
+                    marker.closeTime +
+                    "&" +
+                    seatTotal +
+                    "&" +
+                    floorTotal +
+                    "&" +
+                    uu +
+                    "&" +
+                    cc;
                 };
 
                 kakao.maps.event.addListener(map, "click", function () {
                   customOverlay.setMap(null);
                 });
-
-                // }
-                // console.log(
-                //   marker.name + " 총 테이블 : " + desktopSeatTotal + "개"
-                // );
-                // console.log(
-                //   marker.name +
-                //     " 사용중인 총 테이블 : " +
-                //     desktopSeatUseTotal +
-                //     "개"
-                // );
-
-                // desktopSeatTotal = 0;
-                // desktopSeatUseTota  = 0;
               });
             }
           });
