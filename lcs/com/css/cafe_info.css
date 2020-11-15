@@ -22,6 +22,7 @@
   font-style: normal;
 }
 
+/*  모바일  */
 body,
 html {
   margin: 0;
@@ -31,14 +32,13 @@ html {
 
 #content {
   font-family: content;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 #cafename_box {
   background-color: rgb(255, 255, 255);
-  padding-top: 1px;
-  width: 50vw;
-  top: 17vh;
-  height: 100px;
+  width: 290px;
+  top: 12vh;
+  height: 60px;
   position: absolute;
   box-shadow: 0px 0px 2px 2px #252424;
   border-radius: 5px;
@@ -47,48 +47,45 @@ html {
 #cafeName {
   font-family: title1;
   text-align: center;
-  font-size: 1.2rem;
-  margin: 0;
+  font-size: 0.6rem;
 }
 
 #table_state {
 }
 /* 카페 자리 정보 */
 #tableInfo {
-  padding-top: 3vh;
-  text-align: center;
+  text-align: left;
 }
 
 /* 카페 연락처 */
 #cafePhone {
-  text-align: center;
+  text-align: left;
 }
 
 /* 카페 주소 */
 #cafeAddr {
-  text-align: center;
+  text-align: left;
 }
 
 /* 카페 영업시간 */
 #cafeTime {
-  text-align: center;
+  text-align: left;
 }
 
 /* 카페 총 테이블 수 */
 #cafeAllSeat {
-  text-align: center;
+  text-align: left;
 }
 
 #content {
-  text-align: center;
-  width: 50%;
-  padding: 30px 50px 50px 50px;
+  width: 290px;
+  padding: 30px 25px 30px 25px;
   border-radius: 5px;
   border: 2px solid black;
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 15vh;
 }
 
 #hr_line {
-  width: 50vw;
+  width: 290px;
 }

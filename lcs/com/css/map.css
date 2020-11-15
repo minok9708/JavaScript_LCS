@@ -484,7 +484,7 @@ td {
   width: 750px;
   height: 750px;
   z-index: 10;
-  line-height: 200%;
+  line-height: 250%;
 }
 
 #content_info {
@@ -516,27 +516,32 @@ td {
 /* 카페 자리 정보 */
 #tableInfo {
   padding-top: 3vh;
-  text-align: center;
+  margin-left: 35px;
+  text-align: left;
 }
 
 /* 카페 연락처 */
 #cafePhone {
-  text-align: center;
+  margin-left: 35px;
+  text-align: left;
 }
 
 /* 카페 주소 */
 #cafeAddr {
-  text-align: center;
+  margin-left: 35px;
+  text-align: left;
 }
 
 /* 카페 영업시간 */
 #cafeTime {
-  text-align: center;
+  margin-left: 35px;
+  text-align: left;
 }
 
 /* 카페 총 테이블 수 */
 #cafeAllSeat {
-  text-align: center;
+  margin-left: 35px;
+  text-align: left;
 }
 
 #content {
@@ -549,5 +554,5 @@ td {
 }
 
 #hr_line {
-  width: 40vw;
+  width: 700px;
 }

@@ -446,19 +446,20 @@
                 cafeName.innerHTML = "<h1>" + value.name + "</h1>";
 
                 cafePhone = document.getElementById("cafePhone");
-                cafePhone.innerHTML = "<p>연락처 : " + value.phone + "</p>";
+                cafePhone.innerHTML = "<p>연락처" + "<br>" + value.phone + "</p>";
 
                 cafeAddr = document.getElementById("cafeAddr");
-                cafeAddr.innerHTML = "<p>주소 : " + value.parcelAddr + "</p>";
+                cafeAddr.innerHTML = "<p>주소" + "<br>" + value.parcelAddr + "</p>";
 
                 cafeOpenTime = document.getElementById("cafeTime");
                 cafeOpenTime.innerHTML =
-                  " <p>영업시간 : " + value.openTime + " ~ " + value.closeTime + "</p>";
+                  " <p>영업시간" + "<br>" + value.openTime + " ~ " + value.closeTime + "</p>";
 
                 cafeAllSeat = document.getElementById("cafeAllSeat");
-                cafeAllSeat.innerHTML = "<p>총 테이블 수 : " + aa + "</p>";
+                cafeAllSeat.innerHTML = "<p>총 테이블 수" + "<br>" + aa + "</p>";
 
                 tableInfo = document.getElementById("tableInfo");
+                tableInfo.innerHTML = "<p>" + "자리현황" + "</p>";
 
                 for (let i = 0; i < ll; i++) {
                   tableInfo.innerHTML +=
