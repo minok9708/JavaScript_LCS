@@ -72,7 +72,37 @@
     </form>
     <!-- 맵 출력 -->
     <div id="map">
-      <div id="inline_info_page"></div>
+      <div id="inline_info_page">
+        <div id="content_info">
+          <!-- <div id="cafe_logo">이미지</div> -->
+          <div id="cafename_box">
+            <div id="cafeName">
+              <h1></h1>
+            </div>
+          </div>
+          <div id="table_state">
+            <!-- <p>빈 테이블 수 / 총 테이블 수</p> -->
+            <!-- 층마다 테이블수 표시 -->
+            <div id="tableInfo"></div>
+          </div>
+          <!--  정보 뭉텅이 -->
+          <div>
+            <!-- 연락처 -->
+            <hr id="hr_line" />
+            <div id="cafePhone"></div>
+            <hr id="hr_line" />
+            <!-- 카페주소 -->
+            <div id="cafeAddr"></div>
+            <hr id="hr_line" />
+            <!-- 카페 영업시간 -->
+            <div id="cafeTime"></div>
+            <hr id="hr_line" />
+            <!-- 카페 총 테이블수 -->
+            <div id="cafeAllSeat"></div>
+            <hr id="hr_line" />
+          </div>
+        </div>
+      </div>
     </div>
     <!-- 모바일 커스텀 오버레이 -->
     <div id="content_box">
@@ -398,7 +428,7 @@
                 bb[i] = value.seatInfos[i].useSeatCnt;
                 tt += value.seatInfos[i].useSeatCnt;
                 aa += value.seatInfos[i].totalSeatCnt;
-                dd[i] = value.seatInfos[i].totalSeatCnt;
+                dd[i] = value.seatInfos[i].totalSeatCnt; // 총 자릿수
                 ll = value.seatInfos[i].floorNumber;
                 cc += aa - tt;
               }
@@ -407,13 +437,42 @@
 
               //상세페이지로 데이터 전송
               document.getElementById("info_btn").onclick = function () {
-                console.log("클릭했습니다");
-                //데이터만 보내면됨
-                console.log(value);
-                //console.log(aa);
-                //console.log(ll);
-                console.log(bb);
-                console.log(dd);
+                // 드래그 이동 막기
+                map.setDraggable(false);
+                // innerHTML 초기화 중요함
+                tableInfo.innerHTML = "";
+
+                cafeName = document.getElementById("cafeName");
+                cafeName.innerHTML = "<h1>" + value.name + "</h1>";
+
+                cafePhone = document.getElementById("cafePhone");
+                cafePhone.innerHTML = "<p>연락처 : " + value.phone + "</p>";
+
+                cafeAddr = document.getElementById("cafeAddr");
+                cafeAddr.innerHTML = "<p>주소 : " + value.parcelAddr + "</p>";
+
+                cafeOpenTime = document.getElementById("cafeTime");
+                cafeOpenTime.innerHTML =
+                  " <p>영업시간 : " + value.openTime + " ~ " + value.closeTime + "</p>";
+
+                cafeAllSeat = document.getElementById("cafeAllSeat");
+                cafeAllSeat.innerHTML = "<p>총 테이블 수 : " + aa + "</p>";
+
+                tableInfo = document.getElementById("tableInfo");
+
+                for (let i = 0; i < ll; i++) {
+                  tableInfo.innerHTML +=
+                    "<p>" +
+                    (i + 1) +
+                    "층 " +
+                    "사용중 : " +
+                    bb[i] +
+                    " / " +
+                    "전체 테이블 : " +
+                    dd[i] +
+                    "</p>";
+                }
+
                 document.getElementById("inline_info_page").style.visibility = "visible";
                 // location.href =
                 //   "/search/cafe_info.html?" +
@@ -438,6 +497,7 @@
             });
 
             kakao.maps.event.addListener(map, "click", function () {
+              map.setDraggable(true);
               document.getElementById("inline_info_page").style.visibility = "hidden";
               customOverlayA.setMap(null);
             });
