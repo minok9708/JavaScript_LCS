@@ -238,7 +238,7 @@ table {
 }
 
 #content_box #content_box_title {
-  width: 150px;
+  width: 200px;
   position: absolute;
   font-family: content;
   font-size: 15px;
@@ -349,4 +349,18 @@ table {
   color: #0582f7;
   font-weight: bold;
   font-size: 14px;
+}
+
+#inline_info_page {
+  position: absolute;
+  visibility: hidden;
+  background-color: rgb(145, 145, 145);
+  left: 50%;
+  top: 50%;
+  margin-top: -375px;
+  margin-left: -375px;
+  text-align: center;
+  width: 750px;
+  height: 750px;
+  z-index: 10;
 }
