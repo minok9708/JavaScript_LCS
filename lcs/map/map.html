@@ -446,7 +446,8 @@
                 cafeName.innerHTML = "<h1>" + value.name + "</h1>";
 
                 cafePhone = document.getElementById("cafePhone");
-                cafePhone.innerHTML = "<p>연락처" + "<br>" + value.phone + "</p>";
+                cafePhone.innerHTML =
+                  "<p id=" + "p_phone" + ">연락처" + "<br>" + "</p>" + value.phone;
 
                 cafeAddr = document.getElementById("cafeAddr");
                 cafeAddr.innerHTML = "<p>주소" + "<br>" + value.parcelAddr + "</p>";
@@ -466,7 +467,7 @@
                     "<p>" +
                     (i + 1) +
                     "층 " +
-                    "사용중 : " +
+                    "사용중인 테이블: " +
                     bb[i] +
                     " / " +
                     "전체 테이블 : " +
