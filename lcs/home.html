@@ -37,13 +37,7 @@
             <option id="google" value="google">카페명 검색</option>
             <option id="naver" value="naver">주소명 검색</option>
           </select> -->
-
-          <form
-            id="form"
-            method="get"
-            action="map/map.html"
-            onsubmit="return keywordCheck();"
-          >
+          <form id="form" method="get" action="map/map.html" onsubmit="return keywordCheck();">
             <input
               type="text"
               class="searchTerm"
@@ -138,7 +132,7 @@
          주소명으로 검색: naver(주소) */
       /*  function onChange() {
         let value = document.getElementById("SelectSearch").options[
-          document.getElementById("SelectSearch").selectedIndex
+          document.getElementById("SelectSearch").sel ectedIndex
         ].value;
         console.log(value);
         if (value == "naver") {
