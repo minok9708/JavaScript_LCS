@@ -476,25 +476,6 @@
                 }
 
                 document.getElementById("inline_info_page").style.visibility = "visible";
-                // location.href =
-                //   "/search/cafe_info.html?" +
-                //   value.name +
-                //   "&" +
-                //   value.phone +
-                //   "&" +
-                //   value.parcelAddr +
-                //   "&" +
-                //   value.openTime +
-                //   "&" +
-                //   value.closeTime +
-                //   "&" +
-                //   aa +
-                //   "&" +
-                //   ll +
-                //   "&" +
-                //   bb +
-                //   "&" +
-                //   dd;
               };
             });
 
@@ -919,36 +900,49 @@
                 }
 
                 document.getElementById("info_btn").onclick = function () {
-                  console.log("클릭했습니다");
-                  //데이터만 보내면됨
-                  console.log(marker);
-                  console.log(uu);
-                  console.log(seatTotal);
-                  console.log("총 층수" + floorTotal);
-                  console.log("해당하는 층의 테이블수" + cc);
+                  // 드래그 이동 막기
+                  map.setDraggable(false);
+                  // innerHTML 초기화 중요함
+                  tableInfo.innerHTML = "";
 
-                  location.href =
-                    "/search/cafe_info.html?" +
-                    marker.name +
-                    "&" +
-                    marker.phone +
-                    "&" +
-                    marker.parcelAddr +
-                    "&" +
-                    marker.openTime +
-                    "&" +
-                    marker.closeTime +
-                    "&" +
-                    seatTotal +
-                    "&" +
-                    floorTotal +
-                    "&" +
-                    uu +
-                    "&" +
-                    cc;
+                  cafeName = document.getElementById("cafeName");
+                  cafeName.innerHTML = "<h1>" + marker.name + "</h1>";
+
+                  cafePhone = document.getElementById("cafePhone");
+                  cafePhone.innerHTML =
+                    "<p id=" + "p_phone" + ">연락처" + "<br>" + "</p>" + marker.phone;
+
+                  cafeAddr = document.getElementById("cafeAddr");
+                  cafeAddr.innerHTML = "<p>주소" + "<br>" + marker.parcelAddr + "</p>";
+
+                  cafeOpenTime = document.getElementById("cafeTime");
+                  cafeOpenTime.innerHTML =
+                    " <p>영업시간" + "<br>" + marker.openTime + " ~ " + marker.closeTime + "</p>";
+
+                  cafeAllSeat = document.getElementById("cafeAllSeat");
+                  cafeAllSeat.innerHTML = "<p>총 테이블 수" + "<br>" + seatTotal + "</p>";
+
+                  tableInfo = document.getElementById("tableInfo");
+                  tableInfo.innerHTML = "<p>" + "자리현황" + "</p>";
+
+                  for (let i = 0; i < floorTotal; i++) {
+                    tableInfo.innerHTML +=
+                      "<p>" +
+                      (i + 1) +
+                      "층 " +
+                      "사용중인 테이블: " +
+                      uu[i] +
+                      " / " +
+                      "전체 테이블 : " +
+                      cc[i] +
+                      "</p>";
+                  }
+
+                  document.getElementById("inline_info_page").style.visibility = "visible";
                 };
               });
               kakao.maps.event.addListener(map, "click", function () {
+                document.getElementById("inline_info_page").style.visibility = "hidden";
                 customOverlay.setMap(null);
               });
             }

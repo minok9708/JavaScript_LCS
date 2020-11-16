@@ -222,18 +222,19 @@ body {
 #form_test .container {
   height: auto;
   margin: 0 auto;
-  width: 30vw;
+  top: 10vh;
+  width: 50vw;
   max-width: 30vh;
   background-color: #a593e0;
   opacity: 0.75;
-  height: 30vw;
+  height: 50vw;
   max-height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid black;
   border-radius: 50%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #fffff3;
   font-weight: bold;
   position: relative;
@@ -255,13 +256,13 @@ body {
 }
 
 #form_test .container::after {
-  background-color: #fc1100;
+  background-color: #ca1cad;
   z-index: -1;
   animation: backglow2 15s ease infinite;
 }
 
 #form_test .container::before {
-  background-color: #2f00ff;
+  background-color: #d60d5a;
   z-index: -2;
   animation: backglow1 15s ease infinite;
 }
