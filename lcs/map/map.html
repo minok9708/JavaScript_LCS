@@ -35,7 +35,7 @@
     </script>
 
     <!-- 외부 css파일 사용 -->
-    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/lcs/com/css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 링크 -->
     <link
@@ -48,7 +48,7 @@
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/com/css/mobile_map.css"
+      href="/lcs/com/css/mobile_map.css"
       type="text/css"
     />
   </head>
@@ -66,7 +66,12 @@
         onkeypress="enterSearch()"
       />
 
-      <button id="search_Btn" type="button" value="검색" onclick="searchPlaces()">
+      <button
+        id="search_Btn"
+        type="button"
+        value="검색"
+        onclick="searchPlaces()"
+      >
         <i class="fa fa-search"></i>
       </button>
     </form>
@@ -272,20 +277,20 @@
           // 마커 사용량에 따른 마커 이미지 변경
           // 사용량이 60% 이상일때 Red 마커
           let high = new kakao.maps.MarkerImage(
-            "/img/red.png",
+            "/lcs/img/red.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
           // 사용량이 30 ~ 60%일때 Yellow 마커
           let normal = new kakao.maps.MarkerImage(
-            "/img/yellow.png",
+            "/lcs/img/yellow.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
 
           // 사용량이 30% 이하일때 Green 마커
           let low = new kakao.maps.MarkerImage(
-            "/img/green.png",
+            "/lcs/img/green.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
@@ -341,10 +346,14 @@
               // console.log("층 넘버" + ll);
               // console.log(value);
 
-              document.getElementById("content_box").style.visibility = "visible";
-              document.getElementById("content_box_title").innerHTML = value.name;
-              document.getElementById("content_box_addr").innerHTML = value.parcelAddr;
-              document.getElementById("content_box_phone").innerHTML = value.phone;
+              document.getElementById("content_box").style.visibility =
+                "visible";
+              document.getElementById("content_box_title").innerHTML =
+                value.name;
+              document.getElementById("content_box_addr").innerHTML =
+                value.parcelAddr;
+              document.getElementById("content_box_phone").innerHTML =
+                value.phone;
               document.getElementById("useTotalSeatDisplay").innerHTML = tt;
               document.getElementById("totalSeatDisplay").innerHTML = aa;
 
@@ -354,7 +363,7 @@
                 //데이터만 보내면됨
 
                 location.href =
-                  "/search/cafe_info.html?" +
+                  "/lcs/search/cafe_info.html?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -380,7 +389,8 @@
             });
             //--------------------------------------------------------------------------------  여기부분 수정 -------------------------------------------------------------------
             kakao.maps.event.addListener(map, "click", function () {
-              document.getElementById("content_box").style.visibility = "hidden";
+              document.getElementById("content_box").style.visibility =
+                "hidden";
             });
           }
           // 키워드로 검색했을때 데스크탑
@@ -447,17 +457,29 @@
 
                 cafePhone = document.getElementById("cafePhone");
                 cafePhone.innerHTML =
-                  "<p id=" + "p_phone" + ">연락처" + "<br>" + "</p>" + value.phone;
+                  "<p id=" +
+                  "p_phone" +
+                  ">연락처" +
+                  "<br>" +
+                  "</p>" +
+                  value.phone;
 
                 cafeAddr = document.getElementById("cafeAddr");
-                cafeAddr.innerHTML = "<p>주소" + "<br>" + value.parcelAddr + "</p>";
+                cafeAddr.innerHTML =
+                  "<p>주소" + "<br>" + value.parcelAddr + "</p>";
 
                 cafeOpenTime = document.getElementById("cafeTime");
                 cafeOpenTime.innerHTML =
-                  " <p>영업시간" + "<br>" + value.openTime + " ~ " + value.closeTime + "</p>";
+                  " <p>영업시간" +
+                  "<br>" +
+                  value.openTime +
+                  " ~ " +
+                  value.closeTime +
+                  "</p>";
 
                 cafeAllSeat = document.getElementById("cafeAllSeat");
-                cafeAllSeat.innerHTML = "<p>총 테이블 수" + "<br>" + aa + "</p>";
+                cafeAllSeat.innerHTML =
+                  "<p>총 테이블 수" + "<br>" + aa + "</p>";
 
                 tableInfo = document.getElementById("tableInfo");
                 tableInfo.innerHTML = "<p>" + "자리현황" + "</p>";
@@ -475,32 +497,15 @@
                     "</p>";
                 }
 
-                document.getElementById("inline_info_page").style.visibility = "visible";
-                // location.href =
-                //   "/search/cafe_info.html?" +
-                //   value.name +
-                //   "&" +
-                //   value.phone +
-                //   "&" +
-                //   value.parcelAddr +
-                //   "&" +
-                //   value.openTime +
-                //   "&" +
-                //   value.closeTime +
-                //   "&" +
-                //   aa +
-                //   "&" +
-                //   ll +
-                //   "&" +
-                //   bb +
-                //   "&" +
-                //   dd;
+                document.getElementById("inline_info_page").style.visibility =
+                  "visible";
               };
             });
 
             kakao.maps.event.addListener(map, "click", function () {
               map.setDraggable(true);
-              document.getElementById("inline_info_page").style.visibility = "hidden";
+              document.getElementById("inline_info_page").style.visibility =
+                "hidden";
               customOverlayA.setMap(null);
             });
           }
@@ -551,11 +556,15 @@
       // 지도에 마커와 인포윈도우를 표시하는 함수
       displayMarker = (locPosition, message) => {
         // 현위치 마커 이미지 변경
-        let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
+        let imageSrc = "/lcs/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
-          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        let markerImage = new kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption
+        );
 
         // 마커 생성
         let marker = new kakao.maps.Marker({
@@ -675,7 +684,7 @@
               swLatitude: sw2,
             },
           })
-            .then(({ data }) => {
+            .then(({data}) => {
               //성공적으로 통신이 완료되면 reslove -> res 함수를 사용해 getCafeSyncInfo함수로 매개변수(데이터)로 전달
               // res(getCafeSyncInfo((cafeData = data.data)));
               // casheData = data.data;
@@ -763,20 +772,20 @@
             // 마커 사용량에 따른 마커 이미지 변경
             // 사용량이 60% 이상일때 Red 마커
             let high = new kakao.maps.MarkerImage(
-              "/img/red.png",
+              "/lcs/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
             // 사용량이 30 ~ 60%일때 Yellow 마커
             let normal = new kakao.maps.MarkerImage(
-              "/img/yellow.png",
+              "/lcs/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
 
             // 사용량이 30% 이하일때 Green 마커
             let low = new kakao.maps.MarkerImage(
-              "/img/green.png",
+              "/lcs/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
@@ -784,7 +793,10 @@
             // 마커 객체 생성 이름은 m - 나중에 변경
             let m = new kakao.maps.Marker({
               map: map,
-              position: new kakao.maps.LatLng(marker.latitude, marker.longitude),
+              position: new kakao.maps.LatLng(
+                marker.latitude,
+                marker.longitude
+              ),
               // 마커 아이콘 이미지
               title: marker.name,
             });
@@ -832,14 +844,24 @@
 
                 // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
 
-                document.getElementById("content_box").style.visibility = "visible";
-                document.getElementById("content_box_title").innerHTML = marker.name;
-                document.getElementById("content_box_addr").innerHTML = marker.parcelAddr;
-                document.getElementById("content_box_phone").innerHTML = marker.phone;
-                document.getElementById("useTotalSeatDisplay").innerHTML = seatUseTotal;
-                document.getElementById("totalSeatDisplay").innerHTML = seatTotal;
+                document.getElementById("content_box").style.visibility =
+                  "visible";
+                document.getElementById("content_box_title").innerHTML =
+                  marker.name;
+                document.getElementById("content_box_addr").innerHTML =
+                  marker.parcelAddr;
+                document.getElementById("content_box_phone").innerHTML =
+                  marker.phone;
+                document.getElementById(
+                  "useTotalSeatDisplay"
+                ).innerHTML = seatUseTotal;
+                document.getElementById(
+                  "totalSeatDisplay"
+                ).innerHTML = seatTotal;
 
-                document.getElementById("content_box_btn").onclick = function () {
+                document.getElementById(
+                  "content_box_btn"
+                ).onclick = function () {
                   console.log("클릭했습니다");
                   //데이터만 보내면됨
                   console.log(marker);
@@ -849,7 +871,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/search/cafe_info.html?" +
+                    "/lcs/search/cafe_info.html?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -871,7 +893,8 @@
               });
 
               kakao.maps.event.addListener(map, "click", function () {
-                document.getElementById("content_box").style.visibility = "hidden";
+                document.getElementById("content_box").style.visibility =
+                  "hidden";
               });
               //데스크탑
             } else {
@@ -919,36 +942,63 @@
                 }
 
                 document.getElementById("info_btn").onclick = function () {
-                  console.log("클릭했습니다");
-                  //데이터만 보내면됨
-                  console.log(marker);
-                  console.log(uu);
-                  console.log(seatTotal);
-                  console.log("총 층수" + floorTotal);
-                  console.log("해당하는 층의 테이블수" + cc);
+                  // 드래그 이동 막기
+                  map.setDraggable(false);
+                  // innerHTML 초기화 중요함
+                  tableInfo.innerHTML = "";
 
-                  location.href =
-                    "/search/cafe_info.html?" +
-                    marker.name +
-                    "&" +
-                    marker.phone +
-                    "&" +
-                    marker.parcelAddr +
-                    "&" +
+                  cafeName = document.getElementById("cafeName");
+                  cafeName.innerHTML = "<h1>" + marker.name + "</h1>";
+
+                  cafePhone = document.getElementById("cafePhone");
+                  cafePhone.innerHTML =
+                    "<p id=" +
+                    "p_phone" +
+                    ">연락처" +
+                    "<br>" +
+                    "</p>" +
+                    marker.phone;
+
+                  cafeAddr = document.getElementById("cafeAddr");
+                  cafeAddr.innerHTML =
+                    "<p>주소" + "<br>" + marker.parcelAddr + "</p>";
+
+                  cafeOpenTime = document.getElementById("cafeTime");
+                  cafeOpenTime.innerHTML =
+                    " <p>영업시간" +
+                    "<br>" +
                     marker.openTime +
-                    "&" +
+                    " ~ " +
                     marker.closeTime +
-                    "&" +
-                    seatTotal +
-                    "&" +
-                    floorTotal +
-                    "&" +
-                    uu +
-                    "&" +
-                    cc;
+                    "</p>";
+
+                  cafeAllSeat = document.getElementById("cafeAllSeat");
+                  cafeAllSeat.innerHTML =
+                    "<p>총 테이블 수" + "<br>" + cc + "</p>";
+
+                  tableInfo = document.getElementById("tableInfo");
+                  tableInfo.innerHTML = "<p>" + "자리현황" + "</p>";
+
+                  for (let i = 0; i < floorTotal; i++) {
+                    tableInfo.innerHTML +=
+                      "<p>" +
+                      (i + 1) +
+                      "층 " +
+                      "사용중인 테이블: " +
+                      uu[i] +
+                      " / " +
+                      "전체 테이블 : " +
+                      cc[i] +
+                      "</p>";
+                  }
+
+                  document.getElementById("inline_info_page").style.visibility =
+                    "visible";
                 };
               });
               kakao.maps.event.addListener(map, "click", function () {
+                document.getElementById("inline_info_page").style.visibility =
+                  "hidden";
                 customOverlay.setMap(null);
               });
             }
