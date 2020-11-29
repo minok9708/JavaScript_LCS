@@ -459,39 +459,60 @@
                 cafePhone.innerHTML =
                   "<p id=" +
                   "p_phone" +
-                  ">&nbsp;&nbsp;연락처" +
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                  "><img id=" +
+                  '"img_phone"' +
+                  " src=" +
+                  '"/lcs/img/phone.png">' +
+                  "연락처</p>" +
                   value.phone;
-                ("</p>");
 
                 cafeAddr = document.getElementById("cafeAddr");
                 cafeAddr.innerHTML =
-                  "<p>&nbsp;&nbsp;주소" +
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                  value.parcelAddr +
-                  "</p>";
+                  "<p id=" +
+                  "p_addr" +
+                  "><img id=" +
+                  '"img_address"' +
+                  " src=" +
+                  '"/lcs/img/address.png">' +
+                  "주소</p>" +
+                  value.parcelAddr;
 
                 cafeOpenTime = document.getElementById("cafeTime");
                 cafeOpenTime.innerHTML =
-                  " <p>&nbsp;&nbsp;영업시간" +
-                  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                  " <p id=" +
+                  "p_time" +
+                  "><img id=" +
+                  '"img_time"' +
+                  "src=" +
+                  '"/lcs/img/time.png">' +
+                  "영업시간</p>" +
                   value.openTime +
                   " ~ " +
-                  value.closeTime +
-                  "</p>";
+                  value.closeTime;
 
                 cafeAllSeat = document.getElementById("cafeAllSeat");
                 cafeAllSeat.innerHTML =
-                  "<p>&nbsp;&nbsp;총 테이블 수&nbsp;" + "&nbsp;" + aa + "</p>";
+                  " <p id=" +
+                  "p_seat" +
+                  "><img id=" +
+                  '"img_seat"' +
+                  "src=" +
+                  '"/lcs/img/seat.png">' +
+                  "총 테이블 수</p>" +
+                  +aa;
 
                 tableInfo = document.getElementById("tableInfo");
                 tableInfo.innerHTML =
-                  "<br><p>&nbsp;&nbsp;" + "자리현황" + "</p>";
+                  "<br><p><img id=" +
+                  '"img_table"' +
+                  " src=" +
+                  '"/lcs/img/table.png">' +
+                  "자리현황" +
+                  "</p>";
 
                 for (let i = 0; i < ll; i++) {
                   tableInfo.innerHTML +=
                     "<p>" +
-                    "&nbsp;&nbsp;&nbsp;&nbsp;" +
                     (i + 1) +
                     "층: " +
                     "사용중인 테이블: " +
