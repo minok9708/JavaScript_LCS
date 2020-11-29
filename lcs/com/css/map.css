@@ -8,6 +8,49 @@
 }
 
 @font-face {
+  font-family: "info";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix")
+      format("embedded-opentype"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff")
+      format("woff"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-style: normal;
+  font-weight: 700;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff")
+      format("woff"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-style: normal;
+  font-weight: 300;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix")
+      format("embedded-opentype"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff")
+      format("woff"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf")
+      format("truetype");
+}
+
+.nanumbarungothic * {
+  font-family: "NanumBarunGothic", sans-serif;
+}
+
+@font-face {
   font-family: "title1";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
     format("woff");
@@ -478,14 +521,16 @@ td {
   background-color: #ffffff;
   left: 50%;
   top: 50%;
-  margin-top: -300px;
-  margin-left: -375px;
+  margin-top: -250px;
+  margin-left: -300px;
+  border: solid 1.5px;
   border-radius: 15px;
-  box-shadow: 0px 0px 2px 2px #252424;
-  width: 750px;
-  height: 600px;
+  /* box-shadow: 0px 0px 0px 1px #252424; */
+  width: 600px;
+  height: 500px;
   z-index: 10;
   line-height: 200%;
+  font-family: info;
 }
 
 #content_info {
@@ -496,13 +541,13 @@ td {
 #cafename_box {
   background-color: rgb(255, 255, 255);
   padding-top: 4px;
-  width: 700px;
+  width: 550px;
   margin-left: 25px;
-  top: -70px;
-  height: 100px;
+  top: -55px;
+  height: 80px;
   position: absolute;
-  box-shadow: 0px 0px 2px 2px #252424;
-  border-radius: 20px;
+  box-shadow: 0px 0px 1px 1px #252424;
+   border-radius: 20px;
 }
 
 p {
@@ -516,11 +561,13 @@ p {
 
 /* 카페 이름 */
 #cafeName {
-  font-family: title1;
+  font-family: info;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 23px;
   font-size: 2rem;
+  font-weight: bold;
   margin: 0;
+  letter-spacing: 4px;
 }
 
 /* 카페 자리 정보 */
@@ -529,11 +576,11 @@ p {
   text-align: left;
   /* border: solid 1px; */
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 45px;
   margin-right: 50px;
   padding-left: 3vh;
-  padding-bottom: 3vh;
-
+  padding-bottom: 2vh;
+  margin-bottom: 30px;
   background-color: rgba(153, 153, 153, 0.267);
 }
 
@@ -545,9 +592,10 @@ p {
 
 /* 카페 연락처 */
 #cafePhone {
-  margin-left: 80px;
+  margin-left: 50px;
   text-align: left;
   color: #0582f7;
+  font-size: small;
 }
 
 #img_phone {
@@ -561,8 +609,9 @@ p {
 }
 /* 카페 주소 */
 #cafeAddr {
-  margin-left: 75px;
+  margin-left: 50px;
   text-align: left;
+  font-size: small;
 }
 
 #img_address {
@@ -572,8 +621,9 @@ p {
 
 /* 카페 영업시간 */
 #cafeTime {
-  margin-left: 80px;
+  margin-left: 50px;
   text-align: left;
+  font-size: small;
 }
 
 /* 영업시간 아이콘 이미지 */
@@ -583,9 +633,10 @@ p {
 }
 /* 카페 총 테이블 수 */
 #cafeAllSeat {
-  margin-left: 80px;
+  margin-left: 50px;
   text-align: left;
-  font-weight: bold;
+  font-size: small;
+  /* font-weight: bold; */
 }
 /* 총 테이블 수 아이콘 이미지 */
 #img_seat {
@@ -599,7 +650,7 @@ p {
 
 #content {
   width: 50%;
-  padding: 30px 50px 50px 50px;
+  padding: 20px 50px 50px 50px;
   border-radius: 5px;
   border: 2px solid black;
   margin: auto;
@@ -607,19 +658,25 @@ p {
 }
 /* 연락처 위에 실선 */
 #hr_line1 {
-  width: 650px;
+  width: 500px;
   border-style: solid;
   border-width: 0.5px;
 }
 /* 상세정보 실선 */
 #hr_line {
-  width: 650px;
+  width: 500px;
 }
 /* 자리현황의 층별 상세정보 */
 #floor_table {
-  margin-left: 50px;
+  margin-left: 37px;
+  font-size: small;
 }
 
 #seat_box {
   border: solid;
+}
+
+#stAddr {
+  font-weight: bold;
+  font-size: small;
 }
