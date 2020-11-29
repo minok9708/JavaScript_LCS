@@ -93,7 +93,7 @@
           <!--  정보 뭉텅이 -->
           <div>
             <!-- 연락처 -->
-            <hr id="hr_line" />
+            <hr id="hr_line1" />
             <div id="cafePhone"></div>
             <hr id="hr_line" />
             <!-- 카페주소 -->
@@ -463,7 +463,7 @@
                   '"img_phone"' +
                   " src=" +
                   '"/lcs/img/phone.png">' +
-                  "연락처</p>" +
+                  "&nbsp;연락처&nbsp;&nbsp;</p>" +
                   value.phone;
 
                 cafeAddr = document.getElementById("cafeAddr");
@@ -474,7 +474,7 @@
                   '"img_address"' +
                   " src=" +
                   '"/lcs/img/address.png">' +
-                  "주소</p>" +
+                  "&nbsp;주소&nbsp;&nbsp;</p>" +
                   value.parcelAddr;
 
                 cafeOpenTime = document.getElementById("cafeTime");
@@ -485,20 +485,20 @@
                   '"img_time"' +
                   "src=" +
                   '"/lcs/img/time.png">' +
-                  "영업시간</p>" +
+                  "&nbsp;영업시간&nbsp;&nbsp;</p>" +
                   value.openTime +
                   " ~ " +
                   value.closeTime;
 
                 cafeAllSeat = document.getElementById("cafeAllSeat");
                 cafeAllSeat.innerHTML =
-                  " <p id=" +
+                  "<p id=" +
                   "p_seat" +
                   "><img id=" +
                   '"img_seat"' +
                   "src=" +
                   '"/lcs/img/seat.png">' +
-                  "총 테이블 수</p>" +
+                  "&nbsp;총 테이블 수&nbsp;&nbsp;</p>" +
                   +aa;
 
                 tableInfo = document.getElementById("tableInfo");
@@ -507,20 +507,24 @@
                   '"img_table"' +
                   " src=" +
                   '"/lcs/img/table.png">' +
-                  "자리현황" +
+                  "&nbsp;자리현황" +
                   "</p>";
 
                 for (let i = 0; i < ll; i++) {
                   tableInfo.innerHTML +=
-                    "<p>" +
+                    "<div id=" +
+                    '"floor_table">' +
+                    "<h3>" +
                     (i + 1) +
                     "층: " +
-                    "사용중인 테이블: " +
+                    "사용중인 테이블:&nbsp; <hr3 id=" +
+                    '"seat_num">' +
                     bb[i] +
-                    " / " +
-                    "전체 테이블 : " +
+                    "</hr3> / " +
+                    "&nbsp;전체 테이블 : &nbsp;<hr3 id=" +
+                    '"seat_num">' +
                     dd[i] +
-                    "</p>";
+                    "</hr3></h3></div>";
                 }
 
                 document.getElementById("inline_info_page").style.visibility =
@@ -982,7 +986,7 @@
                   cafePhone.innerHTML =
                     "<p id=" +
                     "p_phone" +
-                    ">연락처" +
+                    ">&nbsp;연락처" +
                     "<br>" +
                     "</p>" +
                     marker.phone;
@@ -1002,13 +1006,14 @@
 
                   cafeAllSeat = document.getElementById("cafeAllSeat");
                   cafeAllSeat.innerHTML =
-                    "<p>총 테이블 수" + "<br>" + seatTotal + "</p>";
+                    "<p><b>총 테이블 수</b>" + "<br>" + seatTotal + "</p>";
                   tableInfo = document.getElementById("tableInfo");
-                  tableInfo.innerHTML = "<p>" + "자리현황" + "</p>";
+                  tableInfo.innerHTML =
+                    "<p>" + "<strong>자리현황</strong>" + "</p>";
 
                   for (let i = 0; i < floorTotal; i++) {
                     tableInfo.innerHTML +=
-                      "<p>" +
+                      "<hr>" +
                       (i + 1) +
                       "층 " +
                       "사용중인 테이블: " +
@@ -1016,7 +1021,7 @@
                       " / " +
                       "전체 테이블 : " +
                       cc[i] +
-                      "</p>";
+                      "</hr>";
                   }
 
                   document.getElementById("inline_info_page").style.visibility =

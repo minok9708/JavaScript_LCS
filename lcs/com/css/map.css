@@ -492,6 +492,7 @@ td {
   padding-top: 10px;
   font-size: 1.1rem;
 }
+
 #cafename_box {
   background-color: rgb(255, 255, 255);
   padding-top: 4px;
@@ -503,6 +504,16 @@ td {
   box-shadow: 0px 0px 2px 2px #252424;
   border-radius: 20px;
 }
+
+p {
+  display: inline;
+}
+
+/* 자리현황 숫자 텍스트 굵게 */
+#seat_num {
+  font-weight: bold;
+}
+
 /* 카페 이름 */
 #cafeName {
   font-family: title1;
@@ -514,10 +525,19 @@ td {
 
 /* 카페 자리 정보 */
 #tableInfo {
-  padding-top: 3vh;
-  margin-left: 55px;
+  margin-left: 50px;
   text-align: left;
+  /* border: solid 1px; */
+  border-radius: 20px;
+  margin-top: 50px;
+  margin-right: 50px;
+  padding-left: 3vh;
+  padding-bottom: 3vh;
+
+  background-color: rgba(153, 153, 153, 0.267);
 }
+
+/* 자리현황 아이콘 이미지 */
 #img_table {
   width: 30px;
   height: 30px;
@@ -525,7 +545,7 @@ td {
 
 /* 카페 연락처 */
 #cafePhone {
-  margin-left: 55px;
+  margin-left: 80px;
   text-align: left;
   color: #0582f7;
 }
@@ -541,7 +561,7 @@ td {
 }
 /* 카페 주소 */
 #cafeAddr {
-  margin-left: 55px;
+  margin-left: 75px;
   text-align: left;
 }
 
@@ -552,22 +572,29 @@ td {
 
 /* 카페 영업시간 */
 #cafeTime {
-  margin-left: 55px;
+  margin-left: 80px;
   text-align: left;
 }
+
+/* 영업시간 아이콘 이미지 */
 #img_time {
   width: 20px;
   height: 20px;
 }
 /* 카페 총 테이블 수 */
 #cafeAllSeat {
-  margin-left: 55px;
+  margin-left: 80px;
   text-align: left;
+  font-weight: bold;
 }
-
+/* 총 테이블 수 아이콘 이미지 */
 #img_seat {
   width: 20px;
   height: 20px;
+}
+
+#p_seat {
+  font-weight: normal;
 }
 
 #content {
@@ -578,7 +605,21 @@ td {
   margin: auto;
   margin-top: 20vh;
 }
-
+/* 연락처 위에 실선 */
+#hr_line1 {
+  width: 650px;
+  border-style: solid;
+  border-width: 0.5px;
+}
+/* 상세정보 실선 */
 #hr_line {
-  width: 700px;
+  width: 650px;
+}
+/* 자리현황의 층별 상세정보 */
+#floor_table {
+  margin-left: 50px;
+}
+
+#seat_box {
+  border: solid;
 }
