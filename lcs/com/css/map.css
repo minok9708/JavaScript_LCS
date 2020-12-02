@@ -510,7 +510,7 @@ td {
   visibility: hidden;
   top: 1000px;
   left: 100px;
-  width: 500px;
+  width: 250px;
   height: 200px;
   background-color: rgb(255, 255, 255);
 }
@@ -519,17 +519,16 @@ td {
   position: absolute;
   visibility: hidden;
   background-color: #ffffff;
-  left: 50%;
-  top: 50%;
-  margin-top: -250px;
-  margin-left: -300px;
+  /*   left: 50%; */
+  /*   margin-top: -250px; */
+  /* margin-left: -300px; */
   border: solid 1.5px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   /* box-shadow: 0px 0px 0px 1px #252424; */
-  width: 600px;
-  height: 500px;
+  width: 450px;
+  height: 10000px;
   z-index: 10;
-  line-height: 200%;
+  line-height: 150%;
   font-family: info;
 }
 
@@ -538,17 +537,17 @@ td {
   font-size: 1.1rem;
 }
 
-#cafename_box {
+/* #cafename_box {
   background-color: rgb(255, 255, 255);
-  padding-top: 4px;
-  width: 550px;
-  margin-left: 25px;
+  padding-top: 3px;
+  width: 451px;
   top: -55px;
   height: 80px;
   position: absolute;
   box-shadow: 0px 0px 1px 1px #252424;
-   border-radius: 20px;
+
 }
+ */
 
 p {
   display: inline;
@@ -557,6 +556,7 @@ p {
 /* 자리현황 숫자 텍스트 굵게 */
 #seat_num {
   font-weight: bold;
+  color: rgba(255, 0, 0, 0.589);
 }
 
 /* 카페 이름 */
@@ -572,12 +572,12 @@ p {
 
 /* 카페 자리 정보 */
 #tableInfo {
-  margin-left: 50px;
+  margin-left: 40px;
   text-align: left;
   /* border: solid 1px; */
   border-radius: 20px;
   margin-top: 45px;
-  margin-right: 50px;
+  margin-right: 40px;
   padding-left: 3vh;
   padding-bottom: 2vh;
   margin-bottom: 30px;
@@ -615,7 +615,7 @@ p {
 }
 
 #img_address {
-  width: 30px;
+  width: 23px;
   height: 25px;
 }
 
@@ -631,6 +631,7 @@ p {
   width: 20px;
   height: 20px;
 }
+
 /* 카페 총 테이블 수 */
 #cafeAllSeat {
   margin-left: 50px;
@@ -656,16 +657,20 @@ p {
   margin: auto;
   margin-top: 20vh;
 }
+
 /* 연락처 위에 실선 */
 #hr_line1 {
-  width: 500px;
+  margin-top: 13%;
+  width: 360px;
   border-style: solid;
   border-width: 0.5px;
 }
+
 /* 상세정보 실선 */
 #hr_line {
-  width: 500px;
+  width: 360px;
 }
+
 /* 자리현황의 층별 상세정보 */
 #floor_table {
   margin-left: 37px;
@@ -679,4 +684,9 @@ p {
 #stAddr {
   font-weight: bold;
   font-size: small;
+}
+
+#cafe_name {
+  margin-top: 100px;
+  margin-bottom: 50px;
 }

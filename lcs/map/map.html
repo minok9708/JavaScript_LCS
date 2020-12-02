@@ -79,12 +79,10 @@
     <div id="map">
       <div id="inline_info_page">
         <div id="content_info">
-          <!-- <div id="cafe_logo">이미지</div> -->
-          <div id="cafename_box">
-            <div id="cafeName">
-              <h1></h1>
-            </div>
+          <div id="cafeName">
+            <h1></h1>
           </div>
+
           <div id="table_state">
             <!-- <p>빈 테이블 수 / 총 테이블 수</p> -->
             <!-- 층마다 테이블수 표시 -->
@@ -448,12 +446,21 @@
               //상세페이지로 데이터 전송
               document.getElementById("info_btn").onclick = function () {
                 // 드래그 이동 막기
-                map.setDraggable(false);
+                map.setDraggable(true);
+
+                document.getElementById("searchBar").style.visibility =
+                  "hidden";
+
                 // innerHTML 초기화 중요함
                 tableInfo.innerHTML = "";
 
+                /* 오픈시간 시간만 나타내기 위해서 분리 */
+                open = value.openTime.split("T");
+                close = value.closeTime.split("T");
+
                 cafeName = document.getElementById("cafeName");
-                cafeName.innerHTML = "<h1>" + value.name + "</h1>";
+                cafeName.innerHTML =
+                  "<h1 id=" + '"cafe_name">' + value.name + "</h1>";
 
                 cafePhone = document.getElementById("cafePhone");
                 cafePhone.innerHTML =
@@ -492,9 +499,9 @@
                   "&nbsp;<a id=" +
                   '"stAddr">' +
                   "&nbsp;영업시간</a>&nbsp;&nbsp;</p>" +
-                  value.openTime +
+                  open[1] +
                   " ~ " +
-                  value.closeTime;
+                  close[1];
 
                 cafeAllSeat = document.getElementById("cafeAllSeat");
                 cafeAllSeat.innerHTML =
@@ -547,6 +554,7 @@
 
               document.getElementById("inline_info_page").style.visibility =
                 "hidden";
+              document.getElementById("searchBar").style.visibility = "visible";
 
               customOverlayA.setMap(null);
             });
