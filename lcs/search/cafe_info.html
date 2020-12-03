@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   </head>
 
-  <link href="/lcs/com/css/cafe_info.css" rel="stylesheet" type="text/css" />
+  <link href="/com/css/cafe_info.css" rel="stylesheet" type="text/css" />
   <body>
     <div id="content">
       <!-- <div id="cafe_logo">이미지</div> -->
@@ -90,7 +90,8 @@
       console.log(totalSeatArray);
 
       cafeName = document.getElementById("cafeName");
-      cafeName.innerHTML = "<a id=+"+'"cafe_text"'+"> " + decodeURI(name) + "</a>";
+      cafeName.innerHTML =
+        "<a id=+" + '"cafe_text"' + "> " + decodeURI(name) + "</a>";
 
       cafePhone = document.getElementById("cafePhone");
       cafePhone.innerHTML =
@@ -99,7 +100,7 @@
         "><img id=" +
         '"img_phone"' +
         " src=" +
-        '"/lcs/img/phone.png">' +
+        '"/img/phone.png">' +
         "&nbsp;<a id=" +
         '"stAddr">' +
         "&nbsp;연락처</a>&nbsp;&nbsp;</p>" +
@@ -112,7 +113,7 @@
         "><img id=" +
         '"img_address"' +
         " src=" +
-        '"/lcs/img/address.png">' +
+        '"/img/address.png">' +
         "&nbsp;<a id=" +
         '"stAddr">' +
         "&nbsp;주소</a>&nbsp;&nbsp;</p>" +
@@ -125,7 +126,7 @@
         "><img id=" +
         '"img_time"' +
         "src=" +
-        '"/lcs/img/time.png">' +
+        '"/img/time.png">' +
         "&nbsp;<a id=" +
         '"stAddr">' +
         "&nbsp;영업시간</a>&nbsp;&nbsp;</p>" +
@@ -140,7 +141,7 @@
         "><img id=" +
         '"img_seat"' +
         "src=" +
-        '"/lcs/img/seat.png">' +
+        '"/img/seat.png">' +
         "&nbsp;<a id=" +
         '"stAddr">' +
         "&nbsp;총 테이블 수</a>&nbsp;&nbsp;</p>" +
@@ -153,7 +154,7 @@
         "><img id=" +
         '"img_table"' +
         " src=" +
-        '"/lcs/img/table.png">' +
+        '"/img/table.png">' +
         "&nbsp;<a id=" +
         '"stAddr">' +
         "&nbsp;자리현황</a>" +

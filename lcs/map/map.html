@@ -35,7 +35,7 @@
     </script>
 
     <!-- 외부 css파일 사용 -->
-    <link href="/lcs/com/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/com/css/map.css" rel="stylesheet" type="text/css" />
 
     <!-- 검색 아이콘 링크 -->
     <link
@@ -48,7 +48,7 @@
     <link
       rel="stylesheet"
       media="screen and (max-width: 768px)"
-      href="/lcs/com/css/mobile_map.css"
+      href="/com/css/mobile_map.css"
       type="text/css"
     />
   </head>
@@ -275,20 +275,20 @@
           // 마커 사용량에 따른 마커 이미지 변경
           // 사용량이 60% 이상일때 Red 마커
           let high = new kakao.maps.MarkerImage(
-            "/lcs/img/red.png",
+            "/img/red.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
           // 사용량이 30 ~ 60%일때 Yellow 마커
           let normal = new kakao.maps.MarkerImage(
-            "/lcs/img/yellow.png",
+            "/img/yellow.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
 
           // 사용량이 30% 이하일때 Green 마커
           let low = new kakao.maps.MarkerImage(
-            "/lcs/img/green.png",
+            "/img/green.png",
             new kakao.maps.Size(24, 35),
             new kakao.maps.Point(13, 34)
           );
@@ -361,7 +361,7 @@
                 //데이터만 보내면됨
 
                 location.href =
-                  "/lcs/search/cafe_info.html?" +
+                  "/search/cafe_info?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -469,7 +469,7 @@
                   "><img id=" +
                   '"img_phone"' +
                   " src=" +
-                  '"/lcs/img/phone.png">' +
+                  '"/img/phone.png">' +
                   "&nbsp;<a id=" +
                   '"stAddr">' +
                   "&nbsp;연락처</a>&nbsp;&nbsp;</p>" +
@@ -482,7 +482,7 @@
                   "><img id=" +
                   '"img_address"' +
                   " src=" +
-                  '"/lcs/img/address.png">' +
+                  '"/img/address.png">' +
                   "&nbsp;<a id=" +
                   '"stAddr">' +
                   "&nbsp;주소</a>&nbsp;&nbsp;</p>" +
@@ -495,7 +495,7 @@
                   "><img id=" +
                   '"img_time"' +
                   "src=" +
-                  '"/lcs/img/time.png">' +
+                  '"/img/time.png">' +
                   "&nbsp;<a id=" +
                   '"stAddr">' +
                   "&nbsp;영업시간</a>&nbsp;&nbsp;</p>" +
@@ -510,7 +510,7 @@
                   "><img id=" +
                   '"img_seat"' +
                   "src=" +
-                  '"/lcs/img/seat.png">' +
+                  '"/img/seat.png">' +
                   "&nbsp;<a id=" +
                   '"stAddr">' +
                   "&nbsp;총 테이블 수</a>&nbsp;&nbsp;</p>" +
@@ -521,7 +521,7 @@
                   "<br><p><img id=" +
                   '"img_table"' +
                   " src=" +
-                  '"/lcs/img/table.png">' +
+                  '"/img/table.png">' +
                   "&nbsp;<a id=" +
                   '"stAddr">' +
                   "&nbsp;자리현황</a>" +
@@ -606,7 +606,7 @@
       // 지도에 마커와 인포윈도우를 표시하는 함수
       displayMarker = (locPosition, message) => {
         // 현위치 마커 이미지 변경
-        let imageSrc = "/lcs/img/location.png", // 마커이미지의 주소입니다
+        let imageSrc = "/img/location.png", // 마커이미지의 주소입니다
           imageSize = new kakao.maps.Size(48, 48), // 마커이미지의 크기입니다
           imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -822,20 +822,20 @@
             // 마커 사용량에 따른 마커 이미지 변경
             // 사용량이 60% 이상일때 Red 마커
             let high = new kakao.maps.MarkerImage(
-              "/lcs/img/red.png",
+              "/img/red.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
             // 사용량이 30 ~ 60%일때 Yellow 마커
             let normal = new kakao.maps.MarkerImage(
-              "/lcs/img/yellow.png",
+              "/img/yellow.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
 
             // 사용량이 30% 이하일때 Green 마커
             let low = new kakao.maps.MarkerImage(
-              "/lcs/img/green.png",
+              "/img/green.png",
               new kakao.maps.Size(24, 35),
               new kakao.maps.Point(13, 34)
             );
@@ -921,7 +921,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/lcs/search/cafe_info.html?" +
+                    "/search/cafe_info?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -1015,7 +1015,7 @@
                     "><img id=" +
                     '"img_phone"' +
                     " src=" +
-                    '"/lcs/img/phone.png">' +
+                    '"/img/phone.png">' +
                     "&nbsp;<a id=" +
                     '"stAddr">' +
                     "&nbsp;연락처</a>&nbsp;&nbsp;</p>" +
@@ -1028,7 +1028,7 @@
                     "><img id=" +
                     '"img_address"' +
                     " src=" +
-                    '"/lcs/img/address.png">' +
+                    '"/img/address.png">' +
                     "&nbsp;<a id=" +
                     '"stAddr">' +
                     "&nbsp;주소</a>&nbsp;&nbsp;</p>" +
@@ -1041,7 +1041,7 @@
                     "><img id=" +
                     '"img_time"' +
                     "src=" +
-                    '"/lcs/img/time.png">' +
+                    '"/img/time.png">' +
                     "&nbsp;<a id=" +
                     '"stAddr">' +
                     "&nbsp;영업시간</a>&nbsp;&nbsp;</p>" +
@@ -1056,7 +1056,7 @@
                     "><img id=" +
                     '"img_seat"' +
                     "src=" +
-                    '"/lcs/img/seat.png">' +
+                    '"/img/seat.png">' +
                     "&nbsp;<a id=" +
                     '"stAddr">' +
                     "&nbsp;총 테이블 수</a>&nbsp;&nbsp;</p>" +
@@ -1067,7 +1067,7 @@
                     "<br><p><img id=" +
                     '"img_table"' +
                     " src=" +
-                    '"/lcs/img/table.png">' +
+                    '"/img/table.png">' +
                     "&nbsp;<a id=" +
                     '"stAddr">' +
                     "&nbsp;자리현황</a>" +
