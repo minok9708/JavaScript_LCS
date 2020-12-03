@@ -120,7 +120,7 @@ p {
 
 /* 카페 자리현황 사각형 */
 #tableInfo {
-  width: 310px;
+  width: 85vw;
   height: 160px;
   font-size: 5px;
   border-radius: 10px;
@@ -219,7 +219,7 @@ p {
 
 /* 연락처 위에 실선 */
 #hr_line1 {
-  width: 300px;
+  width: 85vw;
   border-style: solid;
   border-width: 0.5px;
   margin-top: 35px;
@@ -227,7 +227,7 @@ p {
 
 /* 상세정보 실선 */
 #hr_line {
-  width: 300px;
+  width: 85vw;
 }
 
 /* 카테고리 텍스트 크기 */
