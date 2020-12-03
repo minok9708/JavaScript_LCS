@@ -993,53 +993,101 @@
 
                 document.getElementById("info_btn").onclick = function () {
                   // 드래그 이동 막기
-                  map.setDraggable(false);
+                  map.setDraggable(true);
                   // innerHTML 초기화 중요함
                   tableInfo.innerHTML = "";
 
+                  /* 오픈시간 시간만 나타내기 위해서 분리 */
+                  open = marker.openTime.split("T");
+                  close = marker.closeTime.split("T");
+
+                  document.getElementById("searchBar").style.visibility =
+                    "hidden";
+
                   cafeName = document.getElementById("cafeName");
-                  cafeName.innerHTML = "<h1>" + marker.name + "</h1>";
+                  cafeName.innerHTML =
+                    "<h1 id=" + '"cafe_name">' + marker.name + "</h1>";
 
                   cafePhone = document.getElementById("cafePhone");
                   cafePhone.innerHTML =
                     "<p id=" +
                     "p_phone" +
-                    ">&nbsp;연락처" +
-                    "<br>" +
-                    "</p>" +
+                    "><img id=" +
+                    '"img_phone"' +
+                    " src=" +
+                    '"/lcs/img/phone.png">' +
+                    "&nbsp;<a id=" +
+                    '"stAddr">' +
+                    "&nbsp;연락처</a>&nbsp;&nbsp;</p>" +
                     marker.phone;
 
                   cafeAddr = document.getElementById("cafeAddr");
                   cafeAddr.innerHTML =
-                    "<p>주소" + "<br>" + marker.parcelAddr + "</p>";
+                    "<p id=" +
+                    "p_addr" +
+                    "><img id=" +
+                    '"img_address"' +
+                    " src=" +
+                    '"/lcs/img/address.png">' +
+                    "&nbsp;<a id=" +
+                    '"stAddr">' +
+                    "&nbsp;주소</a>&nbsp;&nbsp;</p>" +
+                    marker.parcelAddr;
 
                   cafeOpenTime = document.getElementById("cafeTime");
                   cafeOpenTime.innerHTML =
-                    " <p>영업시간" +
-                    "<br>" +
-                    marker.openTime +
+                    " <p id=" +
+                    "p_time" +
+                    "><img id=" +
+                    '"img_time"' +
+                    "src=" +
+                    '"/lcs/img/time.png">' +
+                    "&nbsp;<a id=" +
+                    '"stAddr">' +
+                    "&nbsp;영업시간</a>&nbsp;&nbsp;</p>" +
+                    open[1] +
                     " ~ " +
-                    marker.closeTime +
-                    "</p>";
+                    close[1];
 
                   cafeAllSeat = document.getElementById("cafeAllSeat");
                   cafeAllSeat.innerHTML =
-                    "<p><b>총 테이블 수</b>" + "<br>" + seatTotal + "</p>";
+                    "<p id=" +
+                    "p_seat" +
+                    "><img id=" +
+                    '"img_seat"' +
+                    "src=" +
+                    '"/lcs/img/seat.png">' +
+                    "&nbsp;<a id=" +
+                    '"stAddr">' +
+                    "&nbsp;총 테이블 수</a>&nbsp;&nbsp;</p>" +
+                    seatTotal;
+
                   tableInfo = document.getElementById("tableInfo");
                   tableInfo.innerHTML =
-                    "<p>" + "<strong>자리현황</strong>" + "</p>";
+                    "<br><p><img id=" +
+                    '"img_table"' +
+                    " src=" +
+                    '"/lcs/img/table.png">' +
+                    "&nbsp;<a id=" +
+                    '"stAddr">' +
+                    "&nbsp;자리현황</a>" +
+                    "</p>";
 
                   for (let i = 0; i < floorTotal; i++) {
                     tableInfo.innerHTML +=
-                      "<hr>" +
+                      "<div id=" +
+                      '"floor_table">' +
+                      "<h3>" +
                       (i + 1) +
-                      "층 " +
-                      "사용중인 테이블: " +
+                      "층:&nbsp; " +
+                      "사용중인 테이블:&nbsp; <hr3 id=" +
+                      '"seat_num">' +
                       uu[i] +
-                      " / " +
-                      "전체 테이블 : " +
+                      "</hr3>  &nbsp;/ " +
+                      "&nbsp;전체 테이블 : &nbsp;<hr3 id=" +
+                      '"seat_num">' +
                       cc[i] +
-                      "</hr>";
+                      "</hr3></h3></div>";
                   }
 
                   document.getElementById("inline_info_page").style.visibility =
@@ -1049,6 +1097,8 @@
               kakao.maps.event.addListener(map, "click", function () {
                 document.getElementById("inline_info_page").style.visibility =
                   "hidden";
+                document.getElementById("searchBar").style.visibility =
+                  "visible";
 
                 customOverlay.setMap(null);
               });

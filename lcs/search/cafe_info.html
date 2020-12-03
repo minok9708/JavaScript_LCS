@@ -14,7 +14,7 @@
       <!-- <div id="cafe_logo">이미지</div> -->
       <div id="cafename_box">
         <div id="cafeName">
-          <h1></h1>
+          <h4></h4>
         </div>
       </div>
       <div id="table_state">
@@ -25,7 +25,7 @@
       <!--  정보 뭉텅이 -->
       <div>
         <!-- 연락처 -->
-        <hr id="hr_line" />
+        <hr id="hr_line1" />
         <div id="cafePhone"></div>
         <hr id="hr_line" />
         <!-- 카페주소 -->
@@ -60,9 +60,13 @@
       console.log("카페 주소:" + addr);
 
       openTime = test[3];
+      /* 오픈시간 시간만 나타내기 위해서 분리 */
+      open = openTime.split("T");
       console.log("오픈시간:" + openTime);
 
       closeTime = test[4];
+      /* 클로즈 시간 시간만 나타내기 위해서 분리 */
+      close = closeTime.split("T");
       console.log("마감시간:" + closeTime);
 
       table = test[5];
@@ -86,34 +90,90 @@
       console.log(totalSeatArray);
 
       cafeName = document.getElementById("cafeName");
-      cafeName.innerHTML = "<h1>" + decodeURI(name) + "</h1>";
+      cafeName.innerHTML = "<a id=+"+'"cafe_text"'+"> " + decodeURI(name) + "</a>";
 
       cafePhone = document.getElementById("cafePhone");
-      cafePhone.innerHTML = "<p>연락처 : " + phone + "</p>";
+      cafePhone.innerHTML =
+        "<p id=" +
+        "p_phone" +
+        "><img id=" +
+        '"img_phone"' +
+        " src=" +
+        '"/lcs/img/phone.png">' +
+        "&nbsp;<a id=" +
+        '"stAddr">' +
+        "&nbsp;연락처</a>&nbsp;&nbsp;</p>" +
+        phone;
 
       cafeAddr = document.getElementById("cafeAddr");
-      cafeAddr.innerHTML = "<p>주소 : " + decodeURI(addr) + "</p>";
+      cafeAddr.innerHTML =
+        "<p id=" +
+        "p_addr" +
+        "><img id=" +
+        '"img_address"' +
+        " src=" +
+        '"/lcs/img/address.png">' +
+        "&nbsp;<a id=" +
+        '"stAddr">' +
+        "&nbsp;주소</a>&nbsp;&nbsp;</p>" +
+        decodeURI(addr);
 
       cafeOpenTime = document.getElementById("cafeTime");
       cafeOpenTime.innerHTML =
-        " <p>영업시간 : " + openTime + " ~ " + closeTime + "</p>";
+        " <p id=" +
+        "p_time" +
+        "><img id=" +
+        '"img_time"' +
+        "src=" +
+        '"/lcs/img/time.png">' +
+        "&nbsp;<a id=" +
+        '"stAddr">' +
+        "&nbsp;영업시간</a>&nbsp;&nbsp;</p>" +
+        open[1] +
+        " ~ " +
+        close[1];
 
       cafeAllSeat = document.getElementById("cafeAllSeat");
-      cafeAllSeat.innerHTML = "<p>총 테이블 수 : " + table + "</p>";
+      cafeAllSeat.innerHTML =
+        "<p id=" +
+        "p_seat" +
+        "><img id=" +
+        '"img_seat"' +
+        "src=" +
+        '"/lcs/img/seat.png">' +
+        "&nbsp;<a id=" +
+        '"stAddr">' +
+        "&nbsp;총 테이블 수</a>&nbsp;&nbsp;</p>" +
+        table;
 
       tableInfo = document.getElementById("tableInfo");
+      tableInfo.innerHTML =
+        "<br><div id=" +
+        '"p_tableInfo"' +
+        "><img id=" +
+        '"img_table"' +
+        " src=" +
+        '"/lcs/img/table.png">' +
+        "&nbsp;<a id=" +
+        '"stAddr">' +
+        "&nbsp;자리현황</a>" +
+        "</div>";
 
       for (i = 0; i < floor; i++) {
         tableInfo.innerHTML +=
-          "<p>" +
+          "<div id=" +
+          '"floor_table">' +
+          "<h4>" +
           (i + 1) +
-          "층 " +
-          "사용중 : " +
+          "층:&nbsp; " +
+          "사용중인 테이블:&nbsp; <hr3 id=" +
+          '"seat_num">' +
           (totalSeatArray[i] - toArray[i]) +
-          " / " +
-          "전체 테이블 : " +
+          "</hr3>  &nbsp;/ " +
+          "&nbsp;전체 테이블 : &nbsp;<hr3 id=" +
+          '"seat_num">' +
           totalSeatArray[i] +
-          "</p>";
+          "</hr3></h4></div>";
       }
     </script>
   </body>

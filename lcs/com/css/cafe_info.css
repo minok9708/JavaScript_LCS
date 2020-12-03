@@ -1,9 +1,53 @@
+/* map(카카오맵 지도) 객체 */
 @font-face {
   font-family: "title";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "info";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix")
+      format("embedded-opentype"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff")
+      format("woff"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-style: normal;
+  font-weight: 700;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff")
+      format("woff"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-style: normal;
+  font-weight: 300;
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot");
+  src: url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix")
+      format("embedded-opentype"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff")
+      format("woff"),
+    url("//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf")
+      format("truetype");
+}
+
+.nanumbarungothic * {
+  font-family: "NanumBarunGothic", sans-serif;
 }
 
 @font-face {
@@ -30,62 +74,165 @@ html {
   background-color: #f3f3f3;
 }
 
+/* 본문 사각형 */
 #content {
-  font-family: content;
-  font-size: 1.1rem;
+  font-family: info;
+  width: 350px;
+  height: 500px;
+  /* border-radius: 13px; */
+  border: 2px solid black;
+  margin-top: 20vh;
+  margin-left: 15px;
+  margin-right: 15px;
 }
+
+/* 카페이름 사각형 */
 #cafename_box {
   background-color: rgb(255, 255, 255);
-  width: 290px;
-  top: 12vh;
+  top: 17vh;
   height: 60px;
   position: absolute;
   box-shadow: 0px 0px 2px 2px #252424;
   border-radius: 5px;
-}
-/* 카페 이름 */
-#cafeName {
-  font-family: title1;
-  text-align: center;
-  font-size: 0.6rem;
+  width: 306px;
+  left: 40px;
+  height: 50px;
 }
 
-#table_state {
+p {
+  display: inline;
 }
-/* 카페 자리 정보 */
+
+/* 자리현황 숫자 텍스트 굵게 */
+#seat_num {
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.589);
+}
+
+/* 카페 이름 */
+#cafeName {
+  padding-top: 13px;
+  font-family: info;
+  font-size: 20px /* 2rem */;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+/* 카페 자리현황 사각형 */
 #tableInfo {
-  text-align: left;
+  width: 310px;
+  height: 160px;
+  font-size: 5px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-top: 50px;
+  background-color: rgba(153, 153, 153, 0.267);
+}
+
+/* 자리현황 아이콘 이미지 */
+#img_table {
+  width: 20px;
+  height: 20px;
+}
+
+/* 자리현황의 층별 상세정보 */
+#floor_table {
+  margin-left: 45px;
+  font-size: small;
+}
+/* 자리현황 글씨 */
+#p_tableInfo {
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 /* 카페 연락처 */
 #cafePhone {
+  height: 22px;
+  padding-top: 4px;
+  margin-left: 10px;
   text-align: left;
+  font-size: small;
+  color: #0582f7;
+}
+
+#img_phone {
+  width: 15px;
+  height: 15px;
+}
+
+#p_phone {
+  color: black;
+  margin-left: 20px;
 }
 
 /* 카페 주소 */
 #cafeAddr {
+  height: 22px;
+  padding-top: 4px;
+  margin-left: 30px;
   text-align: left;
+  font-size: small;
+}
+/* 주소 아이콘 */
+#img_address {
+  width: 15px;
+  height: 15px;
 }
 
 /* 카페 영업시간 */
 #cafeTime {
+  height: 22px;
+  padding-top: 4px;
+  margin-left: 30px;
   text-align: left;
+  font-size: small;
+}
+
+/* 영업시간 아이콘 이미지 */
+#img_time {
+  width: 15px;
+  height: 15px;
 }
 
 /* 카페 총 테이블 수 */
 #cafeAllSeat {
+  height: 22px;
+  padding-top: 4px;
+  margin-left: 30px;
   text-align: left;
+  font-size: small;
+  /* font-weight: bold; */
 }
 
-#content {
-  width: 290px;
-  padding: 30px 25px 30px 25px;
-  border-radius: 5px;
-  border: 2px solid black;
-  margin: auto;
-  margin-top: 15vh;
+/* 총 테이블 수 아이콘 이미지 */
+#img_seat {
+  width: 20px;
+  height: 20px;
 }
 
+#p_seat {
+  font-weight: normal;
+}
+
+/* 연락처 위에 실선 */
+#hr_line1 {
+  width: 300px;
+  border-style: solid;
+  border-width: 0.5px;
+  margin-top: 35px;
+}
+
+/* 상세정보 실선 */
 #hr_line {
-  width: 290px;
+  width: 300px;
+}
+
+/* 카테고리 텍스트 크기 */
+#stAddr {
+  font-weight: bold;
+  font-size: small;
 }
