@@ -8,6 +8,8 @@
 
     <!-- Axios 라이브러리를 사용하기 위한 Api호출 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <!-- 서버가 안될시 임시 샘플 마커 데이터 -->
+    <script type="text/javascript" src="../com/js/adminData.js"></script>
   </head>
   <body>
     <header id="header">
@@ -176,38 +178,39 @@
         //다 모든조건을 만족 할때,
         if (vvv === false && count === 1) {
           alert("회원가입 성공!!");
+
+          //디비 데이터에 화원가입 데이터 보내기
+
+          let signUpUrl = "../com/js/adminData.js";
+
+          axios({
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            url: signUpUrl,
+            data: {},
+            params: {
+              email: email,
+              pw: pw,
+              name: name,
+              phone: phone,
+            },
+          })
+            .then(({data}) => {
+              console.log(data);
+
+              if (data === true) {
+                alert("회원가입 성공!!!!!");
+              } else {
+                alert("회원가입 실패...");
+              }
+            })
+            .catch((error) => {
+              console.log("error:", error.response);
+            });
         }
-
-        //모든 검사를 다 통했을 경우
-        // let signUpUrl = "https://cafeaddy.xyz:8080/api/name";
-
-        //   axios({
-        //     method: "pos과t",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //       Accept: "application/json",
-        //     },
-        //     url: signUpUrl,
-        //     data: {},
-        //     params: {
-        //       email:email,
-        //       pw:pw,
-        //       name:name,
-        //       phone:phone,
-        //     },
-        //   })
-        //     .then(({data}) => {
-        //       console.log(data);
-
-        //       if(data === true){
-        //         alert("회원가입 성공!!!!!")
-        //       }else{
-        //         alert("회원가입 실패...")
-        //       }
-        //     })
-        //     .catch((error) => {
-        //       console.log("error:", error.response);
-        //     });
       };
 
       //이메일 중복체크 버튼 구현
