@@ -20,18 +20,20 @@
         <h3>회원 관리(매니저 관리)</h3>
         <ul>
           <h4>
-            <li><a href="#####">조회</a></li>
+            <li><a href="../member/admin_select.html">조회</a></li>
           </h4>
           <br />
         </ul>
 
-        <h3 style="color: red">가맹점 관리</h3>
+        <h3>가맹점 관리</h3>
         <ul>
           <h4>
-            <li><a href="#####">가맹점 조회</a></li>
+            <li>
+              <a href="./store_select.html" style="color: red">가맹점 조회</a>
+            </li>
           </h4>
           <h4>
-            <li><a href="#####">가맹점 승인</a></li>
+            <li><a href="./store_accept.html">가맹점 승인</a></li>
           </h4>
         </ul>
       </div>
@@ -40,7 +42,6 @@
         <h1>
           가맹점 관리
           <div class="btn">
-            <input type="button" value="새로고침" />
             <input type="button" value="등 록" />
           </div>
         </h1>
@@ -85,11 +86,21 @@
                 <th></th>
                 <th>
                   <div id="updateBtn" style="display: inline-block">
-                    <input type="button" name="update" value="수정" />
+                    <input
+                      type="button"
+                      name="update"
+                      value="수정"
+                      onclick="alert('수정하시겠습니까? ')"
+                    />
                   </div>
 
                   <div id="deleteBtn" style="display: inline-block">
-                    <input type="button" name="delete" value="삭제" />
+                    <input
+                      type="button"
+                      name="delete"
+                      value="삭제"
+                      onclick="alert('삭제하시겠습니까? ')"
+                    />
                   </div>
                 </th>
               </tr>

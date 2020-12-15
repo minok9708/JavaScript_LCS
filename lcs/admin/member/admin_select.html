@@ -21,17 +21,19 @@
         <h3>회원 관리(매니저 관리)</h3>
         <ul>
           <h4>
-            <li><a href="#####">조회</a></li>
+            <li><a href="./admin_select.html" style="color: red">조회</a></li>
           </h4>
           <br />
         </ul>
         <h3>가맹점 관리</h3>
         <ul>
           <h4>
-            <li><a href="#####">가맹점 조회</a></li>
+            <li><a href="../store/store_select.html">가맹점 조회</a></li>
           </h4>
           <h4>
-            <li><a href="#####">가맹점 승인</a></li>
+            <li>
+              <a href="../store/store_accept.html">가맹점 승인</a>
+            </li>
           </h4>
         </ul>
       </div>
@@ -41,20 +43,23 @@
           회원 관리
           <!-- 머리말 부분 -->
           <div class="btn">
-            <input type="button" value="새로고침" />
             <input type="button" value="등 록" />
           </div>
         </h1>
 
         <div id="RegiDate">
           <!-- 검색 설정 부분 -->
-
-          <label>등록날짜 : <input type="date" /></label>
-          <label>-&nbsp;<input type="date" /></label>
-          &nbsp;&nbsp;&nbsp;
-
-          <label> 이름 : <input type="text" /></label>&nbsp;
-          <input type="submit" name="selectBtn" value="조회" />
+          등록날짜 : <input id="regiDate1" type="date" /> -&nbsp;<input
+            id="regiDate2"
+            type="date"
+          />
+          &nbsp;&nbsp;&nbsp; 이름 : <input id="name" type="text" />&nbsp;
+          <input
+            type="submit"
+            name="selectBtn"
+            value="조회"
+            onclick="select();"
+          />
         </div>
 
         <hr style="margin-left: 0.1%" width="70%" />
@@ -96,14 +101,24 @@
                     id="updateBtn"
                     style="display: inline-block; background-color: #4a95e5"
                   >
-                    <input type="submit" name="update" value="수정" />
+                    <input
+                      type="submit"
+                      name="update"
+                      value="수정"
+                      onclick="alert('수정하시겠습니까?');return false;"
+                    />
                   </div>
 
                   <div
                     id="deleteBtn"
                     style="display: inline-block; background-color: red"
                   >
-                    <input type="submit" name="delete" value="삭제" />
+                    <input
+                      type="submit"
+                      name="delete"
+                      value="삭제"
+                      onclick="alert('삭제하시겠습니까?');return false;"
+                    />
                   </div>
                 </th>
               </tr>
@@ -112,5 +127,21 @@
         </fieldset>
       </content>
     </div>
+
+    <script>
+      function select() {
+        let date1 = document.getElementById("regiDate1");
+        let date2 = document.getElementById("regiDate2").value();
+        let name = document.getElementById("name").value();
+
+        console.log(date1);
+        console.log(date2);
+        console.log(name);
+
+        console.log(
+          date1 + "부터" + date2 + "까지!!" + "이름" + name + "조회!!!!!!"
+        );
+      }
+    </script>
   </body>
 </html>
