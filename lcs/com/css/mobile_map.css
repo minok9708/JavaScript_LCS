@@ -219,7 +219,7 @@ table {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  top: 75vh;
+  top: 80vh;
   left: 2vw;
   width: 95vw;
   height: auto;
@@ -238,7 +238,7 @@ table {
 }
 
 #content_box #content_box_title {
-  width: 200px;
+  width: 300px;
   position: absolute;
   font-family: content;
   font-size: 15px;

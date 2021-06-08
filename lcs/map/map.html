@@ -344,6 +344,7 @@
               // console.log("층 넘버" + ll);
               // console.log(value);
 
+
               document.getElementById("content_box").style.visibility =
                 "visible";
               document.getElementById("content_box_title").innerHTML =
@@ -352,6 +353,7 @@
                 value.parcelAddr;
               document.getElementById("content_box_phone").innerHTML =
                 value.phone;
+
               document.getElementById("useTotalSeatDisplay").innerHTML = tt;
               document.getElementById("totalSeatDisplay").innerHTML = aa;
 
@@ -361,7 +363,7 @@
                 //데이터만 보내면됨
 
                 location.href =
-                  "/search/cafe_info?" +
+                  "/search/cafe_info.html?" +
                   value.name +
                   "&" +
                   value.phone +
@@ -387,8 +389,7 @@
             });
             //--------------------------------------------------------------------------------  여기부분 수정 -------------------------------------------------------------------
             kakao.maps.event.addListener(map, "click", function () {
-              document.getElementById("content_box").style.visibility =
-                "hidden";
+              document.getElementById("content_box").style.visibility = "hidden";
             });
           }
           // 키워드로 검색했을때 데스크탑
@@ -516,6 +517,7 @@
                   "&nbsp;총 테이블 수</a>&nbsp;&nbsp;</p>" +
                   +aa;
 
+
                 tableInfo = document.getElementById("tableInfo");
                 tableInfo.innerHTML =
                   "<br><p><img id=" +
@@ -544,17 +546,21 @@
                     "</hr3></h3></div>";
                 }
 
+
                 document.getElementById("inline_info_page").style.visibility =
                   "visible";
+
               };
             });
 
             kakao.maps.event.addListener(map, "click", function () {
               map.setDraggable(true);
 
+
               document.getElementById("inline_info_page").style.visibility =
                 "hidden";
               document.getElementById("searchBar").style.visibility = "visible";
+
 
               customOverlayA.setMap(null);
             });
@@ -894,6 +900,7 @@
 
                 // console.log(marker.name + " 총 테이블 : " + seatTotal + "개");
 
+
                 document.getElementById("content_box").style.visibility =
                   "visible";
                 document.getElementById("content_box_title").innerHTML =
@@ -912,6 +919,7 @@
                 document.getElementById(
                   "content_box_btn"
                 ).onclick = function () {
+
                   console.log("클릭했습니다");
                   //데이터만 보내면됨
                   console.log(marker);
@@ -921,7 +929,7 @@
                   console.log("해당하는 층의 테이블수" + cc);
 
                   location.href =
-                    "/search/cafe_info?" +
+                    "/search/cafe_info.html?" +
                     marker.name +
                     "&" +
                     marker.phone +
@@ -1010,6 +1018,7 @@
 
                   cafePhone = document.getElementById("cafePhone");
                   cafePhone.innerHTML =
+
                     "<p id=" +
                     "p_phone" +
                     "><img id=" +
@@ -1090,11 +1099,11 @@
                       "</hr3></h3></div>";
                   }
 
-                  document.getElementById("inline_info_page").style.visibility =
-                    "visible";
+                  document.getElementById("inline_info_page").style.visibility = "visible";
                 };
               });
               kakao.maps.event.addListener(map, "click", function () {
+
                 document.getElementById("inline_info_page").style.visibility =
                   "hidden";
                 document.getElementById("searchBar").style.visibility =
