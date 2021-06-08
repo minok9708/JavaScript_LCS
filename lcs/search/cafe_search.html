@@ -25,7 +25,7 @@
     <div class="wrap">
       <div class="search">
         <select
-          class="SelectSearch"
+          class="SelectSearch" 
           id="SelectSearch"
           name="WhichSearch"
           onchange="onChange();"
@@ -121,19 +121,6 @@
         })
           .then((data) => {
             console.log(data.data);
-
-            // if (data == null) {
-            //   alert("데이터가 없습니다.");
-            // }
-            //listdata = data;
-            //console.log(listdata);
-            //list();
-
-            // for (let i = 0; i < data.length; i++) {
-            // $("#cafeList").append(
-            //  "<ul class='cafeList' value='" + data.data + "' </ul>"
-            //);
-            // }
           })
           .catch((error) => {
             console.log("error:", error.response);

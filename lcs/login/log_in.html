@@ -9,6 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
     <link href="/lcs/com/css/log_in.css" rel="stylesheet" type="text/css" />
+
+    <!-- 서버가 안될시 임시 샘플 마커 데이터 -->
+    <script type="text/javascript" src="../com/js/adminData.js"></script>
   </head>
 
   <body>
@@ -47,7 +50,6 @@
               <input
                 type="submit"
                 id="signUpBtn"
-                s
                 value="회원가입"
                 onclick="location.href='../sign_up/sign_up.html'"
               />
@@ -97,6 +99,7 @@
 
         //서버로 아이디와 비밀번호 전송
         //let searchUrl = "https://cafeaddy.xyz:8080/api/name";
+        let searchUrl = "../com/js/adminData.js";
 
         axios({
           method: "post",
